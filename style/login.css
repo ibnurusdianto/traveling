@@ -102,7 +102,7 @@ body {
 #form-container {
     background-color: var(--text-second);
     border-radius: 10px;
-    box-shadow: .5px 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: .5px 5px 5px rgba(0, 0, 0, 0.2);
     margin: 20px auto;
     padding: 20px;
 }
@@ -182,3 +182,57 @@ body {
         padding: 40px;
     }
 }
+#form-container .form-control:focus {
+    box-shadow: none;
+    border-bottom: 1px solid var(--primary);
+    transition: border-color 0.3s;
+}
+#form-container input[type="submit"]:hover {
+    background-color: #0080cc;
+    border-color: #0080cc;
+}
+#form-container a:hover {
+    text-decoration: underline;
+}
+#form-container input[type="submit"] {
+    border-radius: 4px;
+}
+
+#form-container input[type="submit"]:hover {
+    background-color: #0080cc;
+    border-color: #0080cc;
+    transition: background-color 0.4s, border-color 0.4s;
+}
+#form-container {
+    background-color: #F0F0F0;
+}
+#form-container a {
+    text-decoration: underline;
+}
+#form-container form {
+    display: flex;
+    flex-direction: column;
+}
+#form-container .form-control:hover,
+#form-container .form-control:focus {
+    background-color: #fafafa;
+}
+#form-container .form-control {
+    transition: background-color 0.3s ease;
+}
+#form-container .form-control:invalid {
+    border-color: #ff0000;
+}
+#form-container input[type="submit"] {
+    background: linear-gradient(to right, #0080cc, #00B0FF);
+    border: none;
+    color: white;
+}
+@media (max-width: 768px) {
+    #form-container {
+        font-size: 0.9em;
+    }
+}
+
+
+
