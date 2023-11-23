@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active me-4" aria-current="page" href="index.php">Home</a>
-                <a class="nav-link me-4" href="#">Destination</a>
+                <a class="nav-link me-4" href="destination.php">Destination</a>
                 <a class="nav-link me-4" href="#">About</a>
                 <a class="nav-link me-4" href="#">Contact Us</a>
                 <a class="nav-link me-4" href="our-team.php">Our Team</a>
