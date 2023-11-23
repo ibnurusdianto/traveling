@@ -35,6 +35,122 @@
   max-width: 100%;
   height: auto;
 }
+.detail_section h2 {
+  color: #333;
+  font-size: 2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.detail_section p {
+  color: #666;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+.detail_section .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.detail_section .btn-primary:hover {
+  background-color: #0056b3;
+}
+.detail_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail_section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.detail_section h2 {
+  color: #333;
+  font-size: 2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.detail_section p {
+  color: #666;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+.detail_section .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.detail_section .btn-primary:hover {
+  background-color: #0056b3;
+}
+.detail_section img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.detail_section p:hover {
+  font-weight: bold;
+  color: #007bff;
+  transition: all 0.3s;
+}
+@media (max-width: 767px) {
+  .detail_section h2 {
+    font-size: 1.5em;
+  }
+}
+
+
+
+
+.review_section h2 {
+  font-size: 2.5em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.review_section p {
+  color: #333;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+.review_section img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.review_section img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+  .review_section h2 {
+    font-size: 1.5em;
+  }
+}
+.review_section img {
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s, border 0.4s;
+}
+
+.review_section img:hover {
+  border-color: #007bff;
+}
+
 
 
 
@@ -50,12 +166,21 @@
   -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   margin-top: 45px;
+  transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
-.destination_section .box .img-box svg {
-  width: 75px;
+.destination_section .box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.destination_section .box .img-box img {
+  width: 100%;
   height: auto;
-  fill: #1c1c1c;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
 }
 
 .destination_section .box .detail-box {
@@ -80,16 +205,31 @@
     max-width: 50%;
   }
 }
+
 .img-fluid {
   max-width: 100%;
   height: auto;
 }
+
 @media (max-width: 767px) {
   .col-md-6,
   .col-lg-4 {
     flex: 0 0 100%;
     max-width: 100%;
   }
+}
+.destination_section .box .img-box img {
+  transition: transform 0.3s;
+}
+
+.destination_section .box .img-box img:hover {
+  transform: scale(1.1);
+}
+
+.destination_section .box .detail-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 0 0 8px 8px;
 }
 
 
@@ -143,6 +283,75 @@
     font-size: 0.9rem;
     line-height: 1.4;
   }
+}
+.carousel-inner {
+  overflow: hidden;
+}
+
+.carousel-item img {
+  transition: transform 0.5s ease;
+}
+
+.carousel-item:hover img {
+  transform: scale(1.1);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 0.8;
+}
+.carousel-caption {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.carousel-item.active .carousel-caption {
+  opacity: 1;
+}
+.header-caption, .paragaf-caption {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.carousel-item-next img, .carousel-item-prev img {
+  transform: scale(1.1);
+  transition: transform 0.5s ease;
+}
+.carousel-item {
+  transition: all 0.5s ease;
+}
+@media (max-width: 600px) {
+  .carousel-item img {
+    width: 100%;
+  }
+}
+.carousel-inner::-webkit-scrollbar {
+  width: 10px;
+}
+
+.carousel-inner::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.carousel-inner::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.carousel-item {
+  animation: slideIn 0.5s ease;
 }
 
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Destination</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/destination.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
@@ -78,7 +78,7 @@
     <div class="container">
         <h1 class="header-destination1">Travelling Information for The</h1>
         <h1 class="header-destination1">best Experience</h1>
-        <p class="mt-3" style="width: 55%;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati quidem, pariatur minus a enim mollitia? Iusto autem assumenda cupiditate illum voluptatem vero atque molestias dolorum?</p>
+        <p class="mt-3 paragaf-destination">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati quidem, pariatur minus a enim mollitia? Iusto autem assumenda cupiditate illum voluptatem vero atque molestias dolorum?</p>
     </div>
     <section class="destination_section">
         <div class="container">
@@ -161,11 +161,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="img/5.jpg" alt="" width="100%">
+                    <img class="gambar-tempat-wisata" src="img/5.jpg" alt="" width="100%">
                 </div>
                 <div class="col-md-6" style="padding: 50px;">
-                    <h3>Nama Tempat Wisata</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic omnis reprehenderit nesciunt iusto saepe, eius nihil tempore cumque, optio architecto voluptas, provident est ab porro beatae quod suscipit placeat quas.</p>
+                    <h3 class="nama-tempat-wisata">Nama Tempat Wisata</h3>
+                    <p class="paragaf-tempat-wisata">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic omnis reprehenderit nesciunt iusto saepe, eius nihil tempore cumque, optio architecto voluptas, provident est ab porro beatae quod suscipit placeat quas.</p>
                 </div>
             </div>
         </div>
