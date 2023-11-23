@@ -16,6 +16,33 @@
 
 
 
+/* style javascript login */
+.password-toggle-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.password-toggle-button:hover {
+    background-color: #45a049;
+}
+@media screen and (max-width: 600px) {
+    .password-toggle-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+
+
 
 
 /*Khusus Bagian Footer*/
