@@ -1,0 +1,3 @@
++ Login sudah - Memiliki fitur show hide password dan validasi
++ Register sudah 
++ Menambahkan button search dan icon search pada navbar dan btn login 
