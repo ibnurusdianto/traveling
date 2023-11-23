@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel - Login</title>
+    <title>Travel - Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style/login.css" />
+    <link rel="stylesheet" href="style/register.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
@@ -18,7 +18,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active me-4" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link active me-4" aria-current="page" href="index.php">Home</a>
                 <a class="nav-link me-4" href="#">Destination</a>
                 <a class="nav-link me-4" href="#">About</a>
                 <a class="nav-link me-4" href="#">Contact Us</a>
@@ -32,35 +32,52 @@
             </button>
         </form>
 <!--        <button class="btn btn-success" type="button">Login</button>-->
+        <a class="btn btn-success" href="login.php">Login</a>
     </div>
 </nav>
 <!-- end navbar -->
 
 
 
-<!--Login Form-->
+<!--Register Form-->
 <div class="container col-11 col-md-9" id="form-container">
-    <div class="row align-items-center gx-5">
-        <div class="col-md-6 order-md-2">
-            <h2>Login to continue</h2>
+    <div class="row gx-5">
+        <div class="col-md-6">
+            <h2>Complete your registration</h2>
             <form>
                 <div class="form-floating mb-3">
-                    <input type="username" class="form-control" id="username" name="username" placeholder="Enter your username">
+                    <input type="username" class="form-control" id="username" name="username" placeholder="Enter your Username">
                     <label for="username" class="form-label">Enter your Username</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
                     <label for="password" class="form-label">Enter your password</label>
                 </div>
-                <input type="submit" class="btn btn-primary mt-4" value="Login">
+                <div class="mb-3">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" value="" id="agree-term">
+                        <label class="form-check-label" for="agree-term">
+                            Do you accept <a href="#">the terms of service</a>?
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="newsletter" checked>
+                        <label class="form-check-label" for="newsletter">
+                            Do you want to receive our newsletters?
+                        </label>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Register">
             </form>
         </div>
-        <div class="col-md-6 order-md-1">
-            <div class="col-12">
-                <img src="img/2.jpg" alt="Login" class="img-fluid">
-            </div>
-            <div class="col-12" id="link-container">
-                <a href="register.html">I don't have an account</a>
+        <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <img src="img/5.jpg" alt="Sign up" class="img-fluid">
+                </div>
+                <div class="col-12" id="link-container">
+                    <a href="login.php">I already have an account</a>
+                </div>
             </div>
         </div>
     </div>
