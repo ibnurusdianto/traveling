@@ -22,6 +22,7 @@
                 <a class="nav-link me-4" href="#">Destination</a>
                 <a class="nav-link me-4" href="#">About</a>
                 <a class="nav-link me-4" href="#">Contact Us</a>
+                <a class="nav-link me-4" href="our-team.php">Our Team</a>
             </div>
         </div>
         <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
