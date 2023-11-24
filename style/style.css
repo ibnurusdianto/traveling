@@ -1,3 +1,20 @@
+.navbar {
+  background-color: #9BBEC8;
+  font-weight: 500;
+}
+.navbar .nav-link {
+  color: #DDF2FD;
+}
+.navbar .nav-link:hover {
+  color: #427D9D;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.navbar .nav-link.active {
+  color: #164863;
+  font-weight: 600;
+}
+
 @media (min-width: 768px) {
   .navbar-nav {
     flex-wrap: nowrap;
@@ -12,6 +29,13 @@
   }
 }
 
+.navbar form .btn i {
+  color: #DDF2FD;
+}
+.navbar .btn {
+  background-color: #427D9D;
+  color: #DDF2FD;
+}
 
 
 .layout_padding {
@@ -35,28 +59,34 @@
   max-width: 100%;
   height: auto;
 }
+
 .detail_section h2 {
-  color: #333;
-  font-size: 2em;
+  color: #164863;
   text-transform: uppercase;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 .detail_section p {
   color: #666;
-  font-size: 1.2em;
+  font-size: 1.1em;
   line-height: 1.6;
 }
-.detail_section .btn-primary {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
+.detail_section p:hover {
+  font-weight: bold;
+  color: #427D9D;
+  transition: all 0.3s;
+}
+.detail_section .btn {
+  background-color: #164863;
+  color: #DDF2FD;
+  padding: 8px 30px;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
+  margin-top: 20px;
 }
-
-.detail_section .btn-primary:hover {
-  background-color: #0056b3;
+.detail_section .btn:hover {
+  background-color: #9BBEC8;
 }
 .detail_section {
   display: flex;
@@ -68,44 +98,14 @@
   max-width: 100%;
   height: auto;
 }
-
-.detail_section h2 {
-  color: #333;
-  font-size: 2em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.detail_section p {
-  color: #666;
-  font-size: 1.2em;
-  line-height: 1.6;
-}
-
-.detail_section .btn-primary {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.detail_section .btn-primary:hover {
-  background-color: #0056b3;
-}
 .detail_section img:hover {
   transform: scale(1.1);
   transition: transform 0.3s;
 }
-.detail_section p:hover {
-  font-weight: bold;
-  color: #007bff;
-  transition: all 0.3s;
-}
+
 @media (max-width: 767px) {
   .detail_section h2 {
-    font-size: 1.5em;
+    font-size: 2em;
   }
 }
 
@@ -113,14 +113,16 @@
 
 
 .review_section h2 {
-  font-size: 2.5em;
+  font-size: 2em;
+  color: #164863;
   text-transform: uppercase;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
 .review_section p {
-  color: #333;
-  font-size: 1.2em;
+  color: #666;
+  font-size: 1.1em;
   line-height: 1.6;
 }
 
@@ -148,7 +150,7 @@
 }
 
 .review_section img:hover {
-  border-color: #007bff;
+  border-color: #9BBEC8;
 }
 
 
@@ -157,6 +159,13 @@
 
 .header-destination {
   text-align: center;
+  color: #164863;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.destination_section h2 {
+  color: #164863;
 }
 
 .destination_section .box {
@@ -360,8 +369,8 @@
 .info_section {
   height: auto;
   min-height: 350px;
-  background-color: #1a242d;
-  color: #ffffff;
+  background-color: #164863;
+  color: #DDF2FD;
   padding: 95px;
 }
 
@@ -369,7 +378,7 @@
   display: flex;
   justify-content: center;
   padding: 25px;
-  background-color: #1a242d;
+  background-color: #164863;
 }
 
 .footer_section p {
