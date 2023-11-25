@@ -4,14 +4,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel - Destination</title>
+    <title>Travel - Tempat Wisata</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="style/header-footer.css">
-    <link rel="stylesheet" href="style/destination.css" />
+    <link rel="stylesheet" href="style/tempat-wisata.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
 <body>
+
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -21,7 +22,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link me-4" aria-current="page" href="index.php">Home</a>
-                    <a class="nav-link active me-4" href="destination.php">Destination</a>
+                    <a class="nav-link me-4" href="destination.php">Destination</a>
                     <a class="nav-link me-4" href="about.php">About</a>
                     <a class="nav-link me-4" href="#">Contact Us</a>
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
@@ -75,128 +76,111 @@
     </div>
     <!-- end carousel -->
 
-    <!-- destination section -->
+    <!--Details Tempat Wisata-->
     <div class="container">
-        <h1 class="header-destination1">Travelling Information for The</h1>
-        <h1 class="header-destination1">best Experience</h1>
-        <p class="mt-3 paragaf-destination">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati quidem, pariatur minus a enim mollitia? Iusto autem assumenda cupiditate illum voluptatem vero atque molestias dolorum?</p>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
+                <h1 class="header-details mb-5">Nama Tempat Wisata</h1>
+                <div class="card mb-4">
+                    <img src="img/5.jpg" class="card-img-top" alt="gambar">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
+                <h5>Deskripsi : </h5>
+                <p class="details-paragraf-tempat-wisata">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci animi dicta dignissimos doloremque earum, et laudantium nostrum obcaecati reprehenderit rerum totam unde voluptate? Aliquid asperiores autem commodi, consectetur consequatur corporis dolores esse exercitationem expedita illum incidunt ipsa libero necessitatibus nemo nisi nostrum obcaecati officia perspiciatis quisquam quo quos reprehenderit sapiente similique ut vel veniam, voluptates! Aliquam beatae eum eveniet id illo in labore laudantium magnam, maxime nam nesciunt obcaecati, perspiciatis quas quia quis sed velit voluptas! Animi aspernatur beatae blanditiis, commodi consectetur culpa debitis delectus distinctio dolorem ducimus eaque earum et eveniet excepturi explicabo illum impedit laudantium libero magni molestiae molestias nam natus necessitatibus nesciunt non nostrum numquam, officia perspiciatis quia quibusdam quidem quod quos recusandae reprehenderit temporibus velit voluptatum. Accusantium asperiores atque dicta eligendi minima nulla, sunt ut! Beatae dolores doloribus enim sequi? Accusantium aliquam consequatur consequuntur dolore et facere fugit magni, maxime minus molestiae nam omnis praesentium quaerat quidem quod recusandae ut vitae! Ab accusamus amet animi aspernatur aut autem, consectetur culpa distinctio dolor dolores dolorum ex exercitationem expedita, explicabo illo impedit incidunt iste iure magni minima molestiae molestias natus necessitatibus neque obcaecati perferendis quaerat, quasi quos reiciendis repellendus sapiente sed sequi temporibus. Accusamus amet assumenda at aut commodi consequatur consequuntur corporis delectus deleniti dicta distinctio ducimus et excepturi facilis fuga hic incidunt labore maxime minus officia omnis optio quaerat quasi quidem ratione recusandae repellendus rerum saepe sapiente sequi suscipit, vel voluptates voluptatum. Consequuntur earum eveniet hic impedit ipsum magni modi nostrum quaerat sapiente sint sunt, voluptatem.</p>
+            </div>
+        </div>
     </div>
-    <section class="destination_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <a href="details-destination.php">
-                                <h2>Nama Destination</h2>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <a href="details-destination.php">
-                                <h2>Nama Destination</h2>
-                            </a>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <a href="details-destination.php">
-                                <h2>Nama Destination</h2>
-                            </a>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end destination section -->
+    <!--End Details Tempat Wisata-->
 
-    <!--  -->
-    <section class="tempat-wisata mt-5 mb-5">
+    <!-- komentar -->
+    <div class="komentar container p-5 mt-5">
+        <h5 class="pb-2">Komentar</h5>
+        <div class="form">
+            <textarea name="komentar" id="" rows="7"></textarea>
+            <div class="">
+                <button type="submit" class="btn"><span id="boot-icon" class="bi bi-send"></span></i></button>
+            </div>
+        </div>
+    </div>
+    <!-- end komentar -->
+
+    <!-- komentar user -->
+    <div class="komentar-user container mt-5 mb-5 p-5">
+        <div class="row align-items-center">
+            <div class="col-3">
+                <h5>Username</h5>
+            </div>
+            <div class="col-9">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rerum, hic nihil est maiores labore nobis ab natus odio esse?</p>
+            </div>
+        </div>
+    </div>
+    <div class="komentar-user container mt-5 mb-5 p-5">
+        <div class="row align-items-center">
+            <div class="col-3">
+                <h5>Username</h5>
+            </div>
+            <div class="col-9">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rerum, hic nihil est maiores labore nobis ab natus odio esse?</p>
+            </div>
+        </div>
+    </div>
+    <!-- end komentar user -->
+
+    <!-- similar destinations -->
+    <div class="container">
+        <h1 class="header-similar-destinations mt-5">Similar Destinastion</h1>
+    </div>
+    <section class="similar-destinations_section">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <img class="gambar-tempat-wisata" src="img/1.jpg" alt="" width="100%">
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <a href="tempat-wisata.php">
+                                <h2>Nama Tempat Wisata</h2>
+                            </a>
+                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6" style="padding: 50px;">
-                    <h2 class="nama-tempat-wisata">Nama Tempat Wisata</h2>
-                    <p class="paragaf-tempat-wisata">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic omnis reprehenderit nesciunt iusto saepe, eius nihil tempore cumque, optio architecto voluptas, provident est ab porro beatae quod suscipit placeat quas.</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <a href="tempat-wisata.php">
+                                <h2>Nama Tempat Wisata</h2>
+                            </a>
+                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <a href="tempat-wisata.php">
+                                <h2>Nama Tempat Wisata</h2>
+                            </a>
+                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--  -->
-
-    <!--  -->
-    <section class="travelling-information mt-5 mb-5">
-        <div class="container">
-            <div class="row mt-5 d-flex align-items-center">
-                <div class="col-5">
-                    <h1 style="width: 50%;">Travelling Information</h1>
-                </div>
-                <div class="col-7">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ipsum culpa libero ea fuga, sint esse? Quidem id labore minima impedit itaque deserunt, placeat, quisquam dolores dolorem ullam debitis mollitia? Excepturi ad vero nemo dicta? Totam quibusdam aperiam optio, ut rerum inventore dolorem laboriosam, velit, numquam placeat impedit doloribus sapiente!</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum labore quidem consequatur est laudantium et.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--  -->
+    <!-- end similar destinations -->
 
     <!-- info section -->
-    <section class="info_section">
+    <section class="info_section mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -221,8 +205,6 @@
         </div>
     </footer>
     <!-- end footer section -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>

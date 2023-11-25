@@ -1,21 +1,3 @@
-/*Navbar*/
-@media (min-width: 768px) {
-    .navbar-nav {
-        flex-wrap: nowrap;
-    }
-
-    .navbar-toggler {
-        display: none;
-    }
-
-    .navbar-collapse {
-        display: flex !important;
-    }
-}
-
-
-
-
 /*Modal popups*/
 .img-thumbnail {
     width: 30%;
@@ -29,49 +11,6 @@
     }
 }
 /*End Modal Popups*/
-
-
-
-
-
-
-/*Khusus Bagian Footer*/
-.info_section {
-    height: auto;
-    min-height: 350px;
-    background-color: #1a242d;
-    color: #ffffff;
-    padding: 95px;
-}
-
-.footer_section {
-    display: flex;
-    justify-content: center;
-    padding: 25px;
-    background-color: #1a242d;
-}
-
-.footer_section p {
-    color: rgba(254, 254, 255, 0.7);
-    margin: 0;
-    text-align: center;
-}
-
-@media (max-width: 767px) {
-    .info_section {
-        padding: 60px;
-    }
-}
-
-@media (max-width: 575px) {
-    .info_section {
-        padding: 30px;
-    }
-}
-
-
-
-
 
 
 

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Details Destination</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style/header-footer.css">
     <link rel="stylesheet" href="style/details-destination.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
@@ -79,13 +80,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <h1 class="header-details">Nama Destinasi</h1>
+                <h1 class="header-details mt-5 mb-5">Nama Destinastion</h1>
                 <div class="card mb-4">
                     <img src="img/5.jpg" class="card-img-top" alt="gambar">
                 </div>
             </div>
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <p class="details-paragaf-destination">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci animi dicta dignissimos doloremque earum, et laudantium nostrum obcaecati reprehenderit rerum totam unde voluptate? Aliquid asperiores autem commodi, consectetur consequatur corporis dolores esse exercitationem expedita illum incidunt ipsa libero necessitatibus nemo nisi nostrum obcaecati officia perspiciatis quisquam quo quos reprehenderit sapiente similique ut vel veniam, voluptates! Aliquam beatae eum eveniet id illo in labore laudantium magnam, maxime nam nesciunt obcaecati, perspiciatis quas quia quis sed velit voluptas! Animi aspernatur beatae blanditiis, commodi consectetur culpa debitis delectus distinctio dolorem ducimus eaque earum et eveniet excepturi explicabo illum impedit laudantium libero magni molestiae molestias nam natus necessitatibus nesciunt non nostrum numquam, officia perspiciatis quia quibusdam quidem quod quos recusandae reprehenderit temporibus velit voluptatum. Accusantium asperiores atque dicta eligendi minima nulla, sunt ut! Beatae dolores doloribus enim sequi? Accusantium aliquam consequatur consequuntur dolore et facere fugit magni, maxime minus molestiae nam omnis praesentium quaerat quidem quod recusandae ut vitae! Ab accusamus amet animi aspernatur aut autem, consectetur culpa distinctio dolor dolores dolorum ex exercitationem expedita, explicabo illo impedit incidunt iste iure magni minima molestiae molestias natus necessitatibus neque obcaecati perferendis quaerat, quasi quos reiciendis repellendus sapiente sed sequi temporibus. Accusamus amet assumenda at aut commodi consequatur consequuntur corporis delectus deleniti dicta distinctio ducimus et excepturi facilis fuga hic incidunt labore maxime minus officia omnis optio quaerat quasi quidem ratione recusandae repellendus rerum saepe sapiente sequi suscipit, vel voluptates voluptatum. Consequuntur earum eveniet hic impedit ipsum magni modi nostrum quaerat sapiente sint sunt, voluptatem.</p>
+                <p class="details-paragraf-destination">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci animi dicta dignissimos doloremque earum, et laudantium nostrum obcaecati reprehenderit rerum totam unde voluptate? Aliquid asperiores autem commodi, consectetur consequatur corporis dolores esse exercitationem expedita illum incidunt ipsa libero necessitatibus nemo nisi nostrum obcaecati officia perspiciatis quisquam quo quos reprehenderit sapiente similique ut vel veniam, voluptates! Aliquam beatae eum eveniet id illo in labore laudantium magnam, maxime nam nesciunt obcaecati, perspiciatis quas quia quis sed velit voluptas! Animi aspernatur beatae blanditiis, commodi consectetur culpa debitis delectus distinctio dolorem ducimus eaque earum et eveniet excepturi explicabo illum impedit laudantium libero magni molestiae molestias nam natus necessitatibus nesciunt non nostrum numquam, officia perspiciatis quia quibusdam quidem quod quos recusandae reprehenderit temporibus velit voluptatum. Accusantium asperiores atque dicta eligendi minima nulla, sunt ut! Beatae dolores doloribus enim sequi? Accusantium aliquam consequatur consequuntur dolore et facere fugit magni, maxime minus molestiae nam omnis praesentium quaerat quidem quod recusandae ut vitae! Ab accusamus amet animi aspernatur aut autem, consectetur culpa distinctio dolor dolores dolorum ex exercitationem expedita, explicabo illo impedit incidunt iste iure magni minima molestiae molestias natus necessitatibus neque obcaecati perferendis quaerat, quasi quos reiciendis repellendus sapiente sed sequi temporibus. Accusamus amet assumenda at aut commodi consequatur consequuntur corporis delectus deleniti dicta distinctio ducimus et excepturi facilis fuga hic incidunt labore maxime minus officia omnis optio quaerat quasi quidem ratione recusandae repellendus rerum saepe sapiente sequi suscipit, vel voluptates voluptatum. Consequuntur earum eveniet hic impedit ipsum magni modi nostrum quaerat sapiente sint sunt, voluptatem.</p>
             </div>
         </div>
     </div>
@@ -93,7 +94,7 @@
 
 
     <!-- destination section -->
-    <section class="destination_section">
+    <section class="tempat-wisata_section">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-4">
@@ -102,7 +103,9 @@
                             <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
+                            <a href="tempat-wisata.php">
+                                <h2>Nama Tempat Wisata</h2>
+                            </a>
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
                     </div>
@@ -113,7 +116,9 @@
                             <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
+                            <a href="tempat-wisata.php">
+                                <h2>Nama Tempat Wisata</h2>
+                            </a>
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
                     </div>
@@ -124,7 +129,9 @@
                             <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
+                            <a href="tempat-wisata.php">
+                                <h2>Nama Tempat Wisata</h2>
+                            </a>
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
                     </div>
@@ -137,7 +144,7 @@
                             <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
+                            <h2 class="">Nama Tempat Wisata</h2>
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
                     </div>
@@ -148,7 +155,7 @@
                             <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
+                            <h2 class="">Nama Tempat Wisata</h2>
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
                     </div>
@@ -159,7 +166,7 @@
                             <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
+                            <h2 class="">Nama Tempat Wisata</h2>
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
                     </div>
@@ -171,7 +178,7 @@
 
 
     <!--  -->
-    <section class="detail_section layout_padding">
+    <!-- <section class="detail_section layout_padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 ps-0 pe-md-5">
@@ -187,12 +194,12 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!--  -->
 
 
     <!-- info section -->
-    <section class="info_section">
+    <section class="info_section mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">

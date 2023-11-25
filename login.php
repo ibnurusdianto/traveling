@@ -6,22 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style/header-footer.css">
     <link rel="stylesheet" href="style/login.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #9eb4c7">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active me-4" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link me-4" aria-current="page" href="index.php">Home</a>
                     <a class="nav-link me-4" href="destination.php">Destination</a>
-                    <a class="nav-link me-4" href="#">About</a>
+                    <a class="nav-link me-4" href="about.php">About</a>
                     <a class="nav-link me-4" href="#">Contact Us</a>
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
                 </div>
@@ -29,7 +30,7 @@
             <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
             <form class="d-flex me-2 ms-auto" action="#">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">
+                <button class="btn" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>
@@ -39,7 +40,7 @@
     <!-- end navbar -->
 
 
-
+    
     <!--Login Form-->
     <div class="container col-11 col-md-9" id="form-container">
         <div class="row align-items-center gx-5">
