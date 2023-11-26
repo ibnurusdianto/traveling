@@ -10,6 +10,30 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style/our-team.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .modal-content {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .modal-title {
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .modal-body .btn {
+            margin: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .modal-body .btn:hover {
+            background-color: #007bff;
+            color: #fff;
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
 
@@ -20,7 +44,7 @@
         <h1>Our Team Sistem Informasi Traveling</h1>
     </div>
         <div class="text-center">
-            <a type="button" class="btn btn-success" href="#">View Portfolio</a>
+            <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#portfolioModal">View Portfolio</a>
             <a type="button" class="btn btn-primary" href="index.php">Back to Index</a>
             <a type="button" class="btn btn-dark" href="login.php">Login</a>
             <a type="button" class="btn btn-dark" href="register.php">Register</a>
@@ -120,6 +144,27 @@
         </div>
     </div>
 </section>
+
+<!--Modal Portfolio-->
+<div class="modal fade" id="portfolioModal" tabindex="-1" aria-labelledby="portfolioModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="portfolioModalLabel">Portfolio Our Team</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <a href="portfolio/ibnu/src/views/Hero.tsx" class="btn btn-primary">Mahisa</a>
+                    <a href="https://link-ke-website.com" class="btn btn-primary">Vita</a>
+                    <a href="https://link-ke-website.com" class="btn btn-primary">Ibnu</a>
+                    <a href="https://link-ke-website.com" class="btn btn-primary">Fadly</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal-->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
