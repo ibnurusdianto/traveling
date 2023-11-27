@@ -1,0 +1,133 @@
+.layout_padding {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+@media (max-width: 767px) {
+  .layout_padding {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+@media (max-width: 575px) {
+  .layout_padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+.about_section h2 {
+  color: #164863;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.about_section p {
+  color: #666;
+  font-size: 1em;
+  line-height: 1.6;
+}
+.about_section p:hover {
+  font-weight: bold;
+  color: #427d9d;
+  transition: all 0.3s;
+}
+.about_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about_section img {
+  max-width: 100%;
+  height: auto;
+}
+.about_section img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+
+@media (max-width: 767px) {
+  .about_section h2 {
+    font-size: 2em;
+  }
+}
+
+.tempat-wisata {
+  /* background-color: #DDF2FD; */
+  color: #164863;
+  padding: 80px;
+}
+
+.tempat-wisata .row {
+  align-items: center;
+}
+
+.gambar-tempat-wisata {
+  width: 100%;
+  height: auto;
+}
+.nama-tempat-wisata {
+  /* text-shadow: 2px 2px 4px #aaa; */
+  color: #164863;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.tempat-wisata img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.tempat-wisata img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+  .tempat-wisata h2 {
+    font-size: 1.5em;
+  }
+}
+.tempat-wisata img {
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s, border 0.4s;
+}
+
+.tempat-wisata img:hover {
+  border-color: #9bbec8;
+}
+
+.paragaf-tempat-wisata {
+  text-align: justify;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.gambar-tempat-wisata {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+.gambar-tempat-wisata:hover {
+  transform: scale(1.05);
+  transition: transform 0.5s ease-in-out;
+}
+.nama-tempat-wisata:hover {
+  color: #427d9d;
+  transition: color 0.5s ease-in-out;
+}
+.paragaf-tempat-wisata:hover {
+  color: #427d9d;
+  transition: color 0.5s ease-in-out;
+}
