@@ -105,6 +105,13 @@
                 <div class="col-md-6" style="padding: 50px;">
                     <h2 class="nama-tempat-wisata">Nama Tempat Wisata</h2>
                     <p class="paragaf-tempat-wisata">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic omnis reprehenderit nesciunt iusto saepe, eius nihil tempore cumque, optio architecto voluptas, provident est ab porro beatae quod suscipit placeat quas.</p>
+                    <div class="card d-inline p-2 mt-4" id="rating-card" style="background-color: #9BBEC8; border: none">
+                        <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
+                        <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
+                        <i id="star3" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star4" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star5" class="bi bi-star" style="color: yellow;"></i>
+                    </div>
                 </div>
             </div>
         </div>

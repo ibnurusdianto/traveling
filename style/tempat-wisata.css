@@ -103,3 +103,15 @@
 .similar-destinations_section .box .detail-box a h2:hover {
   color: #164863;
 }
+
+#rating-card {
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+}
+
+#star1, #star2, #star3, #star4, #star5:hover {
+  cursor: pointer;
+}

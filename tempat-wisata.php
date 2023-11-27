@@ -98,9 +98,18 @@
         <h5 class="pb-2">Komentar</h5>
         <div class="form">
             <textarea name="komentar" id="" rows="7"></textarea>
-            <div class="">
-                <button type="submit" class="btn"><span id="boot-icon" class="bi bi-send"></span></i></button>
+            <div class="row">
+                <div class="col-6 mt-4 align-items-center">
+                    <div class="card d-inline p-2" id="rating-card">
+                        <i id="star1" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star2" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star3" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star4" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star5" class="bi bi-star" style="color: yellow;"></i>
+                    </div>
+                </div>
             </div>
+            <input class="btn mt-4" type="submit" value="Submit" style="background-color: #9BBEC8; color: white;">
         </div>
     </div>
     <!-- end komentar -->
@@ -113,6 +122,13 @@
             </div>
             <div class="col-9">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rerum, hic nihil est maiores labore nobis ab natus odio esse?</p>
+                <div class="card d-inline p-2" id="rating-card">
+                    <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
+                    <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
+                    <i id="star3" class="bi bi-star-fill" style="color: yellow;"></i>
+                    <i id="star4" class="bi bi-star" style="color: yellow;"></i>
+                    <i id="star5" class="bi bi-star" style="color: yellow;"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -123,6 +139,13 @@
             </div>
             <div class="col-9">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rerum, hic nihil est maiores labore nobis ab natus odio esse?</p>
+                <div class="card d-inline p-2" id="rating-card">
+                    <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
+                    <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
+                    <i id="star3" class="bi bi-star-fill" style="color: yellow;"></i>
+                    <i id="star4" class="bi bi-star-fill" style="color: yellow;"></i>
+                    <i id="star5" class="bi bi-star" style="color: yellow;"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -205,6 +228,24 @@
         </div>
     </footer>
     <!-- end footer section -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <!-- <script>
+        $(document).ready(function(){
+            $("#star1").click(function(){
+                if($("#star1").hasClass("bi-star")){
+                    $("#star1").removeClass("bi-star");
+                    $("#star1").addClass("bi-star-fill");
+                } else {
+                    $("#star1").addClass("bi-star");
+                    $("#star1").removeClass("bi-star-fill");
+                }
+            })
+        })
+    </script> -->
 </body>
 
 </html>

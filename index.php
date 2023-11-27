@@ -150,6 +150,13 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, quaerat et. Cum, exercitationem consectetur? Expedita, odio at itaque in voluptas ex doloremque libero nisi sit temporibus. Officia dolor quaerat amet omnis voluptates
                 reiciendis, mollitia eaque rem blanditiis sequi accusantium? Ratione?
               </p>
+              <div class="card d-inline p-2 mt-4" id="rating-card" style="background-color: #9BBEC8; border: none">
+                <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
+                <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
+                <i id="star3" class="bi bi-star" style="color: yellow;"></i>
+                <i id="star4" class="bi bi-star" style="color: yellow;"></i>
+                <i id="star5" class="bi bi-star" style="color: yellow;"></i>
+              </div>
               <!-- <a href="#" class="btn btn-primary">Detail</a><br><br> -->
             </div>
           </div>
@@ -164,7 +171,7 @@
 
   <section class="komentar">
     <div class="container">
-      
+
     </div>
   </section>
 
