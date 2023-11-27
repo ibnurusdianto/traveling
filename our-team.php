@@ -155,10 +155,10 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <a href="portfolio/ibnu/src/views/Hero.tsx" class="btn btn-primary">Mahisa</a>
-                    <a href="https://link-ke-website.com" class="btn btn-primary">Vita</a>
-                    <a href="https://link-ke-website.com" class="btn btn-primary">Ibnu</a>
-                    <a href="https://link-ke-website.com" class="btn btn-primary">Fadly</a>
+                    <a href="portfolio/ibnu/index.html" class="btn btn-primary">Ibnu</a>
+                    <a href="portfolio/mahisa/index.html" class="btn btn-primary">Mahisa</a>
+                    <a href="portfolio/vita-rahmada/index.html" class="btn btn-primary">Vita</a>
+                    <a href="portfolio/fadly/index.html" class="btn btn-primary">Fadly</a>
                 </div>
             </div>
         </div>
