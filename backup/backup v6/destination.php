@@ -6,13 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Destination</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="style/header-footer.css">
+>>>>>>> vita
     <link rel="stylesheet" href="style/destination.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
 <body>
     <!-- navbar -->
+<<<<<<< HEAD
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #9eb4c7">
+=======
+    <nav class="navbar navbar-expand-lg navbar-dark">
+>>>>>>> vita
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,19 +29,32 @@
                 <div class="navbar-nav">
                     <a class="nav-link me-4" aria-current="page" href="index.php">Home</a>
                     <a class="nav-link active me-4" href="destination.php">Destination</a>
+<<<<<<< HEAD
                     <a class="nav-link me-4" href="#">About</a>
                     <a class="nav-link me-4" href="ContactUS.php">Contact Us</a>
+=======
+                    <a class="nav-link me-4" href="about.php">About</a>
+                    <a class="nav-link me-4" href="#">Contact Us</a>
+>>>>>>> vita
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
                 </div>
             </div>
             <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
             <form class="d-flex me-2 ms-auto" action="#">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+<<<<<<< HEAD
                 <button class="btn btn-outline-success" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>
             <a class="btn btn-success" href="login.php">Login</a>
+=======
+                <button class="btn" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+            <a class="btn" href="login.php">Login</a>
+>>>>>>> vita
         </div>
     </nav>
     <!-- end navbar -->
@@ -89,6 +110,37 @@
                             <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
+<<<<<<< HEAD
+                            <h2 class="">Nama Destination</h2>
+=======
+                            <a href="details-destination.php">
+                                <h2>Nama Destination</h2>
+                            </a>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <a href="details-destination.php">
+                                <h2>Nama Destination</h2>
+                            </a>
+>>>>>>> vita
+                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+<<<<<<< HEAD
                             <h2 class="">Nama Destination</h2>
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
@@ -101,17 +153,11 @@
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
                             <h2 class="">Nama Destination</h2>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
+=======
+                            <a href="details-destination.php">
+                                <h2>Nama Destination</h2>
+                            </a>
+>>>>>>> vita
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
                     </div>
@@ -157,6 +203,7 @@
     <!-- end destination section -->
 
     <!--  -->
+<<<<<<< HEAD
     <section class="mt-5 mb-5" style="background-color: #1a242d; color: #ffffff; padding: 80px;">
         <div class="container">
             <div class="row">
@@ -166,6 +213,24 @@
                 <div class="col-md-6" style="padding: 50px;">
                     <h3 class="nama-tempat-wisata">Nama Tempat Wisata</h3>
                     <p class="paragaf-tempat-wisata">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic omnis reprehenderit nesciunt iusto saepe, eius nihil tempore cumque, optio architecto voluptas, provident est ab porro beatae quod suscipit placeat quas.</p>
+=======
+    <section class="tempat-wisata mt-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img class="gambar-tempat-wisata" src="img/1.jpg" alt="" width="100%">
+                </div>
+                <div class="col-md-6" style="padding: 50px;">
+                    <h2 class="nama-tempat-wisata">Nama Tempat Wisata</h2>
+                    <p class="paragaf-tempat-wisata">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic omnis reprehenderit nesciunt iusto saepe, eius nihil tempore cumque, optio architecto voluptas, provident est ab porro beatae quod suscipit placeat quas.</p>
+                    <div class="card d-inline p-2 mt-4" id="rating-card" style="background-color: #9BBEC8; border: none">
+                        <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
+                        <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
+                        <i id="star3" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star4" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star5" class="bi bi-star" style="color: yellow;"></i>
+                    </div>
+>>>>>>> vita
                 </div>
             </div>
         </div>
@@ -173,6 +238,7 @@
     <!--  -->
 
     <!--  -->
+<<<<<<< HEAD
     <section>
         <div class="container">
             <!-- <div class="row mb-3">
@@ -207,6 +273,10 @@
                     </div>
                 </div>
             </div> -->
+=======
+    <section class="travelling-information mt-5 mb-5">
+        <div class="container">
+>>>>>>> vita
             <div class="row mt-5 d-flex align-items-center">
                 <div class="col-5">
                     <h1 style="width: 50%;">Travelling Information</h1>
@@ -221,7 +291,11 @@
     <!--  -->
 
     <!-- info section -->
+<<<<<<< HEAD
     <section class="info_section mt-5">
+=======
+    <section class="info_section">
+>>>>>>> vita
         <div class="container">
             <div class="row">
                 <div class="col-md-6">

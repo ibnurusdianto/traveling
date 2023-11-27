@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @media (min-width: 768px) {
   .navbar-nav {
     flex-wrap: nowrap;
@@ -14,6 +15,8 @@
 
 
 
+=======
+>>>>>>> vita
 .layout_padding {
   padding-top: 90px;
   padding-bottom: 90px;
@@ -35,14 +38,23 @@
   max-width: 100%;
   height: auto;
 }
+<<<<<<< HEAD
 .detail_section h2 {
   color: #333;
   font-size: 2em;
   text-transform: uppercase;
+=======
+
+.detail_section h2 {
+  color: #164863;
+  text-transform: uppercase;
+  font-weight: bold;
+>>>>>>> vita
   margin-bottom: 20px;
 }
 .detail_section p {
   color: #666;
+<<<<<<< HEAD
   font-size: 1.2em;
   line-height: 1.6;
 }
@@ -57,6 +69,27 @@
 
 .detail_section .btn-primary:hover {
   background-color: #0056b3;
+=======
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+.detail_section p:hover {
+  font-weight: bold;
+  color: #427D9D;
+  transition: all 0.3s;
+}
+.detail_section .btn {
+  background-color: #164863;
+  color: #DDF2FD;
+  padding: 8px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+.detail_section .btn:hover {
+  background-color: #9BBEC8;
+>>>>>>> vita
 }
 .detail_section {
   display: flex;
@@ -68,6 +101,7 @@
   max-width: 100%;
   height: auto;
 }
+<<<<<<< HEAD
 
 .detail_section h2 {
   color: #333;
@@ -94,10 +128,13 @@
 .detail_section .btn-primary:hover {
   background-color: #0056b3;
 }
+=======
+>>>>>>> vita
 .detail_section img:hover {
   transform: scale(1.1);
   transition: transform 0.3s;
 }
+<<<<<<< HEAD
 .detail_section p:hover {
   font-weight: bold;
   color: #007bff;
@@ -106,6 +143,12 @@
 @media (max-width: 767px) {
   .detail_section h2 {
     font-size: 1.5em;
+=======
+
+@media (max-width: 767px) {
+  .detail_section h2 {
+    font-size: 2em;
+>>>>>>> vita
   }
 }
 
@@ -113,14 +156,26 @@
 
 
 .review_section h2 {
+<<<<<<< HEAD
   font-size: 2.5em;
   text-transform: uppercase;
+=======
+  font-size: 2em;
+  color: #164863;
+  text-transform: uppercase;
+  font-weight: bold;
+>>>>>>> vita
   margin-bottom: 20px;
 }
 
 .review_section p {
+<<<<<<< HEAD
   color: #333;
   font-size: 1.2em;
+=======
+  color: #666;
+  font-size: 1.1em;
+>>>>>>> vita
   line-height: 1.6;
 }
 
@@ -148,7 +203,11 @@
 }
 
 .review_section img:hover {
+<<<<<<< HEAD
   border-color: #007bff;
+=======
+  border-color: #9BBEC8;
+>>>>>>> vita
 }
 
 
@@ -157,6 +216,16 @@
 
 .header-destination {
   text-align: center;
+<<<<<<< HEAD
+=======
+  color: #164863;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.destination_section h2 {
+  color: #164863;
+>>>>>>> vita
 }
 
 .destination_section .box {
@@ -231,6 +300,7 @@
   padding: 15px;
   border-radius: 0 0 8px 8px;
 }
+<<<<<<< HEAD
 
 
 
@@ -390,3 +460,5 @@
   }
 }
 
+=======
+>>>>>>> vita

@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Destination</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style/header-footer.css">
     <link rel="stylesheet" href="style/destination.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #9eb4c7">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,19 +22,24 @@
                 <div class="navbar-nav">
                     <a class="nav-link me-4" aria-current="page" href="index.php">Home</a>
                     <a class="nav-link active me-4" href="destination.php">Destination</a>
+<<<<<<< HEAD
                     <a class="nav-link me-4" href="#">About</a>
                     <a class="nav-link me-4" href="ContactUS.php">Contact Us</a>
+=======
+                    <a class="nav-link me-4" href="about.php">About</a>
+                    <a class="nav-link me-4" href="#">Contact Us</a>
+>>>>>>> vita
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
                 </div>
             </div>
             <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
             <form class="d-flex me-2 ms-auto" action="#">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">
+                <button class="btn" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-            <a class="btn btn-success" href="login.php">Login</a>
+            <a class="btn" href="login.php">Login</a>
         </div>
     </nav>
     <!-- end navbar -->
@@ -89,7 +95,22 @@
                             <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
+                            <a href="details-destination.php">
+                                <h2>Nama Destination</h2>
+                            </a>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <a href="details-destination.php">
+                                <h2>Nama Destination</h2>
+                            </a>
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
                     </div>
@@ -100,18 +121,9 @@
                             <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Destination</h2>
+                            <a href="details-destination.php">
+                                <h2>Nama Destination</h2>
+                            </a>
                             <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
                         </div>
                     </div>
@@ -157,15 +169,22 @@
     <!-- end destination section -->
 
     <!--  -->
-    <section class="mt-5 mb-5" style="background-color: #1a242d; color: #ffffff; padding: 80px;">
+    <section class="tempat-wisata mt-5 mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img class="gambar-tempat-wisata" src="img/5.jpg" alt="" width="100%">
+                    <img class="gambar-tempat-wisata" src="img/1.jpg" alt="" width="100%">
                 </div>
                 <div class="col-md-6" style="padding: 50px;">
-                    <h3 class="nama-tempat-wisata">Nama Tempat Wisata</h3>
+                    <h2 class="nama-tempat-wisata">Nama Tempat Wisata</h2>
                     <p class="paragaf-tempat-wisata">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic omnis reprehenderit nesciunt iusto saepe, eius nihil tempore cumque, optio architecto voluptas, provident est ab porro beatae quod suscipit placeat quas.</p>
+                    <div class="card d-inline p-2 mt-4" id="rating-card" style="background-color: #9BBEC8; border: none">
+                        <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
+                        <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
+                        <i id="star3" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star4" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star5" class="bi bi-star" style="color: yellow;"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -173,40 +192,8 @@
     <!--  -->
 
     <!--  -->
-    <section>
+    <section class="travelling-information mt-5 mb-5">
         <div class="container">
-            <!-- <div class="row mb-3">
-                <div class="col-6">
-                    <h3>Destination</h3>
-                </div>
-                <div class="col-6">
-                    <button type="button" class="btn btn-secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
-                        </svg>
-                    </button>
-                    <button type="button" class="btn btn-secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12" style="overflow-x: auto;">
-                            <div class="d-flex flex-row">
-                                <img src="img/1.jpg" class="img-fluid" alt="...">
-                                <img src="img/3.jpg" class="img-fluid" alt="...">
-                                <img src="image3.jpg" class="img-fluid" alt="...">
-                                <img src="image4.jpg" class="img-fluid" alt="...">
-                                <img src="image5.jpg" class="img-fluid" alt="...">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div class="row mt-5 d-flex align-items-center">
                 <div class="col-5">
                     <h1 style="width: 50%;">Travelling Information</h1>
@@ -221,7 +208,7 @@
     <!--  -->
 
     <!-- info section -->
-    <section class="info_section mt-5">
+    <section class="info_section">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
