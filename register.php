@@ -12,41 +12,18 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #9eb4c7">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active me-4" aria-current="page" href="index.php">Home</a>
-                <a class="nav-link me-4" href="destination.php">Destination</a>
-                <a class="nav-link me-4" href="#">About</a>
-                <a class="nav-link me-4" href="ContactUS.php">Contact Us</a>
-                <a class="nav-link me-4" href="our-team.php">Our Team</a>
-            </div>
-        </div>
-        <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
-        <form class="d-flex me-2 ms-auto" action="#">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">
-                <i class="bi bi-search"></i>
-=======
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
->>>>>>> vita
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link me-4" aria-current="page" href="index.php">Home</a>
                     <a class="nav-link me-4" href="destination.php">Destination</a>
                     <a class="nav-link me-4" href="about.php">About</a>
-                    <a class="nav-link me-4" href="#">Contact Us</a>
+                    <a class="nav-link me-4" href="ContactUS.php">Contact Us</a>
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
                 </div>
             </div>

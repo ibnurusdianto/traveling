@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="6785d3d4-d592-4698-86a2-a63d887b9eeb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContactUS.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContactUS.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about.php" beforeDir="false" afterPath="$PROJECT_DIR$/about.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/destination.php" beforeDir="false" afterPath="$PROJECT_DIR$/destination.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/details-destination.php" beforeDir="false" afterPath="$PROJECT_DIR$/details-destination.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/our-team.php" beforeDir="false" afterPath="$PROJECT_DIR$/our-team.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tempat-wisata.php" beforeDir="false" afterPath="$PROJECT_DIR$/tempat-wisata.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +93,7 @@
       <workItem from="1701006288382" duration="32000" />
       <workItem from="1701089968261" duration="3724000" />
       <workItem from="1701104574452" duration="509000" />
-      <workItem from="1701106530259" duration="78000" />
+      <workItem from="1701106530259" duration="726000" />
     </task>
     <servers />
   </component>
