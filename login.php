@@ -13,7 +13,7 @@
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,7 +46,7 @@
         <div class="row align-items-center gx-5">
             <div class="col-md-6 order-md-2">
                 <h2>Login to continue</h2>
-                <form>
+                <form action="./function-login-diluar-admin/login.php" method="post">
                     <div class="form-floating mb-3">
                         <input type="username" class="form-control" id="username" name="username" placeholder="Enter your username">
                         <label for="username" class="form-label">Enter your Username</label>
