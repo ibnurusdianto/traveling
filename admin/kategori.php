@@ -521,9 +521,8 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                         <td><?= $i++; ?></td>
                                         <td><?= $nama_kategori; ?></td>
                                         <td class="flex flex-wrap gap-2">
-                                            <!-- <button type="button" class="btn btn-warning" @click="showAlert(2)">Edit</button> -->
                                             <button type="button" class="btn btn-warning" id="edit" @click="toggle(<?= $aksi; ?>)">Edit</button>
-                                            <button type="button" class="btn btn-danger" @click="showAlert(3)">Delete</button>
+                                            <button type="button" class="btn btn-danger" onclick="deleteItem(<?= $aksi; ?>)">Delete</button>
                                         </td>
                                     </tr>
                                 <?php
@@ -626,6 +625,7 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                     text: 'Data sudah ada!',
                     padding: '2em',
                 });
+                window.location.href = redirectURL;
             }
         }
 
@@ -719,6 +719,30 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                 },
             }));
         });
+
+        const deleteSuccess = urlParams.get('delete_success');
+
+        if (deleteSuccess === 'true') {
+            Swal.fire('Berhasil!', 'Data Berhasil dihapus.', 'success');
+        } else if (deleteSuccess === 'false') {
+            Swal.fire('Error', 'Data Gagal dihapus.', 'error');
+        }
+
+        function deleteItem(itemId) {
+            Swal.fire({
+                title: 'Apakah anda yakin untuk menghapus category ini?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Saya yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `proses-kategori.php?delete=1&aksi=${itemId}`;
+                }
+            });
+        }
     </script>
 </body>
 

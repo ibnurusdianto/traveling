@@ -31,14 +31,13 @@ if (isset($_POST['update'])) {
     }
 }
 
-#delete barang
-if (isset($_GET['delete'])) {
+if (isset($_GET['aksi'])) {
     $aksi = $_GET['aksi'];
 
     $hapus = mysqli_query($conn, "DELETE FROM kategori WHERE id = '$aksi'");
     if ($hapus) {
-        echo "<script>window.onload = function() { showAlert(3); }</script>";
+        header('location:kategori.php?delete_success=true');
     } else {
-        echo "<script>window.onload = function() { showAlert(6); }</script>";
+        header('location:kategori.php?delete_success=false');
     }
 }
