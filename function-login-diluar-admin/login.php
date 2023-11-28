@@ -1,5 +1,11 @@
 <?php
+session_start();
+if (isset($_SESSION['username'])) {
+    header('Location: ../index.php');
+    exit;
+}
 function login($username, $password) {
+    session_start();
     $conn = mysqli_connect('localhost', 'root', '', 'travel');
     $username = mysqli_real_escape_string($conn, $username);
 
@@ -9,12 +15,11 @@ function login($username, $password) {
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
-//    Gunakan PASSWORD("password) supaya di hashing di database
-
     if (mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
         $hashed_password = "*".strtoupper(sha1(sha1($password, true)));
         if ($hashed_password == $user['password']) {
+            $_SESSION['username'] = $username;
             if ($user['role'] == 'admin') {
                 return 'admin';
             } elseif ($user['role'] == 'user'){

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+// Menjalankan sesi
+session_start();
+?>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,7 +15,6 @@
 </head>
 
 <body>
-
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
@@ -35,10 +37,44 @@
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-            <a class="btn" href="login.php">Login</a>
+                <?php
+//                Jika user login maka akan ditampilkan sebuah username dari user pada navbar
+                if (isset($_SESSION['username'])) {
+                    echo '<div class="btn-group">';
+                    echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
+                    echo '<ul class="dropdown-menu">';
+                    echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
+                    echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                    echo '</ul>';
+                    echo '</div>';
+                } else {
+//                    jika gagal atau tidak sesuai maka yg muncul yaitu btn login
+                    echo '<a class="btn" href="login.php">Login</a>';
+                }
+                ?>
         </div>
     </nav>
     <!-- end navbar -->
+
+    <!--Modal Logout user session-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal Logout user session-->
 
     <!-- carousel -->
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -145,6 +181,18 @@
     </footer>
     <!-- end footer section -->
 
+    <script>
+        document.getElementById('confirmLogout').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            // Membuka untuk melakukan post semua function logout dari user-logout.php
+            xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    window.location.href = 'index.php';
+                }
+            };
+            xhr.send();
+        });
+    </script>
 </body>
-
 </html>

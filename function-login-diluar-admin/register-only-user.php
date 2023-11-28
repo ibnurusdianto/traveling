@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (isset($_SESSION['username'])) {
+    header('Location: ../index.php');
+    exit;
+}
 function register($username, $password) {
     $conn = mysqli_connect('localhost', 'root', '', 'travel');
     $username = mysqli_real_escape_string($conn, $username);

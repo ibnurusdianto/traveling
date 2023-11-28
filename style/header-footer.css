@@ -37,6 +37,32 @@
   background-color: #427d9d;
   color: #ddf2fd;
 }
+.btn-logout {
+  margin-left: 5px;
+}
+@media (min-width: 768px) {
+  .btn-logout {
+    margin-left: 5px;
+  }
+}
+@media (max-width: 767px) {
+  .btn-logout {
+    margin-left: 2px;
+    font-size: 12px;
+  }
+}
+@media (min-width: 768px) {
+  .btn-username {
+    font-size: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .btn-username {
+    font-size: 12px;
+  }
+}
+
+
 
 /* carousel */
 .carousel-caption {

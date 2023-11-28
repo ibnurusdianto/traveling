@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+session_start();
+?>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,7 +37,19 @@
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-            <a class="btn" href="login.php">Login</a>
+                <?php
+                if (isset($_SESSION['username'])) {
+                    echo '<div class="btn-group">';
+                    echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
+                    echo '<ul class="dropdown-menu">';
+                    echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
+                    echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                    echo '</ul>';
+                    echo '</div>';
+                } else {
+                    echo '<a class="btn" href="login.php">Login</a>';
+                }
+                ?>
         </div>
     </nav>
     <!-- end navbar -->
@@ -231,6 +245,19 @@
     </footer>
     <!-- end footer section -->
 
+    <script>
+        document.getElementById('confirmLogout').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            // Membuka untuk melakukan post semua function logout dari user-logout.php
+            xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    window.location.href = 'index.php';
+                }
+            };
+            xhr.send();
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
