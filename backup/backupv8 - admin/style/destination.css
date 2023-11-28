@@ -1,0 +1,231 @@
+.header-destination1 {
+  font-size: 2.5em;
+  color: #164863;
+  text-shadow: 2px 2px 4px #aaa;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+}
+
+.paragaf-destination {
+  padding-top: 10px;
+  font-size: 1em;
+  line-height: 1.6;
+  text-align: justify;
+  color: #666;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1200px) {
+  .header-destination1 {
+    font-size: 1.8em;
+  }
+
+  .paragaf-destination {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-destination1 {
+    font-size: 1.6em;
+  }
+
+  .paragaf-destination {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-destination1 {
+    font-size: 1.4em;
+  }
+
+  .paragaf-destination {
+    font-size: 0.9em;
+  }
+}
+
+.tempat-wisata {
+  /* background-color: #DDF2FD; */
+  color: #164863;
+  padding: 80px;
+}
+
+.tempat-wisata .row {
+  align-items: center;
+}
+
+.gambar-tempat-wisata {
+  width: 100%;
+  height: auto;
+}
+.nama-tempat-wisata {
+  /* text-shadow: 2px 2px 4px #aaa; */
+  color: #164863;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.tempat-wisata img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.tempat-wisata img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+  .tempat-wisata h2 {
+    font-size: 1.5em;
+  }
+}
+.tempat-wisata img {
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s, border 0.4s;
+}
+
+.tempat-wisata img:hover {
+  border-color: #9bbec8;
+}
+
+.paragaf-tempat-wisata {
+  text-align: justify;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.gambar-tempat-wisata {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+.gambar-tempat-wisata:hover {
+  transform: scale(1.05);
+  transition: transform 0.5s ease-in-out;
+}
+.nama-tempat-wisata:hover {
+  color: #427d9d;
+  transition: color 0.5s ease-in-out;
+}
+.paragaf-tempat-wisata:hover {
+  color: #427d9d;
+  transition: color 0.5s ease-in-out;
+}
+
+.header-destination {
+  text-align: center;
+}
+
+.destination_section h2 {
+  color: #427D9D;
+}
+
+.destination_section .box {
+  background-color: #ffffff;
+  padding: 25px 15px;
+  text-align: center;
+  -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 45px;
+  transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.destination_section .box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.destination_section .box .img-box img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.destination_section .box .detail-box {
+  margin-top: 25px;
+}
+
+.destination_section .box .detail-box h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.destination_section .box .detail-box a {
+    text-decoration: none;
+}
+
+.destination_section .box .detail-box a h2:hover {
+  color: #164863;
+}
+
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .col-md-6,
+  .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.destination_section .box .img-box img {
+  transition: transform 0.3s;
+}
+
+.destination_section .box .img-box img:hover {
+  transform: scale(1.1);
+}
+
+.destination_section .box .detail-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 0 0 8px 8px;
+}
+
+.travelling-information h1 {
+  color: #164863;
+  font-weight: bold;
+}
+
+.travelling-information p {
+    color: #666;
+}
