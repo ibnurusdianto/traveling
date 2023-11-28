@@ -483,7 +483,7 @@ $query = mysqli_query($conn, "SELECT * FROM fasilitas");
                                     </form>
                                     <div class="flex justify-end items-center mt-8 gap-2">
                                         <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
-                                        <button type="button" class="btn btn-success" @click="showAlert()">Submit</button>
+                                        <button type="button" class="btn btn-primary" @click="showAlert()">Submit</button>
                                     </div>
                                 </div>
                             </div>

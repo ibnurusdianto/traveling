@@ -496,7 +496,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                                     </form>
                                     <div class="flex justify-end items-center mt-8 gap-2">
                                         <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
-                                        <button type="button" class="btn btn-success" @click="showAlert()">Submit</button>
+                                        <button type="button" class="btn btn-primary" @click="showAlert()">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -511,10 +511,10 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Wisata</th>
-                                    <th>Nama Category</th>
+                                    <th>Nama Kategori</th>
                                     <th>Deskripsi</th>
                                     <th>Harga</th>
-                                    <th>Image</th>
+                                    <th>Gambar</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
