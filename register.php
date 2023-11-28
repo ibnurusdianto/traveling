@@ -47,7 +47,7 @@
         <div class="row gx-5">
             <div class="col-md-6">
                 <h2>Complete your registration</h2>
-                <form>
+                <form action="./function-login-diluar-admin/register-only-user.php" method="post">
                     <div class="form-floating mb-3">
                         <input type="username" class="form-control" id="username" name="username" placeholder="Enter your Username">
                         <label for="username" class="form-label">Enter your Username</label>
