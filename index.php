@@ -28,12 +28,12 @@
         </div>
       </div>
       <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
-      <form class="d-flex me-2 ms-auto" action="#">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn" type="submit">
-          <i class="bi bi-search"></i>
-        </button>
-      </form>
+        <form class="d-flex me-2 ms-auto" action="#">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="<?= htmlentities($_GET['search'] ?? '') ?>">
+            <button class="btn" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
       <a class="btn" href="login.php">Login</a>
     </div>
   </nav>
