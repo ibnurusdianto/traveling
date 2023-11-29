@@ -46,7 +46,7 @@ session_start();
                     echo '</ul>';
                     echo '</div>';
                 } else {
-                    echo '<a class="btn" href="login.php">Login</a>';
+//                    echo '<a class="btn" href="login.php">Login</a>';
                 }
                 ?>
         </div>
