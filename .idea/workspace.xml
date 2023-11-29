@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6785d3d4-d592-4698-86a2-a63d887b9eeb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/function-login-diluar-admin/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/function-login-diluar-admin/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/function-login-diluar-admin/register-only-user.php" beforeDir="false" afterPath="$PROJECT_DIR$/function-login-diluar-admin/register-only-user.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +91,7 @@
       <workItem from="1701181275292" duration="4698000" />
       <workItem from="1701188984653" duration="12828000" />
       <workItem from="1701221623790" duration="50000" />
-      <workItem from="1701221734797" duration="504000" />
+      <workItem from="1701221734797" duration="1472000" />
     </task>
     <servers />
   </component>
