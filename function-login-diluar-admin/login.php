@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= $max_attempts) {
             if (time() - $_SESSION['last_attempt_time'] < $delay) {
-                echo "<script>alert('Anda sudah mencoba login sebanyak 3x dan tunggu 30 detik untuk melakukan login kembali!');</script>";
+                echo "<script>alert('Anda sudah mencoba login sebanyak 3x dan tunggu 30 detik untuk melakukan login kembali!'); window.location.href = '../login.php';</script>";
                 exit;
             } else {
                 $_SESSION['login_attempts'] = 0;
