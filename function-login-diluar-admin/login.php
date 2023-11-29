@@ -4,8 +4,8 @@ if (isset($_SESSION['username'])) {
     header('Location: ../index.php');
     exit;
 }
+
 function login($username, $password) {
-    session_start();
     $conn = mysqli_connect('localhost', 'root', '', 'travel');
     $username = mysqli_real_escape_string($conn, $username);
 
@@ -31,17 +31,19 @@ function login($username, $password) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-    $loginResult = login($username, $password);
+        $loginResult = login($username, $password);
 
-    if ($loginResult == "admin") {
-        header('Location: ../admin/index.php');
-    } elseif ($loginResult == "user"){
-        header('Location: ../index.php');
-    } else {
-        echo 'Login gagal';
+        if ($loginResult == "admin") {
+            header('Location: ../admin/index.php');
+        } elseif ($loginResult == "user"){
+            header('Location: ../index.php');
+        } else {
+            echo 'Login gagal';
+        }
     }
 }
 
