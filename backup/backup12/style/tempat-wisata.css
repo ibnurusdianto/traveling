@@ -1,0 +1,126 @@
+.header-details {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2.5em;
+  color: #164863;
+  text-shadow: 2px 2px 4px #aaa;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+}
+
+.details-paragraf-tempat-wisata {
+  padding-top: 10px;
+  font-size: 1em;
+  line-height: 1.6;
+  text-align: justify;
+  color: #666;
+}
+
+.komentar {
+  height: auto;
+  background-color: #164863;
+  color: #ddf2fd;
+  /* margin: 20px 115px 20px 115px; */
+}
+.komentar textarea {
+  float: left;
+  width: 100%;
+  height: auto;
+}
+
+.komentar-user {
+  height: auto;
+  background-color: #164863;
+  color: #ddf2fd;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.komentar #boot-icon {
+  font-size: 30px;
+  -webkit-text-stroke-width: 1px;
+  color:#DDF2FD;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+.header-similar-destinations {
+  font-size: 2.5em;
+  color: #164863;
+  text-shadow: 2px 2px 4px #aaa;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+}
+
+.similar-destinations_section h2 {
+  color: #427D9D;
+}
+
+.similar-destinations_section .box {
+  background-color: #ffffff;
+  padding: 25px 15px;
+  text-align: center;
+  -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.similar-destinations_section .box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.similar-destinations_section .box .img-box img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.similar-destinations_section .box .detail-box {
+  margin-top: 25px;
+}
+
+.similar-destinations_section .box .detail-box h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.similar-destinations_section .box .detail-box a {
+  text-decoration: none;
+}
+
+.similar-destinations_section .box .detail-box a h2:hover {
+  color: #164863;
+}
+
+#rating-card {
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+}
+
+#star1, #star2, #star3, #star4, #star5:hover {
+  cursor: pointer;
+}
+.comment-time {
+  font-size: 0.8em;
+  color: #ddf2fd;
+  font-style: italic;
+  margin-top: 20px;
+  background-color: #164863;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}

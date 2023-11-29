@@ -1,0 +1,257 @@
+.layout_padding {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+@media (max-width: 767px) {
+  .layout_padding {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+@media (max-width: 575px) {
+  .layout_padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+.detail_section h2 {
+  color: #333;
+  font-size: 2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.detail_section p {
+  color: #666;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+.detail_section .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.detail_section .btn-primary:hover {
+  background-color: #0056b3;
+}
+.detail_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail_section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.detail_section h2 {
+  color: #333;
+  font-size: 2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.detail_section p {
+  color: #666;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+.detail_section .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.detail_section .btn-primary:hover {
+  background-color: #0056b3;
+}
+.detail_section img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.detail_section p:hover {
+  font-weight: bold;
+  color: #007bff;
+  transition: all 0.3s;
+}
+@media (max-width: 767px) {
+  .detail_section h2 {
+    font-size: 1.5em;
+  }
+}
+
+.tempat-wisata_section h2 {
+  color: #427D9D;
+}
+
+.tempat-wisata_section .box {
+  background-color: #ffffff;
+  padding: 25px 15px;
+  text-align: center;
+  -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 45px;
+  transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.tempat-wisata_section .box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tempat-wisata_section .box .img-box img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.tempat-wisata_section .box .detail-box {
+  margin-top: 25px;
+}
+
+.tempat-wisata_section .box .detail-box h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.tempat-wisata_section .box .detail-box a {
+  text-decoration: none;
+}
+
+.tempat-wisata_section .box .detail-box a h2:hover {
+  color: #164863;
+}
+
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .col-md-6,
+  .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.tempat-wisata_section .box .img-box img {
+  transition: transform 0.3s;
+}
+
+.tempat-wisata_section .box .img-box img:hover {
+  transform: scale(1.1);
+}
+
+.tempat-wisata_section .box .detail-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 0 0 8px 8px;
+}
+
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover::before {
+  opacity: 0.5;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.header-details {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2.5em;
+  color: #164863;
+  text-shadow: 2px 2px 4px #aaa;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+}
+
+.details-paragraf-destination {
+  padding-top: 10px;
+  font-size: 1em;
+  line-height: 1.6;
+  text-align: justify;
+  color: #666;
+}
+
+/* Additional CSS */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover::before {
+  opacity: 0.5;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
