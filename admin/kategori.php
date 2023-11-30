@@ -220,26 +220,15 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                         <li class="menu nav-item">
                             <a href="index.php" class="nav-link">
                                 <div class="flex items-center">
-                                    <svg class="group-hover:!text-primary" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.5" d="M2 12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274C22 8.77128 22 9.91549 22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039Z" fill="currentColor" />
-                                        <path d="M9 17.25C8.58579 17.25 8.25 17.5858 8.25 18C8.25 18.4142 8.58579 18.75 9 18.75H15C15.4142 18.75 15.75 18.4142 15.75 18C15.75 17.5858 15.4142 17.25 15 17.25H9Z" fill="currentColor" />
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22 22L2 22" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M3 22.0001V11.3472C3 10.4903 3.36644 9.67432 4.00691 9.10502L10.0069 3.77169C11.1436 2.76133 12.8564 2.76133 13.9931 3.77169L19.9931 9.10502C20.6336 9.67432 21 10.4903 21 11.3472V22.0001" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M10 9H14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M9 15.5H15" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M9 18.5H15" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M18 22V16C18 14.1144 18 13.1716 17.4142 12.5858C16.8284 12 15.8856 12 14 12H10C8.11438 12 7.17157 12 6.58579 12.5858C6 13.1716 6 14.1144 6 16V22" stroke="#1C274C" stroke-width="1.5" />
                                     </svg>
-
                                     <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Dashboard</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="menu nav-item">
-                            <a href="kategori.php" class="nav-link active group">
-                                <div class="flex items-center">
-                                    <svg class="group-hover:!text-primary" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.5" d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22Z" fill="currentColor" />
-                                        <path d="M18.75 8C18.75 8.41421 18.4142 8.75 18 8.75H6C5.58579 8.75 5.25 8.41421 5.25 8C5.25 7.58579 5.58579 7.25 6 7.25H18C18.4142 7.25 18.75 7.58579 18.75 8Z" fill="currentColor" />
-                                        <path d="M18.75 12C18.75 12.4142 18.4142 12.75 18 12.75H6C5.58579 12.75 5.25 12.4142 5.25 12C5.25 11.5858 5.58579 11.25 6 11.25H18C18.4142 11.25 18.75 11.5858 18.75 12Z" fill="currentColor" />
-                                        <path d="M18.75 16C18.75 16.4142 18.4142 16.75 18 16.75H6C5.58579 16.75 5.25 16.4142 5.25 16C5.25 15.5858 5.58579 15.25 6 15.25H18C18.4142 15.25 18.75 15.5858 18.75 16Z" fill="currentColor" />
-                                    </svg>
-                                    <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Category</span>
                                 </div>
                             </a>
                         </li>
@@ -247,11 +236,11 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                         <li class="menu nav-item">
                             <a href="wisata.php" class="nav-link">
                                 <div class="flex items-center">
-                                    <svg class="group-hover:!text-primary" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.5" d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22Z" fill="currentColor" />
-                                        <path d="M18.75 8C18.75 8.41421 18.4142 8.75 18 8.75H6C5.58579 8.75 5.25 8.41421 5.25 8C5.25 7.58579 5.58579 7.25 6 7.25H18C18.4142 7.25 18.75 7.58579 18.75 8Z" fill="currentColor" />
-                                        <path d="M18.75 12C18.75 12.4142 18.4142 12.75 18 12.75H6C5.58579 12.75 5.25 12.4142 5.25 12C5.25 11.5858 5.58579 11.25 6 11.25H18C18.4142 11.25 18.75 11.5858 18.75 12Z" fill="currentColor" />
-                                        <path d="M18.75 16C18.75 16.4142 18.4142 16.75 18 16.75H6C5.58579 16.75 5.25 16.4142 5.25 16C5.25 15.5858 5.58579 15.25 6 15.25H18C18.4142 15.25 18.75 15.5858 18.75 16Z" fill="currentColor" />
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 8.80745C18 13.7615 13.7333 15 11.6 15C9.73333 15 6 13.7615 6 8.80745C6 6.71017 7.20839 5.35826 8.26099 4.65274C8.79638 4.29388 9.48354 4.55201 9.57296 5.17624C9.75127 6.421 10.8777 7.34944 11.5596 6.27998C12.1424 5.36614 12.3529 4.13169 12.3529 3.38896C12.3529 2.28965 13.503 1.59108 14.4009 2.2646C16.1512 3.5774 18 5.776 18 8.80745Z" stroke="#1C274C" stroke-width="1.5" />
+                                        <path d="M20 15L4 22" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M4 15L9 17.1875M20 22L14.5 19.5938" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M15 10C14.8 10.6667 13.92 12 12 12" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
                                     </svg>
                                     <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Wisata</span>
                                 </div>
@@ -259,15 +248,52 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                         </li>
 
                         <li class="menu nav-item">
+                            <a href="kategori.php" class="nav-link active group">
+                                <div class="flex items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.755 2H7.24502C6.08614 2 5.50671 2 5.03939 2.16261C4.15322 2.47096 3.45748 3.18719 3.15795 4.09946C3 4.58055 3 5.17705 3 6.37006V20.3742C3 21.2324 3.985 21.6878 4.6081 21.1176C4.97417 20.7826 5.52583 20.7826 5.8919 21.1176L6.375 21.5597C7.01659 22.1468 7.98341 22.1468 8.625 21.5597C9.26659 20.9726 10.2334 20.9726 10.875 21.5597C11.5166 22.1468 12.4834 22.1468 13.125 21.5597C13.7666 20.9726 14.7334 20.9726 15.375 21.5597C16.0166 22.1468 16.9834 22.1468 17.625 21.5597L18.1081 21.1176C18.4742 20.7826 19.0258 20.7826 19.3919 21.1176C20.015 21.6878 21 21.2324 21 20.3742V6.37006C21 5.17705 21 4.58055 20.842 4.09946C20.5425 3.18719 19.8468 2.47096 18.9606 2.16261C18.4933 2 17.9139 2 16.755 2Z" stroke="#1C274C" stroke-width="1.5" />
+                                        <path d="M10.5 11L17 11" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M7 11H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M7 7.5H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M7 14.5H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M10.5 7.5H17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M10.5 14.5H17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Category</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="menu nav-item">
                             <a href="fasilitas.php" class="nav-link">
                                 <div class="flex items-center">
-                                    <svg class="group-hover:!text-primary" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.5" d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22Z" fill="currentColor" />
-                                        <path d="M18.75 8C18.75 8.41421 18.4142 8.75 18 8.75H6C5.58579 8.75 5.25 8.41421 5.25 8C5.25 7.58579 5.58579 7.25 6 7.25H18C18.4142 7.25 18.75 7.58579 18.75 8Z" fill="currentColor" />
-                                        <path d="M18.75 12C18.75 12.4142 18.4142 12.75 18 12.75H6C5.58579 12.75 5.25 12.4142 5.25 12C5.25 11.5858 5.58579 11.25 6 11.25H18C18.4142 11.25 18.75 11.5858 18.75 12Z" fill="currentColor" />
-                                        <path d="M18.75 16C18.75 16.4142 18.4142 16.75 18 16.75H6C5.58579 16.75 5.25 16.4142 5.25 16C5.25 15.5858 5.58579 15.25 6 15.25H18C18.4142 15.25 18.75 15.5858 18.75 16Z" fill="currentColor" />
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 4.00195C18.175 4.01406 19.3529 4.11051 20.1213 4.87889C21 5.75757 21 7.17179 21 10.0002V16.0002C21 18.8286 21 20.2429 20.1213 21.1215C19.2426 22.0002 17.8284 22.0002 15 22.0002H9C6.17157 22.0002 4.75736 22.0002 3.87868 21.1215C3 20.2429 3 18.8286 3 16.0002V10.0002C3 7.17179 3 5.75757 3.87868 4.87889C4.64706 4.11051 5.82497 4.01406 8 4.00195" stroke="#1C274C" stroke-width="1.5" />
+                                        <path d="M10.5 14L17 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M7 14H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M7 10.5H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M7 17.5H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M10.5 10.5H17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M10.5 17.5H17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M8 3.5C8 2.67157 8.67157 2 9.5 2H14.5C15.3284 2 16 2.67157 16 3.5V4.5C16 5.32843 15.3284 6 14.5 6H9.5C8.67157 6 8 5.32843 8 4.5V3.5Z" stroke="#1C274C" stroke-width="1.5" />
                                     </svg>
                                     <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Fasilitas</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="menu nav-item">
+                            <a href="user.php" class="nav-link">
+                                <div class="flex items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="6" r="4" stroke="#1C274C" stroke-width="1.5" />
+                                        <path d="M18 9C19.6569 9 21 7.88071 21 6.5C21 5.11929 19.6569 4 18 4" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M6 9C4.34315 9 3 7.88071 3 6.5C3 5.11929 4.34315 4 6 4" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <ellipse cx="12" cy="17" rx="6" ry="4" stroke="#1C274C" stroke-width="1.5" />
+                                        <path d="M20 19C21.7542 18.6153 23 17.6411 23 16.5C23 15.3589 21.7542 14.3847 20 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                        <path d="M4 19C2.24575 18.6153 1 17.6411 1 16.5C1 15.3589 2.24575 14.3847 4 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">User</span>
                                 </div>
                             </a>
                         </li>
@@ -422,13 +448,16 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="kategori.php">Category</a>
-                                </li>
-                                <li>
                                     <a href="wisata.php">Wisata</a>
                                 </li>
                                 <li>
-                                    <a href="wisata.php">Fasilitas</a>
+                                    <a href="kategori.php">Category</a>
+                                </li>
+                                <li>
+                                    <a href="fasilitas.php">Fasilitas</a>
+                                </li>
+                                <li>
+                                    <a href="user.php">User</a>
                                 </li>
                             </ul>
                         </li>
@@ -463,33 +492,12 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                     <div class="font-bold text-lg">Tambah Kategori</div>
                                 </div>
                                 <div class="p-5">
-                                    <form method="post" name="myForm" onsubmit="return validateForm()">
+                                    <form method="post">
                                         <label for="nama_kategori">Nama Kategori</label>
                                         <input type="text" placeholder="Nama Kategori" name="nama_kategori" class="form-input" required />
                                         <div class="flex justify-end items-center mt-8 gap-2">
                                             <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
-                                            <button type="submit" class="btn btn-primary" onclick="showAlert()" name=" add">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal edit -->
-                    <div class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto" :class="editModalOpen && '!block'">
-                        <div class="flex items-start justify-center min-h-screen px-4" @click.self="editModalOpen = false">
-                            <div x-show="editModalOpen" x-transition x-transition.duration.300 class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-lg">
-                                <div class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
-                                    <div class="font-bold text-lg">Edit Kategori</div>
-                                </div>
-                                <div class="p-5">
-                                    <form method="post" name="editForm" onsubmit="return validateEditForm()">
-                                        <label for="edit_nama_kategori">Nama Kategori</label>
-                                        <input type="text" placeholder="Nama Kategori" name="edit_nama_kategori" x-model="editNamaKategori" class="form-input" required />
-                                        <div class="flex justify-end items-center mt-8 gap-2">
-                                            <button type="button" class="btn btn-outline-danger" @click="cancelEdit">Cancel</button>
-                                            <button type="submit" class="btn btn-primary" @click="submitEditForm">Submit</button>
+                                            <button type="submit" class="btn btn-primary" onclick="showAlert()" name="add">Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -498,39 +506,63 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                     </div>
                 </div>
 
-                <div x-data="striped">
-                    <div class="panel mt-3">
-                        <h5 class="mb-5 text-lg font-semibold dark:text-white-light md:absolute md:top-[25px] md:mb-0">Data Kategori</h5>
-                        <table id="tableAll" class="table-striped table-hover table-bordered table-compact">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Category</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $datakategori = mysqli_query($conn, "SELECT * FROM kategori");
-                                $i = 1;
-                                while ($ambildata = mysqli_fetch_array($datakategori)) {
-                                    $nama_kategori = $ambildata['nama_kategori'];
-                                    $aksi = $ambildata['id'];
-                                ?>
+                <div x-data="modal" class="mb-5">
+                    <div x-data="striped">
+                        <div class="panel mt-3">
+                            <h5 class="mb-5 text-lg font-semibold dark:text-white-light md:absolute md:top-[25px] md:mb-0">Data Kategori</h5>
+                            <table id="tableAll" class="table-striped table-hover table-bordered table-compact">
+                                <thead>
                                     <tr>
-                                        <td><?= $i++; ?></td>
-                                        <td><?= $nama_kategori; ?></td>
-                                        <td class="flex flex-wrap gap-2">
-                                            <!-- <button type="button" class="btn btn-warning" @click="showAlert(2)">Edit</button> -->
-                                            <button type="button" class="btn btn-warning" id="edit" @click="toggle(<?= $aksi; ?>)">Edit</button>
-                                            <button type="button" class="btn btn-danger" @click="showAlert(3)">Delete</button>
-                                        </td>
+                                        <th>No</th>
+                                        <th>Nama Category</th>
+                                        <th>Aksi</th>
                                     </tr>
-                                <?php
-                                };
-                                ?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $datakategori = mysqli_query($conn, "SELECT * FROM kategori");
+                                    $i = 1;
+                                    while ($ambildata = mysqli_fetch_array($datakategori)) {
+                                        $nama_kategori = $ambildata['nama_kategori'];
+                                        $id = $ambildata['id'];
+                                        $aksi = $ambildata['id'];
+                                    ?>
+                                        <tr>
+                                            <td><?= $i++; ?></td>
+                                            <td><?= $nama_kategori; ?></td>
+                                            <td class="flex flex-wrap gap-2">
+                                                <button type="button" class="btn btn-warning btn-sm" x-on:click="open = <?= $aksi; ?>">Edit</button>
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteItem(<?= $aksi; ?>)">Delete</button>
+                                            </td>
+                                        </tr>
+
+                                        <!-- modal edit -->
+                                        <div x-show="open === <?= $aksi; ?>" x-cloak class="fixed inset-0 z-[999] overflow-y-auto" style="background-color: rgba(0, 0, 0, 0.6);">
+                                            <div class="flex items-start justify-center min-h-screen px-4" @click.self="open = false">
+                                                <div x-show="open" x-transition x-transition.duration.300 class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-lg">
+                                                    <div class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
+                                                        <div class="font-bold text-lg">Edit Kategori</div>
+                                                    </div>
+                                                    <div class="p-5">
+                                                        <form method="post">
+                                                            <label for="nama_kategori">Nama Kategori</label>
+                                                            <input type="text" name="nama_kategori" class="form-input" value="<?= $nama_kategori; ?>" required />
+                                                            <input type="hidden" name="aksi" value="<?= $aksi; ?>">
+                                                            <div class=" flex justify-end items-center mt-8 gap-2">
+                                                                <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
+                                                                <button type="submit" class="btn btn-primary" onclick="showAlert()" name="update">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <!-- end main content section -->
@@ -553,18 +585,8 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/simple-datatables.js"></script>
     <script>
-        function validateForm() {
-            var nama_kategori = document.forms["myForm"]["nama_kategori"].value;
-            if (nama_kategori === "") {
-                alert("Nama Kategori harus diisi");
-                return false;
-            }
-            return true;
-        }
-
         async function showAlert(type) {
             let redirectURL = 'kategori.php';
-
 
             if (type == 1) {
                 await new window.Swal({
@@ -584,26 +606,13 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                 window.location.href = redirectURL;
             } else if (type == 3) {
                 await new window.Swal({
-                    icon: 'warning',
-                    title: 'Apakah Kamu yakin untuk menghapus ini?',
-                    text: "Anda tidak akan dapat mengembalikan ini!",
-                    showCancelButton: true,
-                    confirmButtonText: 'Ya, Saya yakin!',
-                    padding: '2em',
-                }).then((result) => {
-                    if (result.value) {
-                        new window.Swal('Terhapus!', 'File berhasil dihapus.', 'success');
-                    }
-                });
-            } else if (type == 4) {
-                await new window.Swal({
                     icon: 'error',
                     title: 'Gagal!',
                     text: 'Data gagal ditambahkan!',
                     padding: '2em',
                 });
                 window.location.href = redirectURL;
-            } else if (type == 5) {
+            } else if (type == 4) {
                 await new window.Swal({
                     icon: 'error',
                     title: 'Gagal!',
@@ -611,21 +620,14 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                     padding: '2em',
                 });
                 window.location.href = redirectURL;
-            } else if (type == 6) {
-                await new window.Swal({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: 'Data gagal dihapus!',
-                    padding: '2em',
-                });
-                window.location.href = redirectURL;
-            } else if (type == 7) {
+            } else if (type == 5) {
                 await new window.Swal({
                     icon: 'error',
                     title: 'Gagal!',
                     text: 'Data sudah ada!',
                     padding: '2em',
                 });
+                window.location.href = redirectURL;
             }
         }
 
@@ -661,14 +663,6 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                 },
             }));
 
-
-            Alpine.data("modal", (initialOpenState = false) => ({
-                open: initialOpenState,
-
-                toggle() {
-                    this.open = !this.open;
-                },
-            }));
 
             // theme customization
             Alpine.data('customizer', () => ({
@@ -719,6 +713,32 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                 },
             }));
         });
+
+        const deleteSuccess = urlParams.get('delete_success');
+
+        if (deleteSuccess === 'true') {
+            Swal.fire('Berhasil!', 'Data Berhasil dihapus.', 'success');
+        } else if (deleteSuccess === 'false') {
+            Swal.fire('Error', 'Data Gagal dihapus.', 'error');
+        }
+
+        function deleteItem(itemId) {
+            Swal.fire({
+                title: `Apakah anda yakin untuk menghapus category ini?`,
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Saya yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Terhapus!', 'File berhasil dihapus.', 'success').then(() => {
+                        window.location.href = `proses-kategori.php?delete=1&aksi=${itemId}`;
+                    });
+                }
+            });
+        }
     </script>
 </body>
 

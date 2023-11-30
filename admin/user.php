@@ -1,7 +1,7 @@
 <?php
 include "connection.php";
-include "proses-wisata.php";
-$query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
+include "proses-user.php";
+$query = mysqli_query($conn, "SELECT * FROM user");
 ?>
 
 
@@ -11,7 +11,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wisata</title>
+    <title>User</title>
     <link rel="icon" type="image/x-icon" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -234,7 +234,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                         </li>
 
                         <li class="menu nav-item">
-                            <a href="wisata.php" class="nav-link active group">
+                            <a href="wisata.php" class="nav-link">
                                 <div class="flex items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M18 8.80745C18 13.7615 13.7333 15 11.6 15C9.73333 15 6 13.7615 6 8.80745C6 6.71017 7.20839 5.35826 8.26099 4.65274C8.79638 4.29388 9.48354 4.55201 9.57296 5.17624C9.75127 6.421 10.8777 7.34944 11.5596 6.27998C12.1424 5.36614 12.3529 4.13169 12.3529 3.38896C12.3529 2.28965 13.503 1.59108 14.4009 2.2646C16.1512 3.5774 18 5.776 18 8.80745Z" stroke="#1C274C" stroke-width="1.5" />
@@ -283,7 +283,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                         </li>
 
                         <li class="menu nav-item">
-                            <a href="user.php" class="nav-link">
+                            <a href="user.php" class="nav-link active group">
                                 <div class="flex items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="6" r="4" stroke="#1C274C" stroke-width="1.5" />
@@ -473,60 +473,39 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                         <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
                     </li>
                     <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                        <span>Wisata</span>
+                        <span>User</span>
                     </li>
                 </ul>
+
                 <!-- basic -->
                 <div x-data="modal" class="mb-5">
                     <!-- button -->
                     <div class="flex items-center">
-                        <button type="button" class="btn btn-primary" @click="toggle">Tambah Wisata</button>
+                        <button type="button" class="btn btn-primary" @click="toggle">Tambah User</button>
                     </div>
 
-                    <!-- modal -->
+                    <!-- modal create -->
                     <div class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto" :class="open && '!block'">
                         <div class="flex items-start justify-center min-h-screen px-4" @click.self="open = false">
                             <div x-show="open" x-transition x-transition.duration.300 class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-lg">
                                 <div class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
-                                    <div class="font-bold text-lg">Modal Title</div>
+                                    <div class="font-bold text-lg">Tambah User</div>
                                 </div>
                                 <div class="p-5">
-                                    <form method="post" enctype="multipart/form-data">
-                                        <div class="mb-3">
-                                            <label for="nama_tempat" class="col-form-label">Nama Tempat</label>
-                                            <input type="text" name="nama_tempat" placeholder="Nama Tempat" class="form-input" required />
-                                        </div>
-                                        <label for="kategori">Kategori</label>
-                                        <select class="form-select mb-3" name="kategori">
-                                            <option selected>Pilih Kategori</option>
-                                            <?php
-                                            $ambildata = mysqli_query($conn, "select * from kategori");
-                                            while ($fetcharray = mysqli_fetch_array($ambildata)) {
-                                                $nama_kategori = $fetcharray['nama_kategori'];
-                                                $idkategori = $fetcharray['id'];
-                                            ?>
-                                                <option value="<?= $idkategori; ?>"><?= $nama_kategori; ?></option>
-                                            <?php
-                                            }
-                                            ?>
+                                    <form method="post">
+                                        <label for="username">Username</label>
+                                        <input type="text" placeholder="Username" name="user" class="form-input" required />
+                                        <label for="password">Password</label>
+                                        <input type="text" placeholder="Password" name="password" class="form-input" required />
+                                        <label for="role">Role</label>
+                                        <select class="form-select mb-3" name="role">
+                                            <option selected>Pilih Role</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="user">User</option>
                                         </select>
-                                        <div class="mb-3">
-                                            <label for="image" class="col-form-label">Image</label>
-                                            <input type="file" name="image" class="form-input" required></input>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="htm" class="col-form-label">HTM</label>
-                                            <input type="number" name="htm" placeholder="HTM" class="form-input" required />
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                                            <textarea name="deskripsi" placeholder="Deskripsi" class="form-input" required></textarea>
-                                        </div>
                                         <div class="flex justify-end items-center mt-8 gap-2">
                                             <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
-                                            <button type="submit" class="btn btn-primary" name="add" @click="showAlert()">Submit</button>
+                                            <button type="submit" class="btn btn-primary" onclick="showAlert()" name="add">Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -538,45 +517,38 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                 <div x-data="modal" class="mb-5">
                     <div x-data="striped">
                         <div class="panel mt-3">
-                            <h5 class="mb-5 text-lg font-semibold dark:text-white-light md:absolute md:top-[25px] md:mb-0">Data Wisata</h5>
+                            <h5 class="mb-5 text-lg font-semibold dark:text-white-light md:absolute md:top-[25px] md:mb-0">Data User</h5>
                             <table id="tableAll" class="table-striped table-hover table-bordered table-compact">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Wisata</th>
-                                        <th>Nama Kategori</th>
-                                        <th>Deskripsi</th>
-                                        <th>Harga</th>
-                                        <th>Gambar</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Role</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $datawisata = mysqli_query($conn, "SELECT w.*, k.nama_kategori FROM tempat_wisata w 
-                                    JOIN kategori k ON w.kategori_id = k.id ORDER BY w.id ASC");
+                                    $datauser = mysqli_query($conn, "SELECT * FROM user");
                                     $i = 1;
-                                    while ($ambildata = mysqli_fetch_array($datawisata)) {
-                                        $nama_tempat = $ambildata['nama_tempat'];
-                                        $kategori = $ambildata['kategori_id'];
-                                        $nama_kategori = $ambildata['nama_kategori'];
-                                        $deskripsi = $ambildata['deskripsi'];
-                                        $harga = $ambildata['htm'];
-                                        $image = $ambildata['image'];
+                                    while ($ambildata = mysqli_fetch_array($datauser)) {
+                                        $user = $ambildata['username'];
+                                        $password = $ambildata['password'];
+                                        $role = $ambildata['role'];
                                         $aksi = $ambildata['id'];
                                     ?>
                                         <tr>
                                             <td><?= $i++; ?></td>
-                                            <td><?= $nama_tempat; ?></td>
-                                            <td><?= $nama_kategori; ?></td>
-                                            <td><?= strlen($deskripsi) > 100 ? substr($deskripsi, 0, 100) . '...' : $deskripsi; ?></td>
-                                            <td><?= number_format($harga, 0, ',', '.'); ?></td>
-                                            <td><img src="assets/images/<?= $image; ?>" width="100px"></td>
+                                            <td><?= $user; ?></td>
+                                            <td><?= $password; ?></td>
+                                            <td><?= $role; ?></td>
                                             <td class="flex flex-wrap gap-2">
                                                 <button type="button" class="btn btn-warning btn-sm" x-on:click="open = <?= $aksi; ?>">Edit</button>
                                                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteItem(<?= $aksi; ?>)">Delete</button>
                                             </td>
                                         </tr>
+
 
                                         <!-- modal edit -->
                                         <div x-show="open === <?= $aksi; ?>" x-cloak class="fixed inset-0 z-[999] overflow-y-auto" style="background-color: rgba(0, 0, 0, 0.6);">
@@ -586,40 +558,17 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                                                         <div class="font-bold text-lg">Edit User</div>
                                                     </div>
                                                     <div class="p-5">
-                                                        <form method="post" enctype="multipart/form-data">
-                                                            <div class="mb-3">
-                                                                <label for="nama_tempat" class="col-form-label">Nama Tempat</label>
-                                                                <input type="text" name="nama_tempat" placeholder="Nama Tempat" class="form-input" value="<?= $nama_tempat; ?>" required />
-                                                            </div>
-                                                            <label for="kategori">Kategori</label>
-                                                            <select class="form-select mb-3" name="kategori">
-                                                                <option selected>Pilih Kategori</option>
-                                                                <?php
-                                                                $ambildata = mysqli_query($conn, "select * from kategori");
-                                                                while ($fetcharray = mysqli_fetch_array($ambildata)) {
-                                                                    $nama_kategori = $fetcharray['nama_kategori'];
-                                                                    $idkategori = $fetcharray['id'];
-                                                                ?>
-                                                                    <option value="<?= $idkategori; ?>"><?= $nama_kategori; ?></option>
-                                                                <?php
-                                                                }
-                                                                ?>
+                                                        <form method="post">
+                                                            <label for="username">Nama User</label>
+                                                            <input type="text" name="user" class="form-input" value="<?= $user; ?>" required />
+                                                            <label for="password">Password</label>
+                                                            <input type="text" name="password" class="form-input" value="<?= $password; ?>" required />
+                                                            <label for="role">Role</label>
+                                                            <select class="form-select mb-3" name="role">
+                                                                <option selected>Pilih Role</option>
+                                                                <option value="admin">Admin</option>
+                                                                <option value="user">User</option>
                                                             </select>
-                                                            <div class="mb-3">
-                                                                <label for="image" class="col-form-label">Image</label>
-                                                                <input type="file" name="image" class="form-input" required></input>
-                                                            </div>
-
-                                                            <div class="mb-3">
-                                                                <label for="htm" class="col-form-label">HTM</label>
-                                                                <input type="number" placeholder="Htm" name="htm" class="form-input" value="<?= $harga; ?>" required />
-                                                            </div>
-
-                                                            <div class="mb-3">
-                                                                <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                                                                <textarea name="deskripsi" placeholder="Deskripsi" class="form-input" required><?= $deskripsi; ?></textarea>
-                                                            </div>
-                                                            <input type="hidden" name="oldImage" value="<?= $image; ?>">
                                                             <input type="hidden" name="aksi" value="<?= $aksi; ?>">
                                                             <div class=" flex justify-end items-center mt-8 gap-2">
                                                                 <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
@@ -659,7 +608,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
     <script src="assets/js/simple-datatables.js"></script>
     <script>
         async function showAlert(type) {
-            let redirectURL = 'wisata.php';
+            let redirectURL = 'user.php';
 
 
             if (type == 1) {
@@ -750,6 +699,15 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                 },
             }));
 
+            Alpine.data("modal", (initialOpenState = false) => ({
+                open: initialOpenState,
+
+                toggle() {
+                    this.open = !this.open;
+                },
+            }));
+
+
             // theme customization
             Alpine.data('customizer', () => ({
                 showCustomizer: false,
@@ -774,6 +732,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                     }
                 },
             }));
+
             Alpine.data('striped', () => ({
                 init() {
                     const tableOptions = {
@@ -798,6 +757,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
                 },
             }));
         });
+
         const deleteSuccess = urlParams.get('delete_success');
 
         if (deleteSuccess === 'true') {
@@ -808,7 +768,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
 
         function deleteItem(itemId) {
             Swal.fire({
-                title: 'Apakah anda yakin untuk menghapus category ini?',
+                title: 'Apakah anda yakin untuk menghapus user ini?',
                 text: "Anda tidak akan dapat mengembalikan ini!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -818,7 +778,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire('Terhapus!', 'File berhasil dihapus.', 'success').then(() => {
-                        window.location.href = `proses-wisata.php?delete=1&aksi=${itemId}`;
+                        window.location.href = `proses-user.php?delete=1&aksi=${itemId}`;
                     });
                 }
             });
