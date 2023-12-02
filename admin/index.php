@@ -512,12 +512,12 @@ $jumlahreview = mysqli_num_rows($queryreview);
 
                     <div class="pt-5">
                         <div class="mb-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                            <div class="bg-white rounded-lg shadow-md">
+                            <div class="panel h-full">
                                 <div class="p-4">
-                                    <h5 class="text-lg font-semibold mb-2">Wisata</h5>
-                                    <div class="flex items-center">
+                                    <h5 class="text-lg font-semibold dark:text-white-light">Wisata</h5>
+                                    <div class="flex items-center mt-2">
                                         <a href="wisata.php">
-                                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#ffeccb] text-warning dark:bg-warning dark:text-[#ffeccb] mr-3">
                                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M18 8.80745C18 13.7615 13.7333 15 11.6 15C9.73333 15 6 13.7615 6 8.80745C6 6.71017 7.20839 5.35826 8.26099 4.65274C8.79638 4.29388 9.48354 4.55201 9.57296 5.17624C9.75127 6.421 10.8777 7.34944 11.5596 6.27998C12.1424 5.36614 12.3529 4.13169 12.3529 3.38896C12.3529 2.28965 13.503 1.59108 14.4009 2.2646C16.1512 3.5774 18 5.776 18 8.80745Z" stroke="#1C274C" stroke-width="1.5" />
                                                     <path d="M20 15L4 22" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
@@ -527,42 +527,40 @@ $jumlahreview = mysqli_num_rows($queryreview);
                                             </div>
                                         </a>
                                         <div class="ml-4">
-                                            <span class="text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <?php echo $jumlahwisata; ?> Wisata yang tesedia saat ini</span>
+                                            <span class="dark:text-white-light text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <?php echo $jumlahwisata; ?> Wisata yang tesedia saat ini</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="bg-white rounded-lg shadow-md">
+                            <div class="panel h-full">
                                 <div class="p-4">
-                                    <h5 class="text-lg font-semibold mb-2">Kategori</h5>
-                                    <div class="flex items-center">
-                                        <a href="kategori.php">
-                                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M16.755 2H7.24502C6.08614 2 5.50671 2 5.03939 2.16261C4.15322 2.47096 3.45748 3.18719 3.15795 4.09946C3 4.58055 3 5.17705 3 6.37006V20.3742C3 21.2324 3.985 21.6878 4.6081 21.1176C4.97417 20.7826 5.52583 20.7826 5.8919 21.1176L6.375 21.5597C7.01659 22.1468 7.98341 22.1468 8.625 21.5597C9.26659 20.9726 10.2334 20.9726 10.875 21.5597C11.5166 22.1468 12.4834 22.1468 13.125 21.5597C13.7666 20.9726 14.7334 20.9726 15.375 21.5597C16.0166 22.1468 16.9834 22.1468 17.625 21.5597L18.1081 21.1176C18.4742 20.7826 19.0258 20.7826 19.3919 21.1176C20.015 21.6878 21 21.2324 21 20.3742V6.37006C21 5.17705 21 4.58055 20.842 4.09946C20.5425 3.18719 19.8468 2.47096 18.9606 2.16261C18.4933 2 17.9139 2 16.755 2Z" stroke="#1C274C" stroke-width="1.5" />
-                                                    <path d="M10.5 11L17 11" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M7 11H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M7 7.5H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M7 14.5H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M10.5 7.5H17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
-                                                    <path d="M10.5 14.5H17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
-                                                </svg>
-                                            </div>
+                                    <h5 class="text-lg font-semibold dark:text-white-light">Kategori</h5>
+                                    <div class="flex items-center mt-2">
+                                        <a href="kategori.php" class="w-12 h-12 rounded-full flex items-center justify-center bg-[#ffeccb] text-warning dark:bg-warning dark:text-[#ffeccb] mr-3">
+                                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16.755 2H7.24502C6.08614 2 5.50671 2 5.03939 2.16261C4.15322 2.47096 3.45748 3.18719 3.15795 4.09946C3 4.58055 3 5.17705 3 6.37006V20.3742C3 21.2324 3.985 21.6878 4.6081 21.1176C4.97417 20.7826 5.52583 20.7826 5.8919 21.1176L6.375 21.5597C7.01659 22.1468 7.98341 22.1468 8.625 21.5597C9.26659 20.9726 10.2334 20.9726 10.875 21.5597C11.5166 22.1468 12.4834 22.1468 13.125 21.5597C13.7666 20.9726 14.7334 20.9726 15.375 21.5597C16.0166 22.1468 16.9834 22.1468 17.625 21.5597L18.1081 21.1176C18.4742 20.7826 19.0258 20.7826 19.3919 21.1176C20.015 21.6878 21 21.2324 21 20.3742V6.37006C21 5.17705 21 4.58055 20.842 4.09946C20.5425 3.18719 19.8468 2.47096 18.9606 2.16261C18.4933 2 17.9139 2 16.755 2Z" stroke="#1C274C" stroke-width="1.5" />
+                                                <path d="M10.5 11L17 11" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M7 11H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M7 7.5H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M7 14.5H7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M10.5 7.5H17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M10.5 14.5H17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                            </svg>
                                         </a>
                                         <div class="ml-4">
-                                            <span class="text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <?php echo $jumlahkategori; ?> Kategori yang tesedia saat ini</span>
+                                            <p class="dark:text-white-light text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <span class="text-green-600 font-bold"><?php echo $jumlahkategori; ?></span> Kategori yang tersedia saat ini</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="bg-white rounded-lg shadow-md">
+                            <div class="panel h-full">
                                 <div class="p-4">
-                                    <h5 class="text-lg font-semibold mb-2">Fasilitas</h5>
-                                    <div class="flex items-center">
+                                    <h5 class="text-lg font-semibold dark:text-white-light">Fasilitas</h5>
+                                    <div class="flex items-center mt-2">
                                         <a href="fasilitas.php">
-                                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#ffeccb] text-warning dark:bg-warning dark:text-[#ffeccb] mr-3">
                                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M16 4.00195C18.175 4.01406 19.3529 4.11051 20.1213 4.87889C21 5.75757 21 7.17179 21 10.0002V16.0002C21 18.8286 21 20.2429 20.1213 21.1215C19.2426 22.0002 17.8284 22.0002 15 22.0002H9C6.17157 22.0002 4.75736 22.0002 3.87868 21.1215C3 20.2429 3 18.8286 3 16.0002V10.0002C3 7.17179 3 5.75757 3.87868 4.87889C4.64706 4.11051 5.82497 4.01406 8 4.00195" stroke="#1C274C" stroke-width="1.5" />
                                                     <path d="M10.5 14L17 14" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
@@ -576,18 +574,19 @@ $jumlahreview = mysqli_num_rows($queryreview);
                                             </div>
                                         </a>
                                         <div class="ml-4">
-                                            <span class="text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <?php echo $jumlahfasilitas; ?> Fasilitas yang tesedia saat ini</span>
+                                            <span class="dark:text-white-light text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <?php echo $jumlahfasilitas; ?> Fasilitas yang tesedia saat ini</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="bg-white rounded-lg shadow-md">
+
+                            <div class="panel h-full">
                                 <div class="p-4">
-                                    <h5 class="text-lg font-semibold mb-2">User</h5>
-                                    <div class="flex items-center">
+                                    <h5 class="text-lg font-semibold dark:text-white-light">User</h5>
+                                    <div class="flex items-center mt-2">
                                         <a href="user.php">
-                                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#ffeccb] text-warning dark:bg-warning dark:text-[#ffeccb] mr-3">
                                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="12" cy="6" r="4" stroke="#1C274C" stroke-width="1.5" />
                                                     <path d="M18 9C19.6569 9 21 7.88071 21 6.5C21 5.11929 19.6569 4 18 4" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
@@ -599,18 +598,18 @@ $jumlahreview = mysqli_num_rows($queryreview);
                                             </div>
                                         </a>
                                         <div class="ml-4">
-                                            <span class="text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <?php echo $jumlahuser; ?> User yang tesedia saat ini</span>
+                                            <span class="dark:text-white-light text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <?php echo $jumlahuser; ?> User yang tesedia saat ini</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="bg-white rounded-lg shadow-md">
+                            <div class="panel h-full">
                                 <div class="p-4">
-                                    <h5 class="text-lg font-semibold mb-2">Review</h5>
-                                    <div class="flex items-center">
+                                    <h5 class="text-lg font-semibold dark:text-white-light">Review</h5>
+                                    <div class="flex items-center mt-2">
                                         <a href="review.php">
-                                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#ffeccb] text-warning dark:bg-warning dark:text-[#ffeccb] mr-3">
                                                 <svg width="40" height="40" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -622,7 +621,7 @@ $jumlahreview = mysqli_num_rows($queryreview);
                                             </div>
                                         </a>
                                         <div class="ml-4">
-                                            <span class="text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <?php echo $jumlahreview; ?> Review yang tesedia saat ini</span>
+                                            <span class="dark:text-white-light text-green-600 font-bold text-sm pt-1">Terdapat sejumlah <?php echo $jumlahreview; ?> Review yang tesedia saat ini</span>
                                         </div>
                                     </div>
                                 </div>
