@@ -21,9 +21,11 @@ $datareview = mysqli_query($conn, $query);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/perfect-scrollbar.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <link rel="stylesheet" href="assets/css/highlight.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <link defer rel="stylesheet" type="text/css" media="screen" href="assets/css/animate.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="assets/js/perfect-scrollbar.min.js"></script>
     <script defer src="assets/js/popper.min.js"></script>
     <script defer src="assets/js/tippy-bundle.umd.min.js"></script>
@@ -521,6 +523,16 @@ $datareview = mysqli_query($conn, $query);
                                     $user = $ambildata['username'];
                                     $nama_tempat = $ambildata['nama_tempat'];
                                     $rating = $ambildata['rating'];
+
+                                    if (!isset($wisataRating[$nama_tempat])) {
+                                        $wisataRating[$nama_tempat] = [
+                                            'totalRating' => 0,
+                                            'jumlahReview' => 0
+                                        ];
+                                    }
+
+                                    $wisataRating[$nama_tempat]['totalRating'] += $rating;
+                                    $wisataRating[$nama_tempat]['jumlahReview']++;
                                 ?>
                                     <tr>
                                         <td style="width: 10px;"><?= $i++; ?></td>
@@ -535,12 +547,29 @@ $datareview = mysqli_query($conn, $query);
                             </tbody>
                         </table>
                     </div>
-
                 </div>
 
-                <div x-data="st">
+                <p class="mt-5 dark:text-gray-300 font-semibold">Data Rata-Rata Rating</p>
 
+                <div class="informasi-tempat grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+                    <?php
+                    foreach ($wisataRating as $nama_tempat => $ratings) {
+                        $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
+                        $roundedRating = round($averageRating, 2);
+                        $rateYoID = str_replace(' ', '_', $nama_tempat);
+                    ?>
+                        <div class="panel h-full">
+                            <div class="p-4">
+                                <h5 class="text-xl font-semibold mb-2 dark:text-white-light">Tempat: <?= $nama_tempat; ?></h5>
+                                <p class="text-gray-600 mb-2">Rating Rata-Rata: <?= $roundedRating; ?>/5</p>
+                                <div id="rateYo_<?= $rateYoID; ?>"></div>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
+
                 <!-- start footer section -->
                 <p class="pt-6 text-center dark:text-white-dark ltr:sm:text-left rtl:sm:text-right">
                     © <span id="footer-year">2023</span>. Kelompok 5
@@ -549,7 +578,6 @@ $datareview = mysqli_query($conn, $query);
             </div>
             <!-- end main content section -->
         </div>
-    </div>
     </div>
 
     <script src="assets/js/highlight.min.js"></script>
@@ -560,7 +588,27 @@ $datareview = mysqli_query($conn, $query);
     <script defer src="assets/js/alpine.min.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/simple-datatables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script>
+        $(document).ready(function() {
+            <?php
+            // Iterasi melalui setiap rata-rata rating tempat dan buat RateYo
+            foreach ($wisataRating as $nama_tempat => $ratings) {
+                $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
+                $rateYoID = str_replace(' ', '_', $nama_tempat);
+            ?>
+
+                $("#rateYo_<?= $rateYoID; ?>").rateYo({
+                    rating: <?= $averageRating; ?>,
+                    readOnly: true
+                });
+
+            <?php
+            }
+            ?>
+        });
+
         async function showAlert(type) {
             let redirectURL = 'user.php';
 
