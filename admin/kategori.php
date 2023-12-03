@@ -297,6 +297,22 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                 </div>
                             </a>
                         </li>
+
+                        <li class="menu nav-item">
+                            <a href="review.php" class="nav-link">
+                                <div class="flex items-center">
+                                    <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path d="M10.3 6.74a.75.75 0 01-.04 1.06l-2.908 2.7 2.908 2.7a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 011.06.04zm3.44 1.06a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.908-2.7-2.908-2.7z"></path>
+                                            <path fill-rule="evenodd" d="M1.5 4.25c0-.966.784-1.75 1.75-1.75h17.5c.966 0 1.75.784 1.75 1.75v12.5a1.75 1.75 0 01-1.75 1.75h-9.69l-3.573 3.573A1.457 1.457 0 015 21.043V18.5H3.25a1.75 1.75 0 01-1.75-1.75V4.25zM3.25 4a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h2.5a.75.75 0 01.75.75v3.19l3.72-3.72a.75.75 0 01.53-.22h10a.25.25 0 00.25-.25V4.25a.25.25 0 00-.25-.25H3.25z"></path>
+                                        </g>
+                                    </svg>
+                                    <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Review</span>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -459,6 +475,9 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                 <li>
                                     <a href="user.php">User</a>
                                 </li>
+                                <li>
+                                    <a href="review.php">Review</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -528,7 +547,7 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                         $aksi = $ambildata['id'];
                                     ?>
                                         <tr>
-                                            <td><?= $i++; ?></td>
+                                            <td style="width: 10px"><?= $i++; ?></td>
                                             <td><?= $nama_kategori; ?></td>
                                             <td class="flex flex-wrap gap-2">
                                                 <button type="button" class="btn btn-warning btn-sm" x-on:click="open = <?= $aksi; ?>">Edit</button>
@@ -565,11 +584,9 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                         </div>
                     </div>
                 </div>
-                <!-- end main content section -->
-
                 <!-- start footer section -->
                 <p class="pt-6 text-center dark:text-white-dark ltr:sm:text-left rtl:sm:text-right">
-                    © <span id="footer-year">2022</span>. Vristo All rights reserved.
+                    © <span id="footer-year">2023</span>. Kelompok 5
                 </p>
                 <!-- end footer section -->
             </div>
