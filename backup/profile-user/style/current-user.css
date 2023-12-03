@@ -1,0 +1,155 @@
+.container.current-user {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    animation: card-animation 1s ease;
+}
+
+@keyframes card-animation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.current-user-gambar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.img-current-user {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+.img-current-user:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.current-user-card-body {
+    padding: 20px;
+}
+
+.current-user-card-form {
+    margin-bottom: 20px;
+}
+
+.current-user-card-form-row-new-password {
+    margin-bottom: 20px;
+}
+
+.reset-password {
+    color: #6c757d;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #6c757d;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+
+
+.update-akun, .back-awal {
+    margin-top: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    font-size: 16px; /* Menambahkan ukuran font */
+}
+
+.update-akun {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.update-akun:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    transform: scale(1.05);
+    animation: blinker 1.5s linear infinite;
+}
+
+.update-akun:active, .update-akun:focus {
+    background-color: #1e7e34;
+    border-color: #1c7430;
+    box-shadow: none;
+}
+
+.back-awal {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.back-awal:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+    transform: scale(1.05);
+    animation: blinker 1.5s linear infinite;
+}
+
+.back-awal:active, .back-awal:focus {
+    background-color: #0062cc;
+    border-color: #0056b3;
+    box-shadow: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    transform: scale(1.05);
+    animation: blinker 1.5s linear infinite;
+}
+
+.btn-danger:active, .btn-danger:focus {
+    background-color: #bd2130;
+    border-color: #b21f2d;
+    box-shadow: none;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+
+.current-user-card-form input {
+    border: none;
+    border-bottom: 2px solid #6c757d;
+    background-color: #f8f9fa;
+    transition: border-color 0.3s ease;
+}
+
+.current-user-card-form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    color: #6c757d;
+    font-size: 14px;
+}
