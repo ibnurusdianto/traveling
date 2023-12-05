@@ -6,7 +6,7 @@ session_start();
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
     session_unset();
     session_destroy();
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -23,7 +23,7 @@ if (isset($_SESSION['username'])) {
     if (mysqli_num_rows($result) == 0) {
         session_unset();
         session_destroy();
-        header("Location: login.php");
+        header("Location: ../login.php");
         exit;
     } else {
         $row = mysqli_fetch_assoc($result);
