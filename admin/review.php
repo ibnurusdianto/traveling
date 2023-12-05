@@ -1,14 +1,49 @@
 <?php
+$session_expire_time = 600;
+session_set_cookie_params($session_expire_time);
+session_start();
+
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+
+$_SESSION['last_activity'] = time();
+
+if (isset($_SESSION['username'])) {
+    $conn = mysqli_connect('localhost', 'root', '', 'travel');
+    $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+    $sql = "SELECT * FROM user WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) == 0) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    } else {
+        $row = mysqli_fetch_assoc($result);
+
+        if ($row['role'] != 'admin') {
+            header("Location: ../index.php");
+            exit;
+        }
+    }
+}
+
 include "connection.php";
-// $query = mysqli_query($conn, "SELECT * FROM review");
+
 $query = "SELECT r.id, r.komentar, r.rating, u.username, t.nama_tempat 
           FROM review r
           JOIN user u ON r.user_id = u.id
           JOIN tempat_wisata t ON r.tempat_wisata_id = t.id";
 $datareview = mysqli_query($conn, $query);
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
