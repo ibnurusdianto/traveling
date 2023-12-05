@@ -570,7 +570,7 @@ $datareview = mysqli_query($conn, $query);
                         ?>
                             <div class="panel h-full">
                                 <div class="p-4">
-                                    <h5 class="text-xl font-semibold mb-2 dark:text-white-light">Wisata: <?= $nama_tempat; ?></h5>
+                                    <h5 class="text-xl font-semibold mb-2 dark:text-white-light"><?= $nama_tempat; ?></h5>
                                     <p class="text-gray-600 mb-2">Rating Rata-Rata: <?= $roundedRating; ?>/5</p>
                                     <div id="rateYo_<?= $rateYoID; ?>"></div>
                                 </div>
@@ -580,7 +580,6 @@ $datareview = mysqli_query($conn, $query);
                     }
                     ?>
                 </div>
-
 
                 <!-- start footer section -->
                 <p class="pt-6 text-center dark:text-white-dark ltr:sm:text-left rtl:sm:text-right">
