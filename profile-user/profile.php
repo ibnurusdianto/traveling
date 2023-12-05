@@ -14,7 +14,33 @@
 </head>
 <body>
 <?php
+    $session_expire_time = 600;
+    session_set_cookie_params($session_expire_time);
     require_once "./php-function/function.php";
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
+        session_unset();
+        session_destroy();
+        header("Location: ../login.php");
+        exit;
+    }
+    
+    $_SESSION['last_activity'] = time();
+    
+    if (isset($_SESSION['username'])) {
+      $conn = mysqli_connect('localhost', 'root', '', 'travel');
+      $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+      $sql = "SELECT * FROM user WHERE username = ?";
+      $stmt = mysqli_prepare($conn, $sql);
+      mysqli_stmt_bind_param($stmt, 's', $username);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+      if (mysqli_num_rows($result) == 0) {
+          session_unset();
+          session_destroy();
+          header("Location: ../login.php");
+          exit;
+      }
+    }
 ?>
 <!--Current User-->
 <div class="container current-user mt-5">
@@ -91,7 +117,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <form method="GET" action="php-function/delete-user.php">
+                    <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>

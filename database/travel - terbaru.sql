@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2023 at 04:28 PM
+-- Generation Time: Dec 05, 2023 at 08:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -108,19 +108,22 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('admin','user') NOT NULL
+  `role` enum('admin','user') NOT NULL,
+  `last_registered` datetime DEFAULT current_timestamp(),
+  `img` varchar(255) DEFAULT 'default.jpg',
+  `location` varchar(255) DEFAULT NULL,
+  `last_activity` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
-(4, 'ibnu', '*58C235AA264CF7359F98762CA06F086F00F6B788', 'admin'),
-(5, 'afgan', '*F39FA1E3F34BC26161751F3F12DB078212B5F182', 'user'),
-(6, 'vita', '*89AF6B03B22802F4BC9C9A8D760EC1472B373BB3', 'admin'),
-(8, 'fadly', '*0136E2B9E217FA552428EE096762D83AAF17FEE6', 'admin'),
-(9, 'mahisa', '*9F5667FFF45B34AACD2FA9099FF08CC61AB15E5C', 'admin');
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `last_registered`, `img`, `location`, `last_activity`) VALUES
+(35, 'Ibnu Rusdianto', '$2y$10$c5mZCVXRmU873kTlxkuKMOi8tuv//ZzChgfVGynPPVSTh2cBW0z32', 'admin', '2023-12-06 01:30:45', 'ibnu.jpeg', 'Bandung, West Java, ID', '2023-12-06 01:31:31'),
+(36, 'Vita Rahmada', '$2y$10$TYzqDzMWO2iD/yslRTbW9etUv1WjwmIVmDymbGTxbYWlnWxJwY9QK', 'admin', '2023-12-06 01:32:24', 'vita2.jpg', NULL, '2023-12-06 01:33:13'),
+(37, 'Mahisa Aghisni Fadhli', '$2y$10$jYk9Phvy9sLCJBMR4iRlgOOEgGVJCVMben/hSLykm4wpJ40yhDxGW', 'admin', '2023-12-06 01:33:40', 'mahisa.jpeg', 'Bandung, West Java, ID', '2023-12-06 01:34:42'),
+(38, 'Muhammad Fadly Gimnastiar', '$2y$10$1HWri7P1/OzAelHejZM9Iud.8TM0heYYibdzUI/yzRckJb/wBb7mm', 'admin', '2023-12-06 01:35:16', 'fadly.jpeg', 'Bandung, West Java, ID', '2023-12-06 01:36:04');
 
 --
 -- Indexes for dumped tables
@@ -192,7 +195,7 @@ ALTER TABLE `tempat_wisata`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables
