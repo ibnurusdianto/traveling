@@ -553,22 +553,34 @@ $datareview = mysqli_query($conn, $query);
 
                 <div class="informasi-tempat grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
                     <?php
-                    foreach ($wisataRating as $nama_tempat => $ratings) {
-                        $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
-                        $roundedRating = round($averageRating, 2);
-                        $rateYoID = str_replace(' ', '_', $nama_tempat);
+                    if (empty($wisataRating)) {
                     ?>
                         <div class="panel h-full">
                             <div class="p-4">
-                                <h5 class="text-xl font-semibold mb-2 dark:text-white-light">Tempat: <?= $nama_tempat; ?></h5>
-                                <p class="text-gray-600 mb-2">Rating Rata-Rata: <?= $roundedRating; ?>/5</p>
-                                <div id="rateYo_<?= $rateYoID; ?>"></div>
+                                <h5 class="text-xl font-semibold mb-2 dark:text-white-light">Tidak Ada Rating</h5>
+                                <p class="text-gray-600 mb-2">Maaf, tidak ada rating untuk ditampilkan.</p>
                             </div>
                         </div>
+                        <?php
+                    } else {
+                        foreach ($wisataRating as $nama_tempat => $ratings) {
+                            $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
+                            $roundedRating = round($averageRating, 2);
+                            $rateYoID = str_replace(' ', '_', $nama_tempat);
+                        ?>
+                            <div class="panel h-full">
+                                <div class="p-4">
+                                    <h5 class="text-xl font-semibold mb-2 dark:text-white-light">Wisata: <?= $nama_tempat; ?></h5>
+                                    <p class="text-gray-600 mb-2">Rating Rata-Rata: <?= $roundedRating; ?>/5</p>
+                                    <div id="rateYo_<?= $rateYoID; ?>"></div>
+                                </div>
+                            </div>
                     <?php
+                        }
                     }
                     ?>
                 </div>
+
 
                 <!-- start footer section -->
                 <p class="pt-6 text-center dark:text-white-dark ltr:sm:text-left rtl:sm:text-right">
@@ -593,7 +605,6 @@ $datareview = mysqli_query($conn, $query);
     <script>
         $(document).ready(function() {
             <?php
-            // Iterasi melalui setiap rata-rata rating tempat dan buat RateYo
             foreach ($wisataRating as $nama_tempat => $ratings) {
                 $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
                 $rateYoID = str_replace(' ', '_', $nama_tempat);
@@ -603,80 +614,13 @@ $datareview = mysqli_query($conn, $query);
                     rating: <?= $averageRating; ?>,
                     readOnly: true
                 });
-
             <?php
             }
             ?>
         });
+    </script>
 
-        async function showAlert(type) {
-            let redirectURL = 'user.php';
-
-
-            if (type == 1) {
-                await new window.Swal({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: 'Data berhasil ditambahkan!',
-                    padding: '2em',
-                });
-                window.location.href = redirectURL;
-            } else if (type == 2) {
-                await new window.Swal({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: 'Data berhasil diubah!',
-                    padding: '2em',
-                });
-                window.location.href = redirectURL;
-            } else if (type == 3) {
-                await new window.Swal({
-                    icon: 'warning',
-                    title: 'Apakah Kamu yakin untuk menghapus ini?',
-                    text: "Anda tidak akan dapat mengembalikan ini!",
-                    showCancelButton: true,
-                    confirmButtonText: 'Ya, Saya yakin!',
-                    padding: '2em',
-                }).then((result) => {
-                    if (result.value) {
-                        new window.Swal('Terhapus!', 'File berhasil dihapus.', 'success');
-                    }
-                });
-            } else if (type == 4) {
-                await new window.Swal({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: 'Data gagal ditambahkan!',
-                    padding: '2em',
-                });
-                window.location.href = redirectURL;
-            } else if (type == 5) {
-                await new window.Swal({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: 'Data gagal diubah!',
-                    padding: '2em',
-                });
-                window.location.href = redirectURL;
-            } else if (type == 6) {
-                await new window.Swal({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: 'Data gagal dihapus!',
-                    padding: '2em',
-                });
-                window.location.href = redirectURL;
-            } else if (type == 7) {
-                await new window.Swal({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: 'Data sudah ada!',
-                    padding: '2em',
-                });
-                window.location.href = redirectURL;
-            }
-        }
-
+    <script>
         document.addEventListener('alpine:init', () => {
             // main section
             Alpine.data('scrollToTop', () => ({
@@ -756,35 +700,10 @@ $datareview = mysqli_query($conn, $query);
                         },
                     };
                     const datatable5 = new simpleDatatables.DataTable('#tableAll', tableOptions);
+
                 },
             }));
         });
-
-        const deleteSuccess = urlParams.get('delete_success');
-
-        if (deleteSuccess === 'true') {
-            Swal.fire('Berhasil!', 'Data Berhasil dihapus.', 'success');
-        } else if (deleteSuccess === 'false') {
-            Swal.fire('Error', 'Data Gagal dihapus.', 'error');
-        }
-
-        function deleteItem(itemId) {
-            Swal.fire({
-                title: 'Apakah anda yakin untuk menghapus user ini?',
-                text: "Anda tidak akan dapat mengembalikan ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, Saya yakin!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire('Terhapus!', 'File berhasil dihapus.', 'success').then(() => {
-                        window.location.href = `proses-user.php?delete=1&aksi=${itemId}`;
-                    });
-                }
-            });
-        }
     </script>
 </body>
 
