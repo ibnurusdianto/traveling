@@ -1,11 +1,7 @@
 <?php
 include "connection.php";
-// $query = mysqli_query($conn, "SELECT * FROM review");
-$query = "SELECT r.id, r.komentar, r.rating, u.username, t.nama_tempat 
-          FROM review r
-          JOIN user u ON r.user_id = u.id
-          JOIN tempat_wisata t ON r.tempat_wisata_id = t.id";
-$datareview = mysqli_query($conn, $query);
+include "proses-user.php";
+$query = mysqli_query($conn, "SELECT * FROM user");
 ?>
 
 
@@ -15,17 +11,15 @@ $datareview = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review</title>
+    <title>User</title>
     <link rel="icon" type="image/x-icon" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/perfect-scrollbar.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <link rel="stylesheet" href="assets/css/highlight.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <link defer rel="stylesheet" type="text/css" media="screen" href="assets/css/animate.css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="assets/js/perfect-scrollbar.min.js"></script>
     <script defer src="assets/js/popper.min.js"></script>
     <script defer src="assets/js/tippy-bundle.umd.min.js"></script>
@@ -289,7 +283,7 @@ $datareview = mysqli_query($conn, $query);
                         </li>
 
                         <li class="menu nav-item">
-                            <a href="user.php" class="nav-link">
+                            <a href="user.php" class="nav-link active group">
                                 <div class="flex items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="6" r="4" stroke="#1C274C" stroke-width="1.5" />
@@ -305,7 +299,7 @@ $datareview = mysqli_query($conn, $query);
                         </li>
 
                         <li class="menu nav-item">
-                            <a href="review.php" class="nav-link active group">
+                            <a href="review.php" class="nav-link">
                                 <div class="flex items-center">
                                     <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -498,88 +492,121 @@ $datareview = mysqli_query($conn, $query);
                         <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
                     </li>
                     <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                        <span>Review</span>
+                        <span>User</span>
                     </li>
                 </ul>
 
-                <div x-data="striped">
-                    <div class="panel mt-3">
-                        <h5 class="mb-5 text-lg font-semibold dark:text-white-light md:absolute md:top-[25px] md:mb-0">Data Review</h5>
-                        <table id="tableAll" class="table-striped table-hover table-bordered table-compact">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama User</th>
-                                    <th>Wisata</th>
-                                    <th>Komentar</th>
-                                    <th>Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i = 1;
-                                while ($ambildata = mysqli_fetch_array($datareview)) {
-                                    $komentar = $ambildata['komentar'];
-                                    $user = $ambildata['username'];
-                                    $nama_tempat = $ambildata['nama_tempat'];
-                                    $rating = $ambildata['rating'];
+                <!-- basic -->
+                <div x-data="modal" class="mb-5">
+                    <!-- button -->
+                    <div class="flex items-center">
+                        <button type="button" class="btn btn-primary" @click="toggle">Tambah User</button>
+                    </div>
 
-                                    if (!isset($wisataRating[$nama_tempat])) {
-                                        $wisataRating[$nama_tempat] = [
-                                            'totalRating' => 0,
-                                            'jumlahReview' => 0
-                                        ];
-                                    }
-
-                                    $wisataRating[$nama_tempat]['totalRating'] += $rating;
-                                    $wisataRating[$nama_tempat]['jumlahReview']++;
-                                ?>
-                                    <tr>
-                                        <td style="width: 10px;"><?= $i++; ?></td>
-                                        <td><?= $user; ?></td>
-                                        <td><?= $nama_tempat; ?></td>
-                                        <td><?= $komentar; ?></td>
-                                        <td><?= $rating; ?></td>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                    <!-- modal create -->
+                    <div class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto" :class="open && '!block'">
+                        <div class="flex items-start justify-center min-h-screen px-4" @click.self="open = false">
+                            <div x-show="open" x-transition x-transition.duration.300 class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-lg">
+                                <div class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
+                                    <div class="font-bold text-lg">Tambah User</div>
+                                </div>
+                                <div class="p-5">
+                                    <form method="post">
+                                        <label for="username">Username</label>
+                                        <input type="text" placeholder="Username" name="user" class="form-input" required />
+                                        <label for="password">Password</label>
+                                        <input type="text" placeholder="Password" name="password" class="form-input" required />
+                                        <label for="role">Role</label>
+                                        <select class="form-select mb-3" name="role">
+                                            <option selected>Pilih Role</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="user">User</option>
+                                        </select>
+                                        <div class="flex justify-end items-center mt-8 gap-2">
+                                            <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
+                                            <button type="submit" class="btn btn-primary" onclick="showAlert()" name="add">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <p class="mt-5 dark:text-gray-300 font-semibold">Data Rata-Rata Rating</p>
+                <div x-data="modal" class="mb-5">
+                    <div x-data="striped">
+                        <div class="panel mt-3">
+                            <h5 class="mb-5 text-lg font-semibold dark:text-white-light md:absolute md:top-[25px] md:mb-0">Data User</h5>
+                            <table id="tableAll" class="table-striped table-hover table-bordered table-compact">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Role</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $datauser = mysqli_query($conn, "SELECT * FROM user");
+                                    $i = 1;
+                                    while ($ambildata = mysqli_fetch_array($datauser)) {
+                                        $user = $ambildata['username'];
+                                        $password = $ambildata['password'];
+                                        $role = $ambildata['role'];
+                                        $aksi = $ambildata['id'];
+                                    ?>
+                                        <tr>
+                                            <td style="width: 10px"><?= $i++; ?></td>
+                                            <td><?= $user; ?></td>
+                                            <td><?= $password; ?></td>
+                                            <td><?= $role; ?></td>
+                                            <td class="flex flex-wrap gap-2">
+                                                <button type="button" class="btn btn-warning btn-sm" x-on:click="open = <?= $aksi; ?>">Edit</button>
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteItem(<?= $aksi; ?>)">Delete</button>
+                                            </td>
+                                        </tr>
 
-                <div class="informasi-tempat grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-                    <?php
-                    if (empty($wisataRating)) {
-                    ?>
-                        <div class="panel h-full">
-                            <div class="p-4">
-                                <h5 class="text-xl font-semibold mb-2 dark:text-white-light">Tidak Ada Rating</h5>
-                                <p class="text-gray-600 mb-2">Maaf, tidak ada rating untuk ditampilkan.</p>
-                            </div>
+
+                                        <!-- modal edit -->
+                                        <div x-show="open === <?= $aksi; ?>" x-cloak class="fixed inset-0 z-[999] overflow-y-auto" style="background-color: rgba(0, 0, 0, 0.6);">
+                                            <div class="flex items-start justify-center min-h-screen px-4" @click.self="open = false">
+                                                <div x-show="open" x-transition x-transition.duration.300 class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-lg">
+                                                    <div class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
+                                                        <div class="font-bold text-lg">Edit User</div>
+                                                    </div>
+                                                    <div class="p-5">
+                                                        <form method="post">
+                                                            <label for="username">Nama User</label>
+                                                            <input type="text" name="user" class="form-input" value="<?= $user; ?>" required />
+                                                            <label for="password">Password</label>
+                                                            <input type="text" name="password" class="form-input" value="<?= $password; ?>" required />
+                                                            <label for="role">Role</label>
+                                                            <select class="form-select mb-3" name="role">
+                                                                <option selected>Pilih Role</option>
+                                                                <option value="admin">Admin</option>
+                                                                <option value="user">User</option>
+                                                            </select>
+                                                            <input type="hidden" name="aksi" value="<?= $aksi; ?>">
+                                                            <div class=" flex justify-end items-center mt-8 gap-2">
+                                                                <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
+                                                                <button type="submit" class="btn btn-primary" onclick="showAlert()" name="update">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    };
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
-                        <?php
-                    } else {
-                        foreach ($wisataRating as $nama_tempat => $ratings) {
-                            $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
-                            $roundedRating = round($averageRating, 2);
-                            $rateYoID = str_replace(' ', '_', $nama_tempat);
-                        ?>
-                            <div class="panel h-full">
-                                <div class="p-4">
-                                    <h5 class="text-xl font-semibold mb-2 dark:text-white-light"><?= $nama_tempat; ?></h5>
-                                    <p class="text-gray-600 mb-2">Rating Rata-Rata: <?= $roundedRating; ?>/5</p>
-                                    <div id="rateYo_<?= $rateYoID; ?>"></div>
-                                </div>
-                            </div>
-                    <?php
-                        }
-                    }
-                    ?>
+                    </div>
                 </div>
+                <!-- end main content section -->
 
                 <!-- start footer section -->
                 <p class="pt-6 text-center dark:text-white-dark ltr:sm:text-left rtl:sm:text-right">
@@ -587,7 +614,6 @@ $datareview = mysqli_query($conn, $query);
                 </p>
                 <!-- end footer section -->
             </div>
-            <!-- end main content section -->
         </div>
     </div>
 
@@ -599,27 +625,75 @@ $datareview = mysqli_query($conn, $query);
     <script defer src="assets/js/alpine.min.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/simple-datatables.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script>
-        $(document).ready(function() {
-            <?php
-            foreach ($wisataRating as $nama_tempat => $ratings) {
-                $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
-                $rateYoID = str_replace(' ', '_', $nama_tempat);
-            ?>
+        async function showAlert(type) {
+            let redirectURL = 'user.php';
 
-                $("#rateYo_<?= $rateYoID; ?>").rateYo({
-                    rating: <?= $averageRating; ?>,
-                    readOnly: true
+
+            if (type == 1) {
+                await new window.Swal({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Data berhasil ditambahkan!',
+                    padding: '2em',
                 });
-            <?php
+                window.location.href = redirectURL;
+            } else if (type == 2) {
+                await new window.Swal({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Data berhasil diubah!',
+                    padding: '2em',
+                });
+                window.location.href = redirectURL;
+            } else if (type == 3) {
+                await new window.Swal({
+                    icon: 'warning',
+                    title: 'Apakah Kamu yakin untuk menghapus ini?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Saya yakin!',
+                    padding: '2em',
+                }).then((result) => {
+                    if (result.value) {
+                        new window.Swal('Terhapus!', 'File berhasil dihapus.', 'success');
+                    }
+                });
+            } else if (type == 4) {
+                await new window.Swal({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Data gagal ditambahkan!',
+                    padding: '2em',
+                });
+                window.location.href = redirectURL;
+            } else if (type == 5) {
+                await new window.Swal({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Data gagal diubah!',
+                    padding: '2em',
+                });
+                window.location.href = redirectURL;
+            } else if (type == 6) {
+                await new window.Swal({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Data gagal dihapus!',
+                    padding: '2em',
+                });
+                window.location.href = redirectURL;
+            } else if (type == 7) {
+                await new window.Swal({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Data sudah ada!',
+                    padding: '2em',
+                });
+                window.location.href = redirectURL;
             }
-            ?>
-        });
-    </script>
+        }
 
-    <script>
         document.addEventListener('alpine:init', () => {
             // main section
             Alpine.data('scrollToTop', () => ({
@@ -699,10 +773,35 @@ $datareview = mysqli_query($conn, $query);
                         },
                     };
                     const datatable5 = new simpleDatatables.DataTable('#tableAll', tableOptions);
-
                 },
             }));
         });
+
+        const deleteSuccess = urlParams.get('delete_success');
+
+        if (deleteSuccess === 'true') {
+            Swal.fire('Berhasil!', 'Data Berhasil dihapus.', 'success');
+        } else if (deleteSuccess === 'false') {
+            Swal.fire('Error', 'Data Gagal dihapus.', 'error');
+        }
+
+        function deleteItem(itemId) {
+            Swal.fire({
+                title: 'Apakah anda yakin untuk menghapus user ini?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Saya yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Terhapus!', 'File berhasil dihapus.', 'success').then(() => {
+                        window.location.href = `proses-user.php?delete=1&aksi=${itemId}`;
+                    });
+                }
+            });
+        }
     </script>
 </body>
 

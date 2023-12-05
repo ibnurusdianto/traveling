@@ -1,11 +1,7 @@
 <?php
 include "connection.php";
-// $query = mysqli_query($conn, "SELECT * FROM review");
-$query = "SELECT r.id, r.komentar, r.rating, u.username, t.nama_tempat 
-          FROM review r
-          JOIN user u ON r.user_id = u.id
-          JOIN tempat_wisata t ON r.tempat_wisata_id = t.id";
-$datareview = mysqli_query($conn, $query);
+include "proses-fasilitas.php";
+$query = mysqli_query($conn, "SELECT * FROM fasilitas");
 ?>
 
 
@@ -15,17 +11,15 @@ $datareview = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review</title>
+    <title>Fasilitas</title>
     <link rel="icon" type="image/x-icon" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/perfect-scrollbar.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <link rel="stylesheet" href="assets/css/highlight.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <link defer rel="stylesheet" type="text/css" media="screen" href="assets/css/animate.css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="assets/js/perfect-scrollbar.min.js"></script>
     <script defer src="assets/js/popper.min.js"></script>
     <script defer src="assets/js/tippy-bundle.umd.min.js"></script>
@@ -271,7 +265,7 @@ $datareview = mysqli_query($conn, $query);
                         </li>
 
                         <li class="menu nav-item">
-                            <a href="fasilitas.php" class="nav-link">
+                            <a href="fasilitas.php" class="nav-link active group">
                                 <div class="flex items-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16 4.00195C18.175 4.01406 19.3529 4.11051 20.1213 4.87889C21 5.75757 21 7.17179 21 10.0002V16.0002C21 18.8286 21 20.2429 20.1213 21.1215C19.2426 22.0002 17.8284 22.0002 15 22.0002H9C6.17157 22.0002 4.75736 22.0002 3.87868 21.1215C3 20.2429 3 18.8286 3 16.0002V10.0002C3 7.17179 3 5.75757 3.87868 4.87889C4.64706 4.11051 5.82497 4.01406 8 4.00195" stroke="#1C274C" stroke-width="1.5" />
@@ -305,7 +299,7 @@ $datareview = mysqli_query($conn, $query);
                         </li>
 
                         <li class="menu nav-item">
-                            <a href="review.php" class="nav-link active group">
+                            <a href="review.php" class="nav-link">
                                 <div class="flex items-center">
                                     <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -498,96 +492,135 @@ $datareview = mysqli_query($conn, $query);
                         <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
                     </li>
                     <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                        <span>Review</span>
+                        <span>Fasilitas</span>
                     </li>
                 </ul>
+                <!-- basic -->
+                <div x-data="modal" class="mb-5">
+                    <!-- button -->
+                    <div class="flex items-center">
+                        <button type="button" class="btn btn-primary" @click="toggle">Tambah Fasilitas</button>
+                    </div>
 
-                <div x-data="striped">
-                    <div class="panel mt-3">
-                        <h5 class="mb-5 text-lg font-semibold dark:text-white-light md:absolute md:top-[25px] md:mb-0">Data Review</h5>
-                        <table id="tableAll" class="table-striped table-hover table-bordered table-compact">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama User</th>
-                                    <th>Wisata</th>
-                                    <th>Komentar</th>
-                                    <th>Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i = 1;
-                                while ($ambildata = mysqli_fetch_array($datareview)) {
-                                    $komentar = $ambildata['komentar'];
-                                    $user = $ambildata['username'];
-                                    $nama_tempat = $ambildata['nama_tempat'];
-                                    $rating = $ambildata['rating'];
-
-                                    if (!isset($wisataRating[$nama_tempat])) {
-                                        $wisataRating[$nama_tempat] = [
-                                            'totalRating' => 0,
-                                            'jumlahReview' => 0
-                                        ];
-                                    }
-
-                                    $wisataRating[$nama_tempat]['totalRating'] += $rating;
-                                    $wisataRating[$nama_tempat]['jumlahReview']++;
-                                ?>
-                                    <tr>
-                                        <td style="width: 10px;"><?= $i++; ?></td>
-                                        <td><?= $user; ?></td>
-                                        <td><?= $nama_tempat; ?></td>
-                                        <td><?= $komentar; ?></td>
-                                        <td><?= $rating; ?></td>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                    <!-- modal -->
+                    <div class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto" :class="open && '!block'">
+                        <div class="flex items-start justify-center min-h-screen px-4" @click.self="open = false">
+                            <div x-show="open" x-transition x-transition.duration.300 class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-lg">
+                                <div class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
+                                    <div class="font-bold text-lg">Tambah Fasilitas</div>
+                                </div>
+                                <div class="p-5">
+                                    <form method="post">
+                                        <div class="mb-3">
+                                            <label for="nama_fasilitas" class="col-form-label">Nama Fasilitas</label>
+                                            <input type="text" name="nama_fasilitas" placeholder="Nama Fasilitas" class="form-input" required />
+                                        </div>
+                                        <label for="wisata">Wisata</label>
+                                        <select class="form-select mb-3" name="wisata">
+                                            <option selected>Pilih Wisata</option>
+                                            <?php
+                                            $ambildata = mysqli_query($conn, "select * from tempat_wisata");
+                                            while ($fetcharray = mysqli_fetch_array($ambildata)) {
+                                                $tempatid = $fetcharray['id'];
+                                                $nama_tempat = $fetcharray['nama_tempat'];
+                                            ?>
+                                                <option value="<?= $tempatid; ?>"><?= $nama_tempat; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <div class="flex justify-end items-center mt-8 gap-2">
+                                            <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
+                                            <button type="submit" class="btn btn-primary" onclick="showAlert()" name="add">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <p class="mt-5 dark:text-gray-300 font-semibold">Data Rata-Rata Rating</p>
+                <div x-data="modal" class="mb-5">
+                    <div x-data="striped">
+                        <div class="panel mt-3">
+                            <h5 class="mb-5 text-lg font-semibold dark:text-white-light md:absolute md:top-[25px] md:mb-0">Data Fasilitas</h5>
+                            <table id="tableAll" class="table-striped table-hover table-bordered table-compact">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Fasilitas</th>
+                                        <th>Tempat Wisata</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $datafasilitas = mysqli_query($conn, "SELECT f.*, t.nama_tempat FROM fasilitas f 
+                                    JOIN tempat_wisata t ON f.tempat_wisata_id = t.id");
+                                    $i = 1;
+                                    while ($ambildata = mysqli_fetch_assoc($datafasilitas)) {
+                                        $nama_fasilitas = $ambildata['nama_fasilitas'];
+                                        $nama_tempat = $ambildata['nama_tempat'];
+                                        $aksi = $ambildata['id'];
+                                    ?>
+                                        <tr>
+                                            <td style="width: 10px"><?= $i++; ?></td>
+                                            <td><?= $nama_fasilitas; ?></td>
+                                            <td><?= $nama_tempat; ?></td>
+                                            <td class="flex flex-wrap gap-2">
+                                                <button type="button" class="btn btn-warning btn-sm" x-on:click="open = <?= $aksi; ?>">Edit</button>
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteItem(<?= $aksi; ?>)">Delete</button>
+                                            </td>
+                                        </tr>
 
-                <div class="informasi-tempat grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-                    <?php
-                    if (empty($wisataRating)) {
-                    ?>
-                        <div class="panel h-full">
-                            <div class="p-4">
-                                <h5 class="text-xl font-semibold mb-2 dark:text-white-light">Tidak Ada Rating</h5>
-                                <p class="text-gray-600 mb-2">Maaf, tidak ada rating untuk ditampilkan.</p>
-                            </div>
+                                        <div x-show="open === <?= $aksi; ?>" x-cloak class="fixed inset-0 z-[999] overflow-y-auto" style="background-color: rgba(0, 0, 0, 0.6);">
+                                            <div class="flex items-start justify-center min-h-screen px-4" @click.self="open = false">
+                                                <div x-show="open" x-transition x-transition.duration.300 class="panel border-0 p-0 rounded-lg overflow-hidden my-8 w-full max-w-lg">
+                                                    <div class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
+                                                        <div class="font-bold text-lg">Edit Fasilitas</div>
+                                                    </div>
+                                                    <div class="p-5">
+                                                        <form method="post">
+                                                            <label for="nama_fasilitas">Edit Fasilitas</label>
+                                                            <input type="text" name="nama_fasilitas" class="form-input" value="<?= $nama_fasilitas; ?>" required />
+                                                            <label for="Wisata">Wisata</label>
+                                                            <select class="form-select mb-3" name="wisata">
+                                                                <option selected>Pilih Wisata</option>
+                                                                <?php
+                                                                $ambildata = mysqli_query($conn, "select * from tempat_wisata");
+                                                                while ($fetcharray = mysqli_fetch_array($ambildata)) {
+                                                                    $tempatid = $fetcharray['id'];
+                                                                    $nama_tempat = $fetcharray['nama_tempat'];
+                                                                ?>
+                                                                    <option value="<?= $tempatid; ?>" <?php if ($tempatid == $nama_tempat) echo "selected"; ?>><?= $nama_tempat; ?></option>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                            <input type="hidden" name="aksi" value="<?= $aksi; ?>">
+                                                            <div class=" flex justify-end items-center mt-8 gap-2">
+                                                                <button type="button" class="btn btn-outline-danger" @click="toggle">Discard</button>
+                                                                <button type="submit" class="btn btn-primary" onclick="showAlert()" name="update">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    };
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
-                        <?php
-                    } else {
-                        foreach ($wisataRating as $nama_tempat => $ratings) {
-                            $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
-                            $roundedRating = round($averageRating, 2);
-                            $rateYoID = str_replace(' ', '_', $nama_tempat);
-                        ?>
-                            <div class="panel h-full">
-                                <div class="p-4">
-                                    <h5 class="text-xl font-semibold mb-2 dark:text-white-light"><?= $nama_tempat; ?></h5>
-                                    <p class="text-gray-600 mb-2">Rating Rata-Rata: <?= $roundedRating; ?>/5</p>
-                                    <div id="rateYo_<?= $rateYoID; ?>"></div>
-                                </div>
-                            </div>
-                    <?php
-                        }
-                    }
-                    ?>
+                    </div>
                 </div>
-
                 <!-- start footer section -->
                 <p class="pt-6 text-center dark:text-white-dark ltr:sm:text-left rtl:sm:text-right">
                     © <span id="footer-year">2023</span>. Kelompok 5
                 </p>
                 <!-- end footer section -->
             </div>
-            <!-- end main content section -->
         </div>
     </div>
 
@@ -599,27 +632,54 @@ $datareview = mysqli_query($conn, $query);
     <script defer src="assets/js/alpine.min.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/simple-datatables.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script>
-        $(document).ready(function() {
-            <?php
-            foreach ($wisataRating as $nama_tempat => $ratings) {
-                $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
-                $rateYoID = str_replace(' ', '_', $nama_tempat);
-            ?>
+        async function showAlert(type) {
+            let redirectURL = 'fasilitas.php';
 
-                $("#rateYo_<?= $rateYoID; ?>").rateYo({
-                    rating: <?= $averageRating; ?>,
-                    readOnly: true
+
+            if (type == 1) {
+                await new window.Swal({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Data berhasil ditambahkan!',
+                    padding: '2em',
                 });
-            <?php
+                window.location.href = redirectURL;
+            } else if (type == 2) {
+                await new window.Swal({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Data berhasil diubah!',
+                    padding: '2em',
+                });
+                window.location.href = redirectURL;
+            } else if (type == 3) {
+                await new window.Swal({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Data gagal ditambahkan!',
+                    padding: '2em',
+                });
+                window.location.href = redirectURL;
+            } else if (type == 4) {
+                await new window.Swal({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Data gagal diubah!',
+                    padding: '2em',
+                });
+                window.location.href = redirectURL;
+            } else if (type == 5) {
+                await new window.Swal({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Data sudah ada!',
+                    padding: '2em',
+                });
+                window.location.href = redirectURL;
             }
-            ?>
-        });
-    </script>
+        }
 
-    <script>
         document.addEventListener('alpine:init', () => {
             // main section
             Alpine.data('scrollToTop', () => ({
@@ -643,15 +703,6 @@ $datareview = mysqli_query($conn, $query);
                     document.documentElement.scrollTop = 0;
                 },
             }));
-
-            Alpine.data("modal", (initialOpenState = false) => ({
-                open: initialOpenState,
-
-                toggle() {
-                    this.open = !this.open;
-                },
-            }));
-
 
             // theme customization
             Alpine.data('customizer', () => ({
@@ -699,10 +750,34 @@ $datareview = mysqli_query($conn, $query);
                         },
                     };
                     const datatable5 = new simpleDatatables.DataTable('#tableAll', tableOptions);
-
                 },
             }));
         });
+        const deleteSuccess = urlParams.get('delete_success');
+
+        if (deleteSuccess === 'true') {
+            Swal.fire('Berhasil!', 'Data Berhasil dihapus.', 'success');
+        } else if (deleteSuccess === 'false') {
+            Swal.fire('Error', 'Data Gagal dihapus.', 'error');
+        }
+
+        function deleteItem(itemId) {
+            Swal.fire({
+                title: 'Apakah anda yakin untuk menghapus fasilitas ini?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Saya yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Terhapus!', 'File berhasil dihapus.', 'success').then(() => {
+                        window.location.href = `proses-fasilitas.php?delete=1&aksi=${itemId}`;
+                    });
+                }
+            });
+        }
     </script>
 </body>
 

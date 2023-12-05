@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-// Menjalankan sesi
+session_start();
 $session_expire_time = 600;
 session_set_cookie_params($session_expire_time);
-session_start();
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
     session_unset();
     session_destroy();
@@ -15,28 +14,28 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 $_SESSION['last_activity'] = time();
 
 if (isset($_SESSION['username'])) {
-  $conn = mysqli_connect('localhost', 'root', '', 'travel');
-  $username = mysqli_real_escape_string($conn, $_SESSION['username']);
-  $sql = "SELECT * FROM user WHERE username = ?";
-  $stmt = mysqli_prepare($conn, $sql);
-  mysqli_stmt_bind_param($stmt, 's', $username);
-  mysqli_stmt_execute($stmt);
-  $result = mysqli_stmt_get_result($stmt);
-  if (mysqli_num_rows($result) == 0) {
-      session_unset();
-      session_destroy();
-      header("Location: login.php");
-      exit;
+    $conn = mysqli_connect('localhost', 'root', '', 'travel');
+    $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+    $sql = "SELECT * FROM user WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if (mysqli_num_rows($result) == 0) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
   }
-}
 ?>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel - About</title>
+    <title>Travel - Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="style/header-footer.css">
-    <link rel="stylesheet" href="style/about.css">
+    <link rel="stylesheet" href="style/register.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
@@ -51,7 +50,7 @@ if (isset($_SESSION['username'])) {
                 <div class="navbar-nav">
                     <a class="nav-link me-4" aria-current="page" href="index.php">Home</a>
                     <a class="nav-link me-4" href="destination.php">Destination</a>
-                    <a class="nav-link active me-4" href="about.php">About</a>
+                    <a class="nav-link me-4" href="about.php">About</a>
                     <a class="nav-link me-4" href="ContactUS.php">Contact Us</a>
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
                 </div>
@@ -100,83 +99,77 @@ if (isset($_SESSION['username'])) {
     </div>
     <!--End Modal Logout user session-->
 
-    <!-- carousel -->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="img/1.jpg" class="d-block w-100" alt="Slide 1" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ac tellus tincidunt.</p>
-                </div>
+    <!--Register Form-->
+    <div class="container col-11 col-md-9" id="form-container">
+        <div class="row gx-5">
+            <div class="col-md-6">
+                <h2>Complete your registration</h2>
+                <form action="./function-login-diluar-admin/register-only-user.php" method="post">
+                    <div class="form-floating mb-3">
+                        <input type="username" class="form-control" id="username" name="username" placeholder="Enter your Username">
+                        <label for="username" class="form-label">Enter your Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+                        <label for="password" class="form-label">Enter your password</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="show-password">
+                        <label class="form-check-label" for="show-password">Show password</label>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="agree-term">
+                            <label class="form-check-label" for="agree-term">
+                                Do you accept <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">the terms of service</a>?
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="newsletter">
+                            <label class="form-check-label" for="newsletter">
+                                Do you want to receive our newsletters?
+                            </label>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Register">
+                </form>
             </div>
-            <div class="carousel-item">
-                <img src="img/2.jpg" class="d-block w-100" alt="Slide 2" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ac tellus tincidunt.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="img/3.jpg" class="d-block w-100" alt="Slide 3" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ac tellus tincidunt.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <!-- end carousel -->
-
-    <!-- about section -->
-    <section class="about_section layout_padding">
-        <div class="container">
-            <div class="row" style="align-items: center;">
-                <div class="col-md-6 ps-md-5">
-                    <h2>About</h2>
-                    <p class="me-5">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, quaerat et. Cum, exercitationem consectetur? Expedita, odio at itaque in voluptas ex doloremque libero nisi sit temporibus. Officia dolor quaerat amet omnis
-                        voluptates reiciendis, mollitia eaque rem blanditiis sequi accusantium? Ratione?
-                    </p>
-                </div>
-                <div class="col-md-6 pe-md-5">
-                    <img src="img/5.jpg" class="img-fluid img-responsiv" alt="Gambar" />
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end about section -->
-
-    <!--  -->
-    <section class="tempat-wisata mb-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <img class="gambar-tempat-wisata" src="img/1.jpg" alt="" width="100%">
-                </div>
-                <div class="col-md-6" style="padding: 50px;">
-                    <h2 class="nama-tempat-wisata">Nama Tempat Wisata</h2>
-                    <p class="paragaf-tempat-wisata">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic omnis reprehenderit nesciunt iusto saepe, eius nihil tempore cumque, optio architecto voluptas, provident est ab porro beatae quod suscipit placeat quas.</p>
-                    <div class="card d-inline p-2 mt-4" id="rating-card" style="background-color: #9BBEC8; border: none">
-                        <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
-                        <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
-                        <i id="star3" class="bi bi-star" style="color: yellow;"></i>
-                        <i id="star4" class="bi bi-star" style="color: yellow;"></i>
-                        <i id="star5" class="bi bi-star" style="color: yellow;"></i>
+            <div class="col-md-6">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <img src="img/5.jpg" alt="Sign up" class="img-fluid">
+                    </div>
+                    <div class="col-12" id="link-container">
+                        <a href="login.php">I already have an account</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!--  -->
+    </div>
+    <!--End Form-->
+
+
+    <!--Modal term of services-->
+    <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title w-100 text-center" id="termsModalLabel">The Terms of Service</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body d-flex justify-content-between">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt, mauris et imperdiet ultricies, sapien turpis elementum ipsum, in sagittis velit justo et lorem.</p>
+                    <img src="img/4.jpg" alt="Thumbnail" class="img-thumbnail">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modals-->
 
     <!-- info section -->
     <section class="info_section">
@@ -218,6 +211,7 @@ if (isset($_SESSION['username'])) {
             xhr.send();
         });
     </script>
+    <script src="javascript/register.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>

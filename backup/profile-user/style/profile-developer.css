@@ -1,0 +1,117 @@
+.container.profile-developer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.container.profile-developer:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.header-developer {
+    color: #6c757d;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.img-thumbnail.img-developer1, .img-thumbnail.img-developer2, .img-thumbnail.img-developer3, .img-thumbnail.img-developer4 {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.img-thumbnail.img-developer1:hover, .img-thumbnail.img-developer2:hover, .img-thumbnail.img-developer3:hover, .img-thumbnail.img-developer4:hover {
+    transform: scale(1.1);
+}
+
+.social-developer1 p, .social-developer2 p, .social-developer3 p, .social-developer4 p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #343a40;
+}
+
+.fa, .bi {
+    font-size: 24px;
+    color: #6c757d;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+}
+
+.fa:hover, .bi:hover {
+    color: #343a40;
+    transform: scale(1.2);
+}
+
+.social-developer1 {
+    background-color: #e3f2fd;
+}
+
+.social-developer2 {
+    background-color: #c8e6c9;
+}
+
+.social-developer3 {
+    background-color: #f3e5f5;
+}
+
+.social-developer4 {
+    background-color: #ffecb3;
+}
+.fa, .bi {
+    transition: color 0.5s, transform 0.5s;
+}
+
+.fa:hover, .bi:hover {
+    color: #007bff;
+    transform: rotate(360deg);
+}
+.bi-github:hover {
+    color: #333;
+}
+
+.bi-instagram:hover {
+    color: #C13584;
+}
+
+.bi-linkedin:hover {
+    color: #0077B5;
+}
+
+.bi-youtube:hover {
+    color: #FF0000;
+}
+.container.profile-developer {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0px);
+}
+@media (max-width: 576px) {
+    .img-thumbnail.img-developer1, .img-thumbnail.img-developer2, .img-thumbnail.img-developer3, .img-thumbnail.img-developer4 {
+        width: 100px;
+        height: 100px;
+    }
+
+    .social-developer1 p, .social-developer2 p, .social-developer3 p, .social-developer4 p {
+        font-size: 14px;
+    }
+}
+

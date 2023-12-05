@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start();
 $session_expire_time = 600;
 session_set_cookie_params($session_expire_time);
-session_start();
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
     session_unset();
     session_destroy();

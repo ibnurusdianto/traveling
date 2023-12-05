@@ -1,7 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+$session_expire_time = 600;
+session_set_cookie_params($session_expire_time);
 session_start();
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+
+$_SESSION['last_activity'] = time();
+
+if (isset($_SESSION['username'])) {
+  $conn = mysqli_connect('localhost', 'root', '', 'travel');
+  $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+  $sql = "SELECT * FROM user WHERE username = ?";
+  $stmt = mysqli_prepare($conn, $sql);
+  mysqli_stmt_bind_param($stmt, 's', $username);
+  mysqli_stmt_execute($stmt);
+  $result = mysqli_stmt_get_result($stmt);
+  if (mysqli_num_rows($result) == 0) {
+      session_unset();
+      session_destroy();
+      header("Location: login.php");
+      exit;
+  }
+}
 ?>
 <head>
     <meta charset="utf-8" />

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-// Menjalankan sesi
+session_start();
 $session_expire_time = 600;
 session_set_cookie_params($session_expire_time);
-session_start();
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
     session_unset();
     session_destroy();
@@ -15,28 +14,28 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 $_SESSION['last_activity'] = time();
 
 if (isset($_SESSION['username'])) {
-  $conn = mysqli_connect('localhost', 'root', '', 'travel');
-  $username = mysqli_real_escape_string($conn, $_SESSION['username']);
-  $sql = "SELECT * FROM user WHERE username = ?";
-  $stmt = mysqli_prepare($conn, $sql);
-  mysqli_stmt_bind_param($stmt, 's', $username);
-  mysqli_stmt_execute($stmt);
-  $result = mysqli_stmt_get_result($stmt);
-  if (mysqli_num_rows($result) == 0) {
-      session_unset();
-      session_destroy();
-      header("Location: login.php");
-      exit;
+    $conn = mysqli_connect('localhost', 'root', '', 'travel');
+    $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+    $sql = "SELECT * FROM user WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if (mysqli_num_rows($result) == 0) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
   }
-}
 ?>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel - About</title>
+    <title>Travel - Destination</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="style/header-footer.css">
-    <link rel="stylesheet" href="style/about.css">
+    <link rel="stylesheet" href="style/destination.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
@@ -50,8 +49,8 @@ if (isset($_SESSION['username'])) {
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link me-4" aria-current="page" href="index.php">Home</a>
-                    <a class="nav-link me-4" href="destination.php">Destination</a>
-                    <a class="nav-link active me-4" href="about.php">About</a>
+                    <a class="nav-link active me-4" href="destination.php">Destination</a>
+                    <a class="nav-link me-4" href="about.php">About</a>
                     <a class="nav-link me-4" href="ContactUS.php">Contact Us</a>
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
                 </div>
@@ -101,7 +100,7 @@ if (isset($_SESSION['username'])) {
     <!--End Modal Logout user session-->
 
     <!-- carousel -->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide mb-5" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="img/1.jpg" class="d-block w-100" alt="Slide 1" />
@@ -136,27 +135,96 @@ if (isset($_SESSION['username'])) {
     </div>
     <!-- end carousel -->
 
-    <!-- about section -->
-    <section class="about_section layout_padding">
+    <!-- destination section -->
+    <div class="container">
+        <h1 class="header-destination1">Travelling Information for The</h1>
+        <h1 class="header-destination1">best Experience</h1>
+        <p class="mt-3 paragaf-destination">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati quidem, pariatur minus a enim mollitia? Iusto autem assumenda cupiditate illum voluptatem vero atque molestias dolorum?</p>
+    </div>
+    <section class="destination_section">
         <div class="container">
-            <div class="row" style="align-items: center;">
-                <div class="col-md-6 ps-md-5">
-                    <h2>About</h2>
-                    <p class="me-5">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, quaerat et. Cum, exercitationem consectetur? Expedita, odio at itaque in voluptas ex doloremque libero nisi sit temporibus. Officia dolor quaerat amet omnis
-                        voluptates reiciendis, mollitia eaque rem blanditiis sequi accusantium? Ratione?
-                    </p>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <a href="details-destination.php">
+                                <h2>Nama Destination</h2>
+                            </a>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 pe-md-5">
-                    <img src="img/5.jpg" class="img-fluid img-responsiv" alt="Gambar" />
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <a href="details-destination.php">
+                                <h2>Nama Destination</h2>
+                            </a>
+                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <a href="details-destination.php">
+                                <h2>Nama Destination</h2>
+                            </a>
+                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <h2 class="">Nama Destination</h2>
+                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <h2 class="">Nama Destination</h2>
+                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        </div>
+                        <div class="detail-box text-start ps-3 pe-3">
+                            <h2 class="">Nama Destination</h2>
+                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- end about section -->
+    <!-- end destination section -->
 
     <!--  -->
-    <section class="tempat-wisata mb-3">
+    <section class="tempat-wisata mt-5 mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -172,6 +240,22 @@ if (isset($_SESSION['username'])) {
                         <i id="star4" class="bi bi-star" style="color: yellow;"></i>
                         <i id="star5" class="bi bi-star" style="color: yellow;"></i>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  -->
+
+    <!--  -->
+    <section class="travelling-information mt-5 mb-5">
+        <div class="container">
+            <div class="row mt-5 d-flex align-items-center">
+                <div class="col-5">
+                    <h1 style="width: 50%;">Travelling Information</h1>
+                </div>
+                <div class="col-7">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ipsum culpa libero ea fuga, sint esse? Quidem id labore minima impedit itaque deserunt, placeat, quisquam dolores dolorem ullam debitis mollitia? Excepturi ad vero nemo dicta? Totam quibusdam aperiam optio, ut rerum inventore dolorem laboriosam, velit, numquam placeat impedit doloribus sapiente!</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum labore quidem consequatur est laudantium et.</p>
                 </div>
             </div>
         </div>

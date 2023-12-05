@@ -38,6 +38,21 @@
                             <label for="last-activity" class="form-label">Location</label>
                             <input type="text" class="form-control" id="location" value="<?= $user['location'] ?>" disabled>
                         </div>
+                        <h3 class="text-center reset-password">Change Password</h3>
+                        <div class="row current-user-card-form-row-new-password">
+                            <div class="col current-user-card-col-new-password">
+                                <label for="newPassword" class="form-label current-user-form-label-new-password">New Password</label>
+                                <input type="password" class="form-control current-user-form-control-new-password" id="newPassword" name="newPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                            </div>
+                            <div class="col current-user-card-col-confirm-password">
+                                <label for="confirmNewPassword" class="form-label current-user-card-form-label-confirm-password">Confirm New Password</label>
+                                <input type="password" class="form-control current-user-card-form-control-confirm-password" id="confirmNewPassword" name="confirmNewPassword">
+                            </div>
+                        </div>
+                        <div class="mb-3 current-user-card-col-image-user">
+                            <label for="formFile" class="form-label current-user-card-form-label-image-user">Upload Image</label>
+                            <input class="form-control current-user-card-control-image-user" type="file" id="formFile" name="image">
+                        </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button class="btn btn-success update-akun" type="button" id="updateProfile" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
                                 Update Profile
