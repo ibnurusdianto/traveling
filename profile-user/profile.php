@@ -47,7 +47,7 @@
     <div class="card">
         <div class="row g-0">
             <div class="col-md-4 current-user-gambar">
-                <img src="../img/developer/<?php echo $user['img']; ?>" class="img-thumbnail img-current-user" alt="User Image">
+                <img src="../img/uploads/<?php echo $user['img']; ?>" class="img-thumbnail img-current-user" alt="User Image">
             </div>
             <div class="col-md-8 current-user-card-body">
                 <div class="card-body">
@@ -93,11 +93,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure you want to proceed with the update?
+                <form method="POST" enctype="multipart/form-data" action="php-function/edit-user.php?id=<?php echo $user['id']; ?>">
+                    <div class="mb-3">
+                        <label for="new_password" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="img" class="form-label">Image</label>
+                        <input type="file" class="form-control" id="img" name="img">
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="simpan">Edit</button>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Save Changes</button>
             </div>
         </div>
     </div>
