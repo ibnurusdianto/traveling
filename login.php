@@ -38,7 +38,7 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="style/login.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
-
+<br><br>
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
