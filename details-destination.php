@@ -85,18 +85,21 @@ mysqli_close($conn);
                 </button>
             </form>
                 <?php
-                if (isset($_SESSION['username'])) {
-                    echo '<div class="btn-group">';
-                    echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
-                    echo '<ul class="dropdown-menu">';
-                    echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
-                    echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
-                    echo '</ul>';
-                    echo '</div>';
-                } else {
-                    echo '<a class="btn" href="login.php">Login</a>';
-                }
-                ?>
+                    if (isset($_SESSION['username'])) {
+                        echo '<div class="btn-group">';
+                        echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
+                        echo '<ul class="dropdown-menu">';
+                        echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
+                        echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
+                        }
+                        echo '</ul>';
+                        echo '</div>';
+                    } else {
+                        echo '<a class="btn" href="login.php">Login</a>';
+                    }
+                ?>        
         </div>
     </nav>
     <!-- end navbar -->
@@ -164,7 +167,7 @@ mysqli_close($conn);
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
                 <h1 class="header-details mt-5 mb-5"><?php echo $kategori_data['nama_kategori']; ?></h1>
                 <div class="card mb-4">
-                    <img src="admin/assets/images/<?php echo $kategori_data['image']; ?>" class="card-img-top" alt="gambar">
+                    <img src="admin/assets/img/<?php echo $kategori_data['image']; ?>" class="card-img-top" alt="gambar">
                 </div>
             </div>
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
@@ -183,7 +186,7 @@ mysqli_close($conn);
                 <div class="col-md-6 col-lg-4">
                     <div class="box">
                         <div class="img-box" style="height: 200px; overflow: hidden;">
-                            <img src="admin/assets/images/<?php echo $destination_data['image']; ?>" alt="Destination Image" class="img-fluid" />
+                            <img src="admin/assets/img/<?php echo $destination_data['image']; ?>" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
                             <a href="tempat-wisata.php?nama_tempat=<?php echo urlencode($destination_data['nama_tempat']); ?>">

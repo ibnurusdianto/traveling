@@ -8,14 +8,14 @@ if (isset($_POST['add'])) {
     $htm = $_POST['htm'];
     $kategori_id = $_POST['kategori'];
     $nama_file = $_FILES['image']['name'];
-    $folder = 'assets/images/';
+    $folder = 'assets/img/';
     $tmp_name = $_FILES['image']['tmp_name'];
 
     move_uploaded_file($tmp_name, $folder . $nama_file);
 
     $check_duplicate = mysqli_query($conn, "SELECT * FROM tempat_wisata WHERE nama_tempat = '$nama_tempat'");
     if (mysqli_num_rows($check_duplicate) > 0) {
-        echo "<script>window.onload = function() { showAlert(7); }</script>";
+        echo "<script>window.onload = function() { showAlert(5); }</script>";
     } else {
         $addtotable = mysqli_query($conn, "INSERT INTO tempat_wisata (nama_tempat, deskripsi, htm, kategori_id, image) VALUES ('$nama_tempat', '$deskripsi', '$htm', '$kategori_id', '$nama_file')");
         if ($addtotable) {
@@ -38,9 +38,9 @@ if (isset($_POST['update'])) {
     if ($_FILES['image']['name'] == "") {
         $nama_file = $oldImage;
     } else {
-        unlink('assets/images/' . $oldImage);
+        unlink('assets/img/' . $oldImage);
         $nama_file = $_FILES['image']['name'];
-        $folder = 'assets/images/';
+        $folder = 'assets/img/';
         $tmp_name = $_FILES['image']['tmp_name'];
 
         move_uploaded_file($tmp_name, $folder . $nama_file);

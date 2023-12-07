@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 session_start();
 
 if (isset($_SESSION['username'])) {
@@ -29,6 +32,9 @@ if (isset($_SESSION['username'])) {
 
         if (mysqli_stmt_execute($stmt)) {
             echo "Comment and rating submitted successfully!";
+            // Redirect using absolute path
+            header("Location: tempat-wisata.php");
+            exit();
         } else {
             echo "Error: " . mysqli_error($conn);
         }

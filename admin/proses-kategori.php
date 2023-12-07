@@ -23,11 +23,16 @@ if (isset($_POST['update'])) {
     $aksi = $_POST['aksi'];
     $nama_kategori = $_POST['nama_kategori'];
 
-    $update = mysqli_query($conn, "UPDATE kategori SET nama_kategori = '$nama_kategori' WHERE id = '$aksi'");
-    if ($update) {
-        echo "<script>window.onload = function() { showAlert(2); }</script>";
+    $check_duplicate = mysqli_query($conn, "SELECT * FROM kategori WHERE nama_kategori = '$nama_kategori'");
+    if (mysqli_num_rows($check_duplicate) > 0) {
+        echo "<script>window.onload = function() { showAlert(5); }</script>";
     } else {
-        echo "<script>window.onload = function() { showAlert(4); }</script>";
+        $update = mysqli_query($conn, "UPDATE kategori SET nama_kategori = '$nama_kategori' WHERE id = '$aksi'");
+        if ($update) {
+            echo "<script>window.onload = function() { showAlert(2); }</script>";
+        } else {
+            echo "<script>window.onload = function() { showAlert(4); }</script>";
+        }
     }
 }
 

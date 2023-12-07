@@ -87,19 +87,22 @@ mysqli_close($conn);
                 <i class="bi bi-search"></i>
             </button>
         </form>
-            <?php
+          <?php
             if (isset($_SESSION['username'])) {
                 echo '<div class="btn-group">';
                 echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
                 echo '<ul class="dropdown-menu">';
                 echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
                 echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                if ($_SESSION['role'] == 'admin') {
+                    echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
+                }
                 echo '</ul>';
                 echo '</div>';
             } else {
                 echo '<a class="btn" href="login.php">Login</a>';
             }
-            ?>
+          ?>
     </div>
   </nav>
   <!-- end navbar -->
@@ -173,7 +176,7 @@ mysqli_close($conn);
             ?>
             <!-- Tampilan Tempat Wisata -->
               <div class="col-md-6 pe-md-5">
-                <img src="admin/assets/images/<?php echo $destination_row['image']; ?>" class="img-fluid img-responsiv" alt="Gambar" />
+                <img src="admin/assets/img/<?php echo $destination_row['image']; ?>" class="img-fluid img-responsiv" alt="Gambar" />
               </div>
                 <div class="col-md-6 ps-md-5">
                   <h2><?php echo $destination_row['nama_tempat']; ?></h2>
@@ -214,7 +217,7 @@ mysqli_close($conn);
               <div class="col-md-6 col-lg-4">
                   <div class="box">
                       <div class="img-box" style="height: 200px; overflow: hidden;">
-                          <img src="admin/assets/images/<?php echo $row['image']; ?>" alt="Destination Image" class="img-fluid" />
+                          <img src="admin/assets/img/<?php echo $row['image']; ?>" alt="Destination Image" class="img-fluid" />
                       </div>
                       <div class="detail-box text-start ps-3 pe-3">
                           <?php
@@ -274,7 +277,7 @@ mysqli_close($conn);
                         </div>
                     </div>
                     <div class="col-md-6 text-center">
-                        <img src="admin/assets/images/<?php echo $topRatedDestination['image']; ?>" class="img-fluid img-responsive" alt="Gambar" />
+                        <img src="admin/assets/img/<?php echo $topRatedDestination['image']; ?>" class="img-fluid img-responsive" alt="Gambar" />
                     </div>
                     <?php
              } else {

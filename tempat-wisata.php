@@ -128,17 +128,20 @@ mysqli_close($conn);
                 </button>
             </form>
                 <?php
-                if (isset($_SESSION['username'])) {
-                    echo '<div class="btn-group">';
-                    echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
-                    echo '<ul class="dropdown-menu">';
-                    echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
-                    echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
-                    echo '</ul>';
-                    echo '</div>';
-                } else {
-                    echo '<a class="btn" href="login.php">Login</a>';
-                }
+                    if (isset($_SESSION['username'])) {
+                        echo '<div class="btn-group">';
+                        echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
+                        echo '<ul class="dropdown-menu">';
+                        echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
+                        echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
+                        }
+                        echo '</ul>';
+                        echo '</div>';
+                    } else {
+                        echo '<a class="btn" href="login.php">Login</a>';
+                    }
                 ?>
         </div>
     </nav>
@@ -206,7 +209,7 @@ mysqli_close($conn);
         <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
             <h1 class="header-details mb-5"><?php echo $nama_tempat; ?></h1>
             <div class="card mb-4">
-                <img src="admin/assets/images/<?php echo $image; ?>" class="card-img-top" alt="gambar">
+                <img src="admin/assets/img/<?php echo $image; ?>" class="card-img-top" alt="gambar">
             </div>
         </div>
         <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
@@ -294,7 +297,7 @@ mysqli_close($conn);
                 echo '<div class="col-md-6 col-lg-4">';
                 echo '<div class="box">';
                 echo '<div class="img-box">';
-                echo '<img src="admin/assets/images/' . $row_similar['image'] . '" alt="Destination Image" class="img-fluid" />';
+                echo '<img src="admin/assets/img/' . $row_similar['image'] . '" alt="Destination Image" class="img-fluid" />';
                 echo '</div>';
                 echo '<div class="detail-box text-start ps-3 pe-3">';
                 echo '<a href="tempat-wisata.php?nama_tempat=' . urlencode($row_similar['nama_tempat']) . '">';

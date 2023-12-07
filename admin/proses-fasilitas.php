@@ -6,8 +6,7 @@ if (isset($_POST['add'])) {
     $nama_fasilitas = $_POST['nama_fasilitas'];
     $tempat_wisata_id = $_POST['wisata'];
 
-    $check_duplicate = mysqli_query($conn, "SELECT * FROM fasilitas WHERE nama_fasilitas = '$nama_fasilitas'");
-
+    $check_duplicate = mysqli_query($conn, "SELECT * FROM fasilitas WHERE nama_fasilitas = '$nama_fasilitas' AND tempat_wisata_id = '$tempat_wisata_id'");
     if (mysqli_num_rows($check_duplicate) > 0) {
         $row = mysqli_fetch_assoc($check_duplicate);
         if ($row['tempat_wisata_id'] == $tempat_wisata_id) {
@@ -29,6 +28,7 @@ if (isset($_POST['add'])) {
         }
     }
 }
+
 
 #update wisata
 if (isset($_POST['update'])) {

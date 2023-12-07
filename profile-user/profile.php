@@ -14,14 +14,40 @@
 </head>
 <body>
 <?php
+    $session_expire_time = 600;
+    session_set_cookie_params($session_expire_time);
     require_once "./php-function/function.php";
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
+        session_unset();
+        session_destroy();
+        header("Location: ../login.php");
+        exit;
+    }
+    
+    $_SESSION['last_activity'] = time();
+    
+    if (isset($_SESSION['username'])) {
+      $conn = mysqli_connect('localhost', 'root', '', 'travel');
+      $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+      $sql = "SELECT * FROM user WHERE username = ?";
+      $stmt = mysqli_prepare($conn, $sql);
+      mysqli_stmt_bind_param($stmt, 's', $username);
+      mysqli_stmt_execute($stmt);
+      $result = mysqli_stmt_get_result($stmt);
+      if (mysqli_num_rows($result) == 0) {
+          session_unset();
+          session_destroy();
+          header("Location: ../login.php");
+          exit;
+      }
+    }
 ?>
 <!--Current User-->
 <div class="container current-user mt-5">
     <div class="card">
         <div class="row g-0">
             <div class="col-md-4 current-user-gambar">
-                <img src="../img/developer/<?php echo $user['img']; ?>" class="img-thumbnail img-current-user" alt="User Image">
+                <img src="../img/uploads/<?php echo $user['img']; ?>" class="img-thumbnail img-current-user" alt="User Image">
             </div>
             <div class="col-md-8 current-user-card-body">
                 <div class="card-body">
@@ -67,11 +93,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure you want to proceed with the update?
+                <form method="POST" enctype="multipart/form-data" action="php-function/edit-user.php?id=<?php echo $user['id']; ?>">
+                    <div class="mb-3">
+                        <label for="new_password" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="new_password" name="new_password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="img" class="form-label">Image (Opsional)</label>
+                        <input type="file" class="form-control" id="img" name="img">
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="simpan">Edit</button>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Save Changes</button>
             </div>
         </div>
     </div>
@@ -91,7 +130,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <form method="GET" action="php-function/delete-user.php">
+                    <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>

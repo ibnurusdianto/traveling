@@ -80,17 +80,20 @@ mysqli_close($conn);
                 </button>
             </form>
                 <?php
-                if (isset($_SESSION['username'])) {
-                    echo '<div class="btn-group">';
-                    echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
-                    echo '<ul class="dropdown-menu">';
-                    echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
-                    echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
-                    echo '</ul>';
-                    echo '</div>';
-                } else {
-                    echo '<a class="btn" href="login.php">Login</a>';
-                }
+                    if (isset($_SESSION['username'])) {
+                        echo '<div class="btn-group">';
+                        echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
+                        echo '<ul class="dropdown-menu">';
+                        echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
+                        echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
+                        }
+                        echo '</ul>';
+                        echo '</div>';
+                    } else {
+                        echo '<a class="btn" href="login.php">Login</a>';
+                    }
                 ?>
         </div>
     </nav>
@@ -180,7 +183,7 @@ mysqli_close($conn);
         ?>
             <div class="row">
                 <div class="col-md-6">
-                    <img class="gambar-tempat-wisata" src="admin/assets/images/<?php echo $topRatedWisata['image']; ?>" alt="" width="100%">
+                    <img class="gambar-tempat-wisata" src="admin/assets/img/<?php echo $topRatedWisata['image']; ?>" alt="" width="100%">
                 </div>
                 <div class="col-md-6" style="padding: 50px;">
                     <h2 class="nama-tempat-wisata"><?php echo $topRatedWisata['nama_tempat']; ?></h2>
