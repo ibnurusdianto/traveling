@@ -87,8 +87,6 @@ if (isset($_POST['simpan'])) {
         } elseif ($file_size > 4000000) {
             echo "<script>alert('Maaf, Dibilang Gambar terlalu besar!');</script>";
             echo "<script>window.location='../profile.php';</script>";
-        } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?])[A-Za-z\d@$!%*?]{8,}$/", $password)) {
-            echo "Password harus terdiri dari setidaknya satu huruf kecil, satu huruf besar, satu angka, satu karakter khusus, dan panjang minimal 8 karakter.";
         } elseif (!move_uploaded_file($new_image["tmp_name"], $target_file)) {
             echo "<script>alert('Maaf, ada kesalahan dalam upload file, mohon dicek kembali');</script>";
             echo "<script>window.location='../profile.php';</script>";
