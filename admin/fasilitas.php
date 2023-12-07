@@ -107,19 +107,19 @@ $query = mysqli_query($conn, "SELECT * FROM fasilitas");
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <!-- <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION['nama_user']; ?></span> -->
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION['username']; ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="user/index.php">
+                            <button class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#backModal">
                                 <i class="bi bi-person"></i>
                                 <span>Home</span>
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="user/login.php">
+                            <a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Log Out</span>
                             </a>
@@ -132,6 +132,47 @@ $query = mysqli_query($conn, "SELECT * FROM fasilitas");
 
     </header>
     <!-- End Header -->
+
+    <!-- Modal back index -->
+    <div class="modal fade" id="backModal" tabindex="-1" aria-labelledby="backModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="backModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to go back to the index?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="../index.php" class="btn btn-primary">Yes</a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal back index -->
+
+    <!--Modal Logout user session-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  Are you sure you want to logout?
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger" id="confirmLogout">Logout</button>
+              </div>
+          </div>
+      </div>
+  </div>
+<!--End Modal Logout user session-->
+
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
@@ -477,6 +518,18 @@ $query = mysqli_query($conn, "SELECT * FROM fasilitas");
                 }
             });
         }
+
+        document.getElementById('confirmLogout').addEventListener('click', function() {
+          var xhr = new XMLHttpRequest();
+          // Membuka untuk melakukan post semua function logout dari user-logout.php
+          xhr.open('POST', '../function-login-diluar-admin/user-logout-sesi.php', true);
+          xhr.onload = function() {
+              if (this.status == 200) {
+                  window.location.href = 'index.php';
+              }
+          };
+          xhr.send();
+      });
     </script>
 
 </body>

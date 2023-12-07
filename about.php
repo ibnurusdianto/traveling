@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-// Menjalankan sesi
 $session_expire_time = 600;
 session_set_cookie_params($session_expire_time);
 session_start();
+
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
     session_unset();
     session_destroy();
@@ -15,19 +15,22 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 $_SESSION['last_activity'] = time();
 
 if (isset($_SESSION['username'])) {
-  $conn = mysqli_connect('localhost', 'root', '', 'travel');
-  $username = mysqli_real_escape_string($conn, $_SESSION['username']);
-  $sql = "SELECT * FROM user WHERE username = ?";
-  $stmt = mysqli_prepare($conn, $sql);
-  mysqli_stmt_bind_param($stmt, 's', $username);
-  mysqli_stmt_execute($stmt);
-  $result = mysqli_stmt_get_result($stmt);
-  if (mysqli_num_rows($result) == 0) {
-      session_unset();
-      session_destroy();
-      header("Location: login.php");
-      exit;
-  }
+    $conn = mysqli_connect('localhost', 'root', '', 'travel');
+    $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+    $sql = "SELECT * FROM user WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if (mysqli_num_rows($result) == 0) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    } else {
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['role'] = $row['role'];
+    }
 }
 ?>
 <head>
@@ -64,17 +67,20 @@ if (isset($_SESSION['username'])) {
                 </button>
             </form>
                 <?php
-                if (isset($_SESSION['username'])) {
-                    echo '<div class="btn-group">';
-                    echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
-                    echo '<ul class="dropdown-menu">';
-                    echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
-                    echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
-                    echo '</ul>';
-                    echo '</div>';
-                } else {
-                    echo '<a class="btn" href="login.php">Login</a>';
-                }
+                    if (isset($_SESSION['username'])) {
+                        echo '<div class="btn-group">';
+                        echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
+                        echo '<ul class="dropdown-menu">';
+                        echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
+                        echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
+                        }
+                        echo '</ul>';
+                        echo '</div>';
+                    } else {
+                        echo '<a class="btn" href="login.php">Login</a>';
+                    }
                 ?>
         </div>
     </nav>
