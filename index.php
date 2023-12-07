@@ -32,6 +32,27 @@ if (isset($_SESSION['username'])) {
         $_SESSION['role'] = $row['role'];
     }
 }
+include_once 'admin/connection.php';
+
+$sql_destination = "SELECT * FROM tempat_wisata";
+$result_destination = mysqli_query($conn, $sql_destination);
+
+$sql = "SELECT * FROM kategori";
+$result = mysqli_query($conn, $sql);
+
+$sqlTopRated = "SELECT tempat_wisata.*, MAX(review.rating) AS max_rating
+FROM tempat_wisata
+JOIN review ON tempat_wisata.id = review.tempat_wisata_id
+GROUP BY tempat_wisata.id
+ORDER BY max_rating DESC
+LIMIT 1;";
+$resultTopRated = mysqli_query($conn, $sqlTopRated);
+
+if (!$resultTopRated) {
+    die("Kesalahan dalam kueri SQL: " . mysqli_error($conn));
+}
+
+mysqli_close($conn);
 ?>
 <head>
   <meta charset="utf-8" />
@@ -146,17 +167,31 @@ if (isset($_SESSION['username'])) {
   <section class="detail_section layout_padding">
     <div class="container">
       <div class="row" style="align-items: center;">
-        <div class="col-md-6 pe-md-5">
-          <img src="img/5.jpg" class="img-fluid img-responsiv" alt="Gambar" />
-        </div>
-        <div class="col-md-6 ps-md-5">
-          <h2>Nama Tempat Wisata</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, quaerat et. Cum, exercitationem consectetur? Expedita, odio at itaque in voluptas ex doloremque libero nisi sit temporibus. Officia dolor quaerat amet omnis
-            voluptates reiciendis, mollitia eaque rem blanditiis sequi accusantium? Ratione?
-          </p>
-          <a href="#" class="btn ">Detail</a>
-        </div>
+            <?php
+            $counter = 0;
+            while ($destination_row = mysqli_fetch_assoc($result_destination)) {
+                if ($counter == 1) {
+                    break;
+                }
+            ?>
+            <!-- Tampilan Tempat Wisata -->
+              <div class="col-md-6 pe-md-5">
+                <img src="admin/assets/img/<?php echo $destination_row['image']; ?>" class="img-fluid img-responsiv" alt="Gambar" />
+              </div>
+                <div class="col-md-6 ps-md-5">
+                  <h2><?php echo $destination_row['nama_tempat']; ?></h2>
+                    <p>
+                      <?php
+                      $description_words = implode(' ', array_slice(str_word_count($destination_row['deskripsi'], 1), 0, 65));
+                      echo $description_words;
+                      ?>
+                    </p>
+                    <a href="tempat-wisata.php?nama_tempat=<?php echo urlencode($destination_row['nama_tempat']); ?>" class= "btn">Detail</a>
+                </div>
+            <?php
+                $counter++;
+            }
+            ?>
       </div>
     </div>
   </section>
@@ -166,72 +201,90 @@ if (isset($_SESSION['username'])) {
   <h2 class="header-destination">DESTINATION</h2>
   <section class="destination_section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-            </div>
-            <div class="detail-box text-start ps-3 pe-3">
-              <h2 class="">Nama Destination</h2>
-              <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-            </div>
-          </div>
+        <div class="row">
+          <?php
+          $counter_destinasi = 0;
+          while ($row = mysqli_fetch_assoc($result)) {
+              if ($counter_destinasi == 3) {
+                  break;
+              }
+          $deskripsi = $row['deskripsi'];
+            if (strlen($deskripsi) > 140) {
+              $deskripsi = substr($deskripsi, 0, 140) . '...';
+            }
+          ?>
+              <!-- Tampilan Destinasi -->
+              <div class="col-md-6 col-lg-4">
+                  <div class="box">
+                      <div class="img-box" style="height: 200px; overflow: hidden;">
+                          <img src="admin/assets/img/<?php echo $row['image']; ?>" alt="Destination Image" class="img-fluid" />
+                      </div>
+                      <div class="detail-box text-start ps-3 pe-3">
+                          <?php
+                          if (isset($row['nama_kategori'])) {
+                              echo '<a href="details-destination.php?nama_kategori=' . $row['nama_kategori'] . '">';
+                          } else {
+                              echo '<a href="details-destination.php">';
+                          }
+                          ?>
+                              <h2><?php echo $row['nama_kategori']; ?></h2>
+                          </a>
+                          <p><?php echo $deskripsi; ?></p>
+                      </div>
+                  </div>
+              </div>
+          <?php
+              $counter_destinasi++;
+          }
+          ?>
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-            </div>
-            <div class="detail-box text-start ps-3 pe-3">
-              <h2 class="">Nama Destination</h2>
-              <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-            </div>
-            <div class="detail-box text-start ps-3 pe-3">
-              <h2 class="">Nama Destination</h2>
-              <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+    </section>
   <!-- end destination section -->
 
   <!-- review section -->
   <section class="review_section layout_padding">
     <div class="container">
-      <div class="row" style="align-items: center;">
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Nama Tempat Wisata</h2>
-              <p class="">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, quaerat et. Cum, exercitationem consectetur? Expedita, odio at itaque in voluptas ex doloremque libero nisi sit temporibus. Officia dolor quaerat amet omnis voluptates
-                reiciendis, mollitia eaque rem blanditiis sequi accusantium? Ratione?
-              </p>
-              <div class="card d-inline p-2 mt-4" id="rating-card" style="background-color: #9BBEC8; border: none">
-                <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
-                <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
-                <i id="star3" class="bi bi-star" style="color: yellow;"></i>
-                <i id="star4" class="bi bi-star" style="color: yellow;"></i>
-                <i id="star5" class="bi bi-star" style="color: yellow;"></i>
-              </div>
-              <!-- <a href="#" class="btn btn-primary">Detail</a><br><br> -->
-            </div>
-          </div>
+        <div class="row" style="align-items: center;">
+            <?php
+            if ($resultTopRated && mysqli_num_rows($resultTopRated) > 0){
+                $topRatedDestination = mysqli_fetch_assoc($resultTopRated);
+                    ?>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2><?php echo $topRatedDestination['nama_tempat']; ?></h2>
+                                <p class="">
+                                    <?php
+                                    $deskripsiReview = $topRatedDestination['deskripsi'];
+                                    $deskripsiReview = implode(' ', array_slice(explode(' ', $deskripsiReview), 0, 30)); // Mengambil 30 kata pertama
+                                    echo $deskripsiReview . '...';
+                                    ?>
+                                </p>
+                                <div class="card d-inline p-2 mt-4" id="rating-card" style="background-color: #9BBEC8; border: none">
+                                    <?php
+                                    $rating = $topRatedDestination['max_rating'];
+                                    for ($i = 1; $i <= 5; $i++) {
+                                        if ($i <= $rating) {
+                                            echo '<i class="bi bi-star-fill" style="color: yellow;"></i>';
+                                        } else {
+                                            echo '<i class="bi bi-star" style="color: yellow;"></i>';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="admin/assets/img/<?php echo $topRatedDestination['image']; ?>" class="img-fluid img-responsive" alt="Gambar" />
+                    </div>
+                    <?php
+             } else {
+              echo '<p>No top-rated destinations found.</p>';
+          }
+          ?>
         </div>
-        <div class="col-md-6 text-center">
-          <img src="img/5.jpg" class="img-fluid img-responsive" alt="Gambar" />
-        </div>
-      </div>
     </div>
   </section>
   <!-- end review section -->
