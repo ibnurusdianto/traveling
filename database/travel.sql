@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 06:21 AM
+-- Generation Time: Dec 07, 2023 at 06:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,17 +30,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `fasilitas` (
   `id` int(11) NOT NULL,
   `nama_fasilitas` varchar(100) NOT NULL,
-  `tempat_wisata_id` int(11) DEFAULT NULL
+  `tempat_wisata_id` int(11) DEFAULT NULL,
+  `last_activity` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `fasilitas`
 --
 
-INSERT INTO `fasilitas` (`id`, `nama_fasilitas`, `tempat_wisata_id`) VALUES
-(1, 'Hotel', 1),
-(2, 'Parkir', 1),
-(3, 'Toilet', 1);
+INSERT INTO `fasilitas` (`id`, `nama_fasilitas`, `tempat_wisata_id`, `last_activity`) VALUES
+(1, 'Hotel', 1, '2023-12-07 12:35:30'),
+(2, 'Parkir', 1, '2023-12-07 12:35:30'),
+(3, 'Toilet', 1, '2023-12-07 12:35:30');
 
 -- --------------------------------------------------------
 
@@ -52,17 +53,18 @@ CREATE TABLE `kategori` (
   `id` int(11) NOT NULL,
   `nama_kategori` varchar(50) NOT NULL,
   `deskripsi` text DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `image` varchar(255) DEFAULT NULL,
+  `last_activity` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kategori`
 --
 
-INSERT INTO `kategori` (`id`, `nama_kategori`, `deskripsi`, `image`) VALUES
-(1, 'pantai', NULL, NULL),
-(2, 'gunung', NULL, NULL),
-(3, 'religi', NULL, NULL);
+INSERT INTO `kategori` (`id`, `nama_kategori`, `deskripsi`, `image`, `last_activity`) VALUES
+(1, 'pantai', NULL, NULL, '2023-12-07 12:35:16'),
+(2, 'gunung', NULL, NULL, '2023-12-07 12:35:16'),
+(3, 'religi', NULL, NULL, '2023-12-07 12:35:16');
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,8 @@ CREATE TABLE `review` (
   `komentar` text DEFAULT NULL,
   `rating` decimal(3,2) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `tempat_wisata_id` int(11) DEFAULT NULL
+  `tempat_wisata_id` int(11) DEFAULT NULL,
+  `last_activity` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -90,15 +93,16 @@ CREATE TABLE `tempat_wisata` (
   `deskripsi` text DEFAULT NULL,
   `htm` int(11) DEFAULT NULL,
   `kategori_id` int(11) DEFAULT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) NOT NULL,
+  `last_activity` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tempat_wisata`
 --
 
-INSERT INTO `tempat_wisata` (`id`, `nama_tempat`, `deskripsi`, `htm`, `kategori_id`, `image`) VALUES
-(1, 'tangkuban perahu', 'Bagi rombongan pelajar atau mahasiswa yang berkunjung ke Tangkuban Perahu, wajib melampirkan surat dari sekolah atau kampus dengan kop surat, tanda tangan, dan stempel kepala sekolah. Jika datang tanpa surat keterangan dari sekolah, maka akan dikenakan tarif normal.', 100000, 2, 'pexels-mehmet-aytemi̇z-18385151.jpg');
+INSERT INTO `tempat_wisata` (`id`, `nama_tempat`, `deskripsi`, `htm`, `kategori_id`, `image`, `last_activity`) VALUES
+(1, 'tangkuban perahu', 'Bagi rombongan pelajar atau mahasiswa yang berkunjung ke Tangkuban Perahu, wajib melampirkan surat dari sekolah atau kampus dengan kop surat, tanda tangan, dan stempel kepala sekolah. Jika datang tanpa surat keterangan dari sekolah, maka akan dikenakan tarif normal.', 100000, 2, 'pexels-mehmet-aytemi̇z-18385151.jpg', '2023-12-07 12:36:04');
 
 -- --------------------------------------------------------
 
