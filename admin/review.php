@@ -34,6 +34,9 @@ if (isset($_SESSION['username'])) {
             exit;
         }
     }
+} else {
+    header("Location: ../index.php");
+    exit;
 }
 include "connection.php";
 

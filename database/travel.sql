@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 04:42 AM
+-- Generation Time: Dec 07, 2023 at 06:21 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -50,17 +50,19 @@ INSERT INTO `fasilitas` (`id`, `nama_fasilitas`, `tempat_wisata_id`) VALUES
 
 CREATE TABLE `kategori` (
   `id` int(11) NOT NULL,
-  `nama_kategori` varchar(50) NOT NULL
+  `nama_kategori` varchar(50) NOT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kategori`
 --
 
-INSERT INTO `kategori` (`id`, `nama_kategori`) VALUES
-(1, 'pantai'),
-(2, 'gunung'),
-(3, 'religi');
+INSERT INTO `kategori` (`id`, `nama_kategori`, `deskripsi`, `image`) VALUES
+(1, 'pantai', NULL, NULL),
+(2, 'gunung', NULL, NULL),
+(3, 'religi', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -120,10 +122,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `last_registered`, `img`, `location`, `last_activity`) VALUES
-(35, 'Ibnu Rusdianto', '$2y$10$c5mZCVXRmU873kTlxkuKMOi8tuv//ZzChgfVGynPPVSTh2cBW0z32', 'admin', '2023-12-06 01:30:45', 'ibnu.jpeg', 'Bandung, West Java, ID', '2023-12-06 01:31:31'),
-(36, 'Vita Rahmada', '$2y$10$TYzqDzMWO2iD/yslRTbW9etUv1WjwmIVmDymbGTxbYWlnWxJwY9QK', 'admin', '2023-12-06 01:32:24', 'vita2.jpg', NULL, '2023-12-06 01:33:13'),
+(36, 'Vita Rahmada', '$2y$10$TYzqDzMWO2iD/yslRTbW9etUv1WjwmIVmDymbGTxbYWlnWxJwY9QK', 'admin', '2023-12-06 01:32:24', 'vita2.jpg', 'Bandung, West Java, ID', '2023-12-07 12:12:49'),
 (37, 'Mahisa Aghisni Fadhli', '$2y$10$jYk9Phvy9sLCJBMR4iRlgOOEgGVJCVMben/hSLykm4wpJ40yhDxGW', 'admin', '2023-12-06 01:33:40', 'mahisa.jpeg', 'Bandung, West Java, ID', '2023-12-06 01:34:42'),
-(38, 'Muhammad Fadly Gimnastiar', '$2y$10$1HWri7P1/OzAelHejZM9Iud.8TM0heYYibdzUI/yzRckJb/wBb7mm', 'admin', '2023-12-06 01:35:16', 'fadly.jpeg', 'Bandung, West Java, ID', '2023-12-06 01:36:04');
+(38, 'Muhammad Fadly Gimnastiar', '$2y$10$1HWri7P1/OzAelHejZM9Iud.8TM0heYYibdzUI/yzRckJb/wBb7mm', 'admin', '2023-12-06 01:35:16', 'fadly.jpeg', 'Bandung, West Java, ID', '2023-12-06 01:36:04'),
+(52, 'Ibnu Rusdianto', '$2y$10$OmVro2ywjos1yP06Wp8iU.vBNhunUAmgYjZ.9nQ0mdL1r3yFXzj0e', 'admin', '2023-12-07 12:13:42', 'ibnu.jpeg', 'Bandung, West Java, ID', '2023-12-07 12:14:28');
 
 --
 -- Indexes for dumped tables
@@ -195,7 +197,7 @@ ALTER TABLE `tempat_wisata`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Constraints for dumped tables

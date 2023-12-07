@@ -34,6 +34,9 @@ if (isset($_SESSION['username'])) {
             exit;
         }
     }
+} else {
+    header("Location: ../index.php");
+    exit;
 }
 include('proses-fasilitas.php');
 $query = mysqli_query($conn, "SELECT * FROM fasilitas");
