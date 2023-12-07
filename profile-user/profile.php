@@ -96,14 +96,14 @@
                 <form method="POST" enctype="multipart/form-data" action="php-function/edit-user.php?id=<?php echo $user['id']; ?>">
                     <div class="mb-3">
                         <label for="new_password" class="form-label">New Password</label>
-                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                        <input type="password" class="form-control" id="new_password" name="new_password">
                     </div>
                     <div class="mb-3">
                         <label for="confirm_password" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
                     </div>
                     <div class="mb-3">
-                        <label for="img" class="form-label">Image</label>
+                        <label for="img" class="form-label">Image (Opsional)</label>
                         <input type="file" class="form-control" id="img" name="img">
                     </div>
                     <button type="submit" class="btn btn-primary" name="simpan">Edit</button>
