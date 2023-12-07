@@ -26,7 +26,10 @@ if (isset($_SESSION['username'])) {
       session_destroy();
       header("Location: login.php");
       exit;
-  }
+    } else {
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['role'] = $row['role'];
+    }
 }
 ?>
 <head>

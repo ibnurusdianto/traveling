@@ -26,8 +26,29 @@ if (isset($_SESSION['username'])) {
       session_destroy();
       header("Location: login.php");
       exit;
-  }
+    } else {
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['role'] = $row['role'];
+    }
 }
+
+include 'admin/connection.php';
+$nama_kategori = $_GET['nama_kategori'] ?? '';
+
+$sql = "SELECT * FROM kategori WHERE nama_kategori = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, 's', $nama_kategori);
+mysqli_stmt_execute($stmt);
+$result_kategori = mysqli_stmt_get_result($stmt);
+$kategori_data = mysqli_fetch_assoc($result_kategori);
+
+$sql_destinations = "SELECT * FROM tempat_wisata WHERE kategori_id = ?";
+$stmt_destinations = mysqli_prepare($conn, $sql_destinations);
+mysqli_stmt_bind_param($stmt_destinations, 'i', $kategori_data['id']);
+mysqli_stmt_execute($stmt_destinations);
+$result_destinations = mysqli_stmt_get_result($stmt_destinations);
+
+mysqli_close($conn);
 ?>
 <head>
     <meta charset="utf-8" />
@@ -140,13 +161,13 @@ if (isset($_SESSION['username'])) {
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <h1 class="header-details mt-5 mb-5">Nama Destinastion</h1>
+                <h1 class="header-details mt-5 mb-5"><?php echo $kategori_data['nama_kategori']; ?></h1>
                 <div class="card mb-4">
-                    <img src="img/5.jpg" class="card-img-top" alt="gambar">
+                    <img src="admin/assets/images/<?php echo $kategori_data['image']; ?>" class="card-img-top" alt="gambar">
                 </div>
             </div>
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <p class="details-paragraf-destination">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci animi dicta dignissimos doloremque earum, et laudantium nostrum obcaecati reprehenderit rerum totam unde voluptate? Aliquid asperiores autem commodi, consectetur consequatur corporis dolores esse exercitationem expedita illum incidunt ipsa libero necessitatibus nemo nisi nostrum obcaecati officia perspiciatis quisquam quo quos reprehenderit sapiente similique ut vel veniam, voluptates! Aliquam beatae eum eveniet id illo in labore laudantium magnam, maxime nam nesciunt obcaecati, perspiciatis quas quia quis sed velit voluptas! Animi aspernatur beatae blanditiis, commodi consectetur culpa debitis delectus distinctio dolorem ducimus eaque earum et eveniet excepturi explicabo illum impedit laudantium libero magni molestiae molestias nam natus necessitatibus nesciunt non nostrum numquam, officia perspiciatis quia quibusdam quidem quod quos recusandae reprehenderit temporibus velit voluptatum. Accusantium asperiores atque dicta eligendi minima nulla, sunt ut! Beatae dolores doloribus enim sequi? Accusantium aliquam consequatur consequuntur dolore et facere fugit magni, maxime minus molestiae nam omnis praesentium quaerat quidem quod recusandae ut vitae! Ab accusamus amet animi aspernatur aut autem, consectetur culpa distinctio dolor dolores dolorum ex exercitationem expedita, explicabo illo impedit incidunt iste iure magni minima molestiae molestias natus necessitatibus neque obcaecati perferendis quaerat, quasi quos reiciendis repellendus sapiente sed sequi temporibus. Accusamus amet assumenda at aut commodi consequatur consequuntur corporis delectus deleniti dicta distinctio ducimus et excepturi facilis fuga hic incidunt labore maxime minus officia omnis optio quaerat quasi quidem ratione recusandae repellendus rerum saepe sapiente sequi suscipit, vel voluptates voluptatum. Consequuntur earum eveniet hic impedit ipsum magni modi nostrum quaerat sapiente sint sunt, voluptatem.</p>
+                <p class="details-paragraf-destination"><?php echo $kategori_data['deskripsi']; ?></p>
             </div>
         </div>
     </div>
@@ -155,84 +176,36 @@ if (isset($_SESSION['username'])) {
 
     <!-- destination section -->
     <section class="tempat-wisata_section">
-        <div class="container">
-            <div class="row">
+    <div class="container">
+        <div class="row">
+            <?php while ($destination_data = mysqli_fetch_assoc($result_destinations)) : ?>
                 <div class="col-md-6 col-lg-4">
                     <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
+                        <div class="img-box" style="height: 200px; overflow: hidden;">
+                            <img src="admin/assets/images/<?php echo $destination_data['image']; ?>" alt="Destination Image" class="img-fluid" />
                         </div>
                         <div class="detail-box text-start ps-3 pe-3">
-                            <a href="tempat-wisata.php">
-                                <h2>Nama Tempat Wisata</h2>
+                            <a href="tempat-wisata.php?nama_tempat=<?php echo urlencode($destination_data['nama_tempat']); ?>">
+                                <h2><?php echo $destination_data['nama_tempat']; ?></h2>
                             </a>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
+                            <p class="">
+                                <?php
+                                $deskripsi = $destination_data['deskripsi'];
+                                // Membatasi deskripsi menjadi tidak lebih dari 4 baris
+                                $wrapped_desc = wordwrap($deskripsi, 40, "<br>", true);
+                                $desc_lines = explode("<br>", $wrapped_desc);
+                                if (count($desc_lines) > 4) {
+                                    $wrapped_desc = implode("<br>", array_slice($desc_lines, 0, 4)) . '...';
+                                }
+                                echo $wrapped_desc;
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <a href="tempat-wisata.php">
-                                <h2>Nama Tempat Wisata</h2>
-                            </a>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <a href="tempat-wisata.php">
-                                <h2>Nama Tempat Wisata</h2>
-                            </a>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Tempat Wisata</h2>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Tempat Wisata</h2>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <h2 class="">Nama Tempat Wisata</h2>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endwhile; ?>
         </div>
+    </div>
     </section>
     <!-- end destination section -->
 
