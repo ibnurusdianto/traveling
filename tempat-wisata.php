@@ -32,7 +32,68 @@ if (isset($_SESSION['username'])) {
         $_SESSION['role'] = $row['role'];
     }
 }
+include 'admin/connection.php';
+
+if (isset($_GET['nama_tempat'])) {
+    $nama_tempat = mysqli_real_escape_string($conn, $_GET['nama_tempat']);
+    $query = "SELECT * FROM tempat_wisata WHERE nama_tempat = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 's', $nama_tempat);
+    mysqli_stmt_execute($stmt);
+    $result_tempat_wisata = mysqli_stmt_get_result($stmt);
+
+    if ($row_tempat_wisata = mysqli_fetch_assoc($result_tempat_wisata)) {
+        $nama_tempat = $row_tempat_wisata['nama_tempat'];
+        $deskripsi = $row_tempat_wisata['deskripsi'];
+        $image = $row_tempat_wisata['image'];
+
+    } else {
+        header("Location: destination.php");
+        exit;
+    }
+} else {
+    header("Location: destination.php");
+    exit;
+}
+
+    $query_fasilitas = "SELECT nama_fasilitas FROM fasilitas WHERE tempat_wisata_id = ?";
+    $stmt_fasilitas = mysqli_prepare($conn, $query_fasilitas);
+    mysqli_stmt_bind_param($stmt_fasilitas, 'i', $row_tempat_wisata['id']);
+    mysqli_stmt_execute($stmt_fasilitas);
+    $result_fasilitas = mysqli_stmt_get_result($stmt_fasilitas);
+
+    $query_comments = "SELECT r.komentar, r.rating, u.username, r.waktu
+                       FROM review r
+                       JOIN user u ON r.user_id = u.id
+                       WHERE r.tempat_wisata_id = ?";
+    
+    $stmt_comments = mysqli_prepare($conn, $query_comments);
+    
+    if ($stmt_comments === false) {
+        die("Error in preparing statement: " . mysqli_error($conn));
+    }
+    
+    mysqli_stmt_bind_param($stmt_comments, 'i', $row_tempat_wisata['id']);
+    mysqli_stmt_execute($stmt_comments);
+
+    $result_comments = mysqli_stmt_get_result($stmt_comments);
+    
+    if ($result_comments === false) {
+        die("Error in getting result: " . mysqli_error($conn));
+    }
+
+    $kategori_id = mysqli_real_escape_string($conn, $row_tempat_wisata['kategori_id']);
+
+    $query_similar = "SELECT * FROM tempat_wisata WHERE kategori_id = ? AND nama_tempat != ? LIMIT 3";
+    $stmt_similar = mysqli_prepare($conn, $query_similar);
+    mysqli_stmt_bind_param($stmt_similar, 'ss', $kategori_id, $nama_tempat);
+    mysqli_stmt_execute($stmt_similar);
+    $result_similar = mysqli_stmt_get_result($stmt_similar);
+
+mysqli_stmt_close($stmt_comments);
+mysqli_close($conn);
 ?>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -60,7 +121,6 @@ if (isset($_SESSION['username'])) {
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
                 </div>
             </div>
-            <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
             <form class="d-flex me-2 ms-auto" action="#">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="<?= htmlentities($_GET['search'] ?? '') ?>">
                 <button class="btn" type="submit">
@@ -145,129 +205,113 @@ if (isset($_SESSION['username'])) {
 
     <!--Details Tempat Wisata-->
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <h1 class="header-details mb-5">Nama Tempat Wisata</h1>
-                <div class="card mb-4">
-                    <img src="img/5.jpg" class="card-img-top" alt="gambar">
-                </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
+            <h1 class="header-details mb-5"><?php echo $nama_tempat; ?></h1>
+            <div class="card mb-4">
+                <img src="admin/assets/img/<?php echo $image; ?>" class="card-img-top" alt="gambar">
             </div>
+        </div>
+        <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
+            <h5>Deskripsi : </h5>
+            <p class="details-paragraf-tempat-wisata"><?php echo $deskripsi; ?></p>
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <h5>Deskripsi : </h5>
-                <p class="details-paragraf-tempat-wisata">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci animi dicta dignissimos doloremque earum, et laudantium nostrum obcaecati reprehenderit rerum totam unde voluptate? Aliquid asperiores autem commodi, consectetur consequatur corporis dolores esse exercitationem expedita illum incidunt ipsa libero necessitatibus nemo nisi nostrum obcaecati officia perspiciatis quisquam quo quos reprehenderit sapiente similique ut vel veniam, voluptates! Aliquam beatae eum eveniet id illo in labore laudantium magnam, maxime nam nesciunt obcaecati, perspiciatis quas quia quis sed velit voluptas! Animi aspernatur beatae blanditiis, commodi consectetur culpa debitis delectus distinctio dolorem ducimus eaque earum et eveniet excepturi explicabo illum impedit laudantium libero magni molestiae molestias nam natus necessitatibus nesciunt non nostrum numquam, officia perspiciatis quia quibusdam quidem quod quos recusandae reprehenderit temporibus velit voluptatum. Accusantium asperiores atque dicta eligendi minima nulla, sunt ut! Beatae dolores doloribus enim sequi? Accusantium aliquam consequatur consequuntur dolore et facere fugit magni, maxime minus molestiae nam omnis praesentium quaerat quidem quod recusandae ut vitae! Ab accusamus amet animi aspernatur aut autem, consectetur culpa distinctio dolor dolores dolorum ex exercitationem expedita, explicabo illo impedit incidunt iste iure magni minima molestiae molestias natus necessitatibus neque obcaecati perferendis quaerat, quasi quos reiciendis repellendus sapiente sed sequi temporibus. Accusamus amet assumenda at aut commodi consequatur consequuntur corporis delectus deleniti dicta distinctio ducimus et excepturi facilis fuga hic incidunt labore maxime minus officia omnis optio quaerat quasi quidem ratione recusandae repellendus rerum saepe sapiente sequi suscipit, vel voluptates voluptatum. Consequuntur earum eveniet hic impedit ipsum magni modi nostrum quaerat sapiente sint sunt, voluptatem.</p>
+                <h5>Harga Tiket Masuk : </h5>
+                <p>Rp <?php echo number_format($row_tempat_wisata['htm'], 0, ',', '.'); ?></p>
+                <h5>Fasilitas : </h5>
+                <?php
+                    echo '<ul>';
+                    while ($row_fasilitas = mysqli_fetch_assoc($result_fasilitas)) {
+                        echo '<li>' . $row_fasilitas['nama_fasilitas'] . '</li>';
+                    }
+                    echo '</ul>';
+                ?>
             </div>
         </div>
     </div>
+</div>
     <!--End Details Tempat Wisata-->
 
     <!-- komentar -->
     <div class="komentar container p-5 mt-5">
-        <h5 class="pb-2">Komentar</h5>
-        <div class="form">
-            <textarea name="komentar" id="" rows="7"></textarea>
+    <h5 class="pb-2">Komentar</h5>
+    <div class="form">
+        <form id="commentForm" action="submit_comment.php" method="post">
+        <textarea name="komentar" id="komentar" rows="7" required></textarea>
+        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
             <div class="row">
                 <div class="col-6 mt-4 align-items-center">
                     <div class="card d-inline p-2" id="rating-card" style="background-color: #9BBEC8; border: none">
-                        <i id="star1" class="bi bi-star" style="color: yellow;"></i>
-                        <i id="star2" class="bi bi-star" style="color: yellow;"></i>
-                        <i id="star3" class="bi bi-star" style="color: yellow;"></i>
-                        <i id="star4" class="bi bi-star" style="color: yellow;"></i>
-                        <i id="star5" class="bi bi-star" style="color: yellow;"></i>
+                        <i id="star1" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(1)"></i>
+                        <i id="star2" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(2)"></i>
+                        <i id="star3" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(3)"></i>
+                        <i id="star4" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(4)"></i>
+                        <i id="star5" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(5)"></i>
+                        <input type="hidden" name="nama_tempat" value="<?php echo $nama_tempat; ?>">
+                        <input type="hidden" name="rating" id="rating" value="0">
                     </div>
                 </div>
             </div>
             <input class="btn mt-4" type="submit" value="Submit" style="background-color: #9BBEC8; color: white;">
-        </div>
+        </form>
+    </div>
     </div>
     <!-- end komentar -->
 
     <!-- komentar user -->
-    <div class="komentar-user container mt-5 mb-5 p-5">
-        <div class="row align-items-center">
-            <div class="col-3">
-                <h5>Username</h5>
-            </div>
-            <div class="col-9">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rerum, hic nihil est maiores labore nobis ab natus odio esse?</p>
-                <div class="card d-inline p-2" id="rating-card" style="background-color: #9BBEC8; border: none">
-                    <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
-                    <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
-                    <i id="star3" class="bi bi-star-fill" style="color: yellow;"></i>
-                    <i id="star4" class="bi bi-star" style="color: yellow;"></i>
-                    <i id="star5" class="bi bi-star" style="color: yellow;"></i>
-                </div>
-                <p class="comment-time">Waktu komentar: 28 November 2023</p>
-            </div>
-        </div>
-    </div>
-    <div class="komentar-user container mt-5 mb-5 p-5">
-        <div class="row align-items-center">
-            <div class="col-3">
-                <h5>Username</h5>
-            </div>
-            <div class="col-9">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla rerum, hic nihil est maiores labore nobis ab natus odio esse?</p>
-                <div class="card d-inline p-2" id="rating-card" style="background-color: #9BBEC8; border: none">
-                    <i id="star1" class="bi bi-star-fill" style="color: yellow;"></i>
-                    <i id="star2" class="bi bi-star-fill" style="color: yellow;"></i>
-                    <i id="star3" class="bi bi-star-fill" style="color: yellow;"></i>
-                    <i id="star4" class="bi bi-star-fill" style="color: yellow;"></i>
-                    <i id="star5" class="bi bi-star" style="color: yellow;"></i>
-                </div>
-                <p class="comment-time">Waktu komentar: 28 November 2023</p>
-            </div>
-        </div>
-    </div>
+    <?php
+    while ($row_comment = mysqli_fetch_assoc($result_comments)) {
+        echo '<div class="komentar-user container mt-5 mb-5 p-5">';
+        echo '<div class="row align-items-center">';
+        echo '<div class="col-3">';
+        echo '<h5>' . $row_comment['username'] . '</h5>';
+        echo '</div>';
+        echo '<div class="col-9">';
+        echo '<p>' . $row_comment['komentar'] . '</p>';
+        echo '<div class="card d-inline p-2" id="rating-card" style="background-color: #9BBEC8; border: none">';
+        for ($i = 1; $i <= 5; $i++) {
+            $starClass = ($i <= $row_comment['rating']) ? 'bi-star-fill' : 'bi-star';
+            echo '<i class="bi ' . $starClass . '" style="color: yellow;"></i>';
+        }
+        echo '</div>';
+        
+        $commentDate = date('Y-m-d', strtotime($row_comment['waktu']));
+        echo '<p class="comment-time">Waktu komentar: ' . $commentDate . '</p>';
+        
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+    ?>
     <!-- end komentar user -->
 
     <!-- similar destinations -->
     <div class="container">
-        <h1 class="header-similar-destinations mt-5">Similar Destinastion</h1>
+        <h1 class="header-similar-destinations mt-5">Similar Destinations</h1>
     </div>
     <section class="similar-destinations_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <a href="tempat-wisata.php">
-                                <h2>Nama Tempat Wisata</h2>
-                            </a>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <a href="tempat-wisata.php">
-                                <h2>Nama Tempat Wisata</h2>
-                            </a>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="img/6.jpg" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <a href="tempat-wisata.php">
-                                <h2>Nama Tempat Wisata</h2>
-                            </a>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ea facere est? Fuga inventore consectetur labore corrupti dolorum cupiditate modi!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="row">
+            <?php
+            while ($row_similar = mysqli_fetch_assoc($result_similar)) {
+                echo '<div class="col-md-6 col-lg-4">';
+                echo '<div class="box">';
+                echo '<div class="img-box">';
+                echo '<img src="admin/assets/img/' . $row_similar['image'] . '" alt="Destination Image" class="img-fluid" />';
+                echo '</div>';
+                echo '<div class="detail-box text-start ps-3 pe-3">';
+                echo '<a href="tempat-wisata.php?nama_tempat=' . urlencode($row_similar['nama_tempat']) . '">';
+                echo '<h2>' . $row_similar['nama_tempat'] . '</h2>';
+                echo '</a>';
+                $limited_description = implode(' ', array_slice(explode(' ', $row_similar['deskripsi']), 0, 20));
+                echo '<p class="">' . $limited_description . '...</p>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
+            ?>
         </div>
+    </div>
     </section>
     <!-- end similar destinations -->
 
@@ -299,9 +343,18 @@ if (isset($_SESSION['username'])) {
     <!-- end footer section -->
 
     <script>
+        function setRating(rating) {
+            for (let i = 1; i <= 5; i++) {
+                const star = document.getElementById(`star${i}`);
+                star.style.color = i <= rating ? 'yellow' : 'gray';
+            }
+            document.getElementById('rating').value = rating;
+        }
+    </script>
+
+    <script>
         document.getElementById('confirmLogout').addEventListener('click', function() {
             var xhr = new XMLHttpRequest();
-            // Membuka untuk melakukan post semua function logout dari user-logout.php
             xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
             xhr.onload = function() {
                 if (this.status == 200) {
@@ -315,19 +368,6 @@ if (isset($_SESSION['username'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-    <!-- <script>
-        $(document).ready(function(){
-            $("#star1").click(function(){
-                if($("#star1").hasClass("bi-star")){
-                    $("#star1").removeClass("bi-star");
-                    $("#star1").addClass("bi-star-fill");
-                } else {
-                    $("#star1").addClass("bi-star");
-                    $("#star1").removeClass("bi-star-fill");
-                }
-            })
-        })
-    </script> -->
 </body>
 
 </html>

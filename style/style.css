@@ -114,18 +114,15 @@
 }
 
 
-
-
-
 .header-destination {
   text-align: center;
-  color: #164863;
+  color: #427D9D;
   font-size: 2em;
   font-weight: bold;
 }
 
 .destination_section h2 {
-  color: #164863;
+  color: #427D9D;
 }
 
 .destination_section .box {
@@ -159,6 +156,14 @@
 .destination_section .box .detail-box h2 {
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.destination_section .box .detail-box a {
+  text-decoration: none;
+}
+
+.destination_section .box .detail-box a h2:hover {
+color: #164863;
 }
 
 @media (min-width: 992px) {
