@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 06:36 AM
+-- Generation Time: Dec 07, 2023 at 06:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -78,7 +78,8 @@ CREATE TABLE `review` (
   `rating` decimal(3,2) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `tempat_wisata_id` int(11) DEFAULT NULL,
-  `last_activity` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `last_activity` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `waktu` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
