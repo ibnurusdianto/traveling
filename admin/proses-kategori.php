@@ -4,12 +4,18 @@ include 'connection.php';
 #create kategori
 if (isset($_POST['add'])) {
     $nama_kategori = $_POST['nama_kategori'];
+    $deskripsi = $_POST['deskripsi'];
+    $nama_file = $_FILES['image']['name'];
+    $folder = 'assets/img/';
+    $tmp_name = $_FILES['image']['tmp_name'];
+
+    move_uploaded_file($tmp_name, $folder . $nama_file);
 
     $check_duplicate = mysqli_query($conn, "SELECT * FROM kategori WHERE nama_kategori = '$nama_kategori'");
     if (mysqli_num_rows($check_duplicate) > 0) {
         echo "<script>window.onload = function() { showAlert(5); }</script>";
     } else {
-        $addtotable = mysqli_query($conn, "INSERT INTO kategori (nama_kategori) VALUES ('$nama_kategori')");
+        $addtotable = mysqli_query($conn, "INSERT INTO kategori (nama_kategori, deskripsi, image) VALUES ('$nama_kategori', '$deskripsi', '$nama_file')");
         if ($addtotable) {
             echo "<script>window.onload = function() { showAlert(1); }</script>";
         } else {
@@ -22,17 +28,25 @@ if (isset($_POST['add'])) {
 if (isset($_POST['update'])) {
     $aksi = $_POST['aksi'];
     $nama_kategori = $_POST['nama_kategori'];
+    $deskripsi = $_POST['deskripsi'];
+    $oldImage = $_POST['oldImage'];
 
-    $check_duplicate = mysqli_query($conn, "SELECT * FROM kategori WHERE nama_kategori = '$nama_kategori'");
-    if (mysqli_num_rows($check_duplicate) > 0) {
-        echo "<script>window.onload = function() { showAlert(5); }</script>";
+    if ($_FILES['image']['name'] == "") {
+        $nama_file = $oldImage;
     } else {
-        $update = mysqli_query($conn, "UPDATE kategori SET nama_kategori = '$nama_kategori' WHERE id = '$aksi'");
-        if ($update) {
-            echo "<script>window.onload = function() { showAlert(2); }</script>";
-        } else {
-            echo "<script>window.onload = function() { showAlert(4); }</script>";
-        }
+        unlink('assets/img/' . $oldImage);
+        $nama_file = $_FILES['image']['name'];
+        $folder = 'assets/img/';
+        $tmp_name = $_FILES['image']['tmp_name'];
+
+        move_uploaded_file($tmp_name, $folder . $nama_file);
+    }
+
+    $update = mysqli_query($conn, "UPDATE kategori SET nama_kategori = '$nama_kategori', deskripsi = '$deskripsi', image = '$nama_file' WHERE id = '$aksi'");
+    if ($update) {
+        echo "<script>window.onload = function() { showAlert(2); }</script>";
+    } else {
+        echo "<script>window.onload = function() { showAlert(4); }</script>";
     }
 }
 
