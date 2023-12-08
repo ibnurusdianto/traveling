@@ -46,7 +46,6 @@ if (isset($_GET['nama_tempat'])) {
         $nama_tempat = $row_tempat_wisata['nama_tempat'];
         $deskripsi = $row_tempat_wisata['deskripsi'];
         $image = $row_tempat_wisata['image'];
-
     } else {
         header("Location: destination.php");
         exit;
@@ -56,39 +55,39 @@ if (isset($_GET['nama_tempat'])) {
     exit;
 }
 
-    $query_fasilitas = "SELECT nama_fasilitas FROM fasilitas WHERE tempat_wisata_id = ?";
-    $stmt_fasilitas = mysqli_prepare($conn, $query_fasilitas);
-    mysqli_stmt_bind_param($stmt_fasilitas, 'i', $row_tempat_wisata['id']);
-    mysqli_stmt_execute($stmt_fasilitas);
-    $result_fasilitas = mysqli_stmt_get_result($stmt_fasilitas);
+$query_fasilitas = "SELECT nama_fasilitas FROM fasilitas WHERE tempat_wisata_id = ?";
+$stmt_fasilitas = mysqli_prepare($conn, $query_fasilitas);
+mysqli_stmt_bind_param($stmt_fasilitas, 'i', $row_tempat_wisata['id']);
+mysqli_stmt_execute($stmt_fasilitas);
+$result_fasilitas = mysqli_stmt_get_result($stmt_fasilitas);
 
-    $query_comments = "SELECT r.komentar, r.rating, u.username, r.waktu
+$query_comments = "SELECT r.komentar, r.rating, u.username, r.waktu
                        FROM review r
                        JOIN user u ON r.user_id = u.id
                        WHERE r.tempat_wisata_id = ?";
-    
-    $stmt_comments = mysqli_prepare($conn, $query_comments);
-    
-    if ($stmt_comments === false) {
-        die("Error in preparing statement: " . mysqli_error($conn));
-    }
-    
-    mysqli_stmt_bind_param($stmt_comments, 'i', $row_tempat_wisata['id']);
-    mysqli_stmt_execute($stmt_comments);
 
-    $result_comments = mysqli_stmt_get_result($stmt_comments);
-    
-    if ($result_comments === false) {
-        die("Error in getting result: " . mysqli_error($conn));
-    }
+$stmt_comments = mysqli_prepare($conn, $query_comments);
 
-    $kategori_id = mysqli_real_escape_string($conn, $row_tempat_wisata['kategori_id']);
+if ($stmt_comments === false) {
+    die("Error in preparing statement: " . mysqli_error($conn));
+}
 
-    $query_similar = "SELECT * FROM tempat_wisata WHERE kategori_id = ? AND nama_tempat != ? LIMIT 3";
-    $stmt_similar = mysqli_prepare($conn, $query_similar);
-    mysqli_stmt_bind_param($stmt_similar, 'ss', $kategori_id, $nama_tempat);
-    mysqli_stmt_execute($stmt_similar);
-    $result_similar = mysqli_stmt_get_result($stmt_similar);
+mysqli_stmt_bind_param($stmt_comments, 'i', $row_tempat_wisata['id']);
+mysqli_stmt_execute($stmt_comments);
+
+$result_comments = mysqli_stmt_get_result($stmt_comments);
+
+if ($result_comments === false) {
+    die("Error in getting result: " . mysqli_error($conn));
+}
+
+$kategori_id = mysqli_real_escape_string($conn, $row_tempat_wisata['kategori_id']);
+
+$query_similar = "SELECT * FROM tempat_wisata WHERE kategori_id = ? AND nama_tempat != ? LIMIT 3";
+$stmt_similar = mysqli_prepare($conn, $query_similar);
+mysqli_stmt_bind_param($stmt_similar, 'ss', $kategori_id, $nama_tempat);
+mysqli_stmt_execute($stmt_similar);
+$result_similar = mysqli_stmt_get_result($stmt_similar);
 
 mysqli_stmt_close($stmt_comments);
 mysqli_close($conn);
@@ -127,22 +126,22 @@ mysqli_close($conn);
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-                <?php
-                    if (isset($_SESSION['username'])) {
-                        echo '<div class="btn-group">';
-                        echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
-                        echo '<ul class="dropdown-menu">';
-                        echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
-                        echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
-                        if ($_SESSION['role'] == 'admin') {
-                            echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
-                        }
-                        echo '</ul>';
-                        echo '</div>';
-                    } else {
-                        echo '<a class="btn" href="login.php">Login</a>';
-                    }
-                ?>
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo '<div class="btn-group">';
+                echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
+                echo '<ul class="dropdown-menu">';
+                echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
+                echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                if ($_SESSION['role'] == 'admin') {
+                    echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
+                }
+                echo '</ul>';
+                echo '</div>';
+            } else {
+                echo '<a class="btn" href="login.php">Login</a>';
+            }
+            ?>
         </div>
     </nav>
     <!-- end navbar -->
@@ -205,113 +204,113 @@ mysqli_close($conn);
 
     <!--Details Tempat Wisata-->
     <div class="container">
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-            <h1 class="header-details mb-5"><?php echo $nama_tempat; ?></h1>
-            <div class="card mb-4">
-                <img src="admin/assets/img/<?php echo $image; ?>" class="card-img-top" alt="gambar">
-            </div>
-        </div>
-        <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-            <h5>Deskripsi : </h5>
-            <p class="details-paragraf-tempat-wisata"><?php echo $deskripsi; ?></p>
+        <div class="row">
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <h5>Harga Tiket Masuk : </h5>
-                <p>Rp <?php echo number_format($row_tempat_wisata['htm'], 0, ',', '.'); ?></p>
-                <h5>Fasilitas : </h5>
-                <?php
+                <h1 class="header-details mb-5"><?php echo $nama_tempat; ?></h1>
+                <div class="card mb-4">
+                    <img src="admin/assets/img/<?php echo $image; ?>" class="card-img-top" alt="gambar">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
+                <h5>Deskripsi : </h5>
+                <p class="details-paragraf-tempat-wisata"><?php echo $deskripsi; ?></p>
+                <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
+                    <h5>Harga Tiket Masuk : </h5>
+                    <p>Rp <?php echo number_format($row_tempat_wisata['htm'], 0, ',', '.'); ?></p>
+                    <h5>Fasilitas : </h5>
+                    <?php
                     echo '<ul>';
                     while ($row_fasilitas = mysqli_fetch_assoc($result_fasilitas)) {
                         echo '<li>' . $row_fasilitas['nama_fasilitas'] . '</li>';
                     }
                     echo '</ul>';
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!--End Details Tempat Wisata-->
 
-    <!-- komentar -->
-    <div class="komentar container p-5 mt-5">
-    <h5 class="pb-2">Komentar</h5>
-    <div class="form">
-        <form id="commentForm" action="submit_comment.php" method="post">
-        <textarea name="komentar" id="komentar" rows="7" required></textarea>
-        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-            <div class="row">
-                <div class="col-6 mt-4 align-items-center">
-                    <div class="card d-inline p-2" id="rating-card" style="background-color: #9BBEC8; border: none">
-                        <i id="star1" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(1)"></i>
-                        <i id="star2" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(2)"></i>
-                        <i id="star3" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(3)"></i>
-                        <i id="star4" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(4)"></i>
-                        <i id="star5" class="bi bi-star-fill" style="color: yellow;" onclick="setRating(5)"></i>
-                        <input type="hidden" name="nama_tempat" value="<?php echo $nama_tempat; ?>">
-                        <input type="hidden" name="rating" id="rating" value="0">
-                    </div>
-                </div>
-            </div>
-            <input class="btn mt-4" type="submit" value="Submit" style="background-color: #9BBEC8; color: white;">
-        </form>
-    </div>
-    </div>
-    <!-- end komentar -->
-
-    <!-- komentar user -->
     <?php
-    while ($row_comment = mysqli_fetch_assoc($result_comments)) {
-        echo '<div class="komentar-user container mt-5 mb-5 p-5">';
-        echo '<div class="row align-items-center">';
-        echo '<div class="col-3">';
-        echo '<h5>' . $row_comment['username'] . '</h5>';
-        echo '</div>';
-        echo '<div class="col-9">';
-        echo '<p>' . $row_comment['komentar'] . '</p>';
-        echo '<div class="card d-inline p-2" id="rating-card" style="background-color: #9BBEC8; border: none">';
-        for ($i = 1; $i <= 5; $i++) {
-            $starClass = ($i <= $row_comment['rating']) ? 'bi-star-fill' : 'bi-star';
-            echo '<i class="bi ' . $starClass . '" style="color: yellow;"></i>';
-        }
-        echo '</div>';
-        
-        $commentDate = date('Y-m-d', strtotime($row_comment['waktu']));
-        echo '<p class="comment-time">Waktu komentar: ' . $commentDate . '</p>';
-        
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
+    if (isset($_SESSION['username'])) {
+    ?>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h3>Tambah Komentar</h3>
+                <form method="POST" action="add_comment.php">
+                    <div class="mb-3">
+                        <label for="komentar" class="form-label">Komentar:</label>
+                        <textarea class="form-control" id="komentar" name="komentar" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating:</label>
+                        <select class="form-select" name="rating" id="rating" required>
+                            <option value="" selected disabled>Pilih rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="tempat_wisata_id" value="<?= $row_tempat_wisata['id']; ?>">
+                    <input type="hidden" name="nama_tempat" value="<?= urlencode($row_tempat_wisata['nama_tempat']); ?>">
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                </form>
+            </div>
+        </div>
+    <?php
+    } else {
+        echo '<p>Silakan <a href="login.php">login</a> untuk menambahkan komentar.</p>';
     }
     ?>
-    <!-- end komentar user -->
 
-    <!-- similar destinations -->
-    <div class="container">
-        <h1 class="header-similar-destinations mt-5">Similar Destinations</h1>
-    </div>
-    <section class="similar-destinations_section">
-    <div class="container">
-        <div class="row">
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h3>Daftar Komentar</h3>
             <?php
-            while ($row_similar = mysqli_fetch_assoc($result_similar)) {
-                echo '<div class="col-md-6 col-lg-4">';
-                echo '<div class="box">';
-                echo '<div class="img-box">';
-                echo '<img src="admin/assets/img/' . $row_similar['image'] . '" alt="Destination Image" class="img-fluid" />';
-                echo '</div>';
-                echo '<div class="detail-box text-start ps-3 pe-3">';
-                echo '<a href="tempat-wisata.php?nama_tempat=' . urlencode($row_similar['nama_tempat']) . '">';
-                echo '<h2>' . $row_similar['nama_tempat'] . '</h2>';
-                echo '</a>';
-                $limited_description = implode(' ', array_slice(explode(' ', $row_similar['deskripsi']), 0, 20));
-                echo '<p class="">' . $limited_description . '...</p>';
-                echo '</div>';
+            // Ambil dan tampilkan komentar dari database
+            while ($row_comment = mysqli_fetch_assoc($result_comments)) {
+                echo '<div class="card mb-3">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">' . $row_comment['username'] . ' - ' . $row_comment['waktu'] . '</h5>';
+                echo '<p class="card-text">' . $row_comment['komentar'] . '</p>';
+                echo '<p class="card-text">Rating: ' . $row_comment['rating'] . '</p>';
                 echo '</div>';
                 echo '</div>';
             }
             ?>
         </div>
     </div>
+
+    <!-- similar destinations -->
+    <div class="container">
+        <h1 class="header-similar-destinations mt-5">Similar Destinations</h1>
+    </div>
+    <section class="similar-destinations_section">
+        <div class="container">
+            <div class="row">
+                <?php
+                while ($row_similar = mysqli_fetch_assoc($result_similar)) {
+                    echo '<div class="col-md-6 col-lg-4">';
+                    echo '<div class="box">';
+                    echo '<div class="img-box">';
+                    echo '<img src="admin/assets/img/' . $row_similar['image'] . '" alt="Destination Image" class="img-fluid" />';
+                    echo '</div>';
+                    echo '<div class="detail-box text-start ps-3 pe-3">';
+                    echo '<a href="tempat-wisata.php?nama_tempat=' . urlencode($row_similar['nama_tempat']) . '">';
+                    echo '<h2>' . $row_similar['nama_tempat'] . '</h2>';
+                    echo '</a>';
+                    $limited_description = implode(' ', array_slice(explode(' ', $row_similar['deskripsi']), 0, 20));
+                    echo '<p class="">' . $limited_description . '...</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+                ?>
+            </div>
+        </div>
     </section>
     <!-- end similar destinations -->
 
