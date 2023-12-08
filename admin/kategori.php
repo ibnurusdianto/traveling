@@ -139,41 +139,41 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
     <div class="modal fade" id="backModal" tabindex="-1" aria-labelledby="backModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="backModalLabel">Confirmation</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to go back to the index?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a href="../index.php" class="btn btn-primary">Yes</a>
-            </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="backModalLabel">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to go back to the index?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="../index.php" class="btn btn-primary">Yes</a>
+                </div>
             </div>
         </div>
     </div>
     <!-- End Modal back index -->
 
     <!--Modal Logout user session-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  Are you sure you want to logout?
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-danger" id="confirmLogout">Logout</button>
-              </div>
-          </div>
-      </div>
-  </div>
-<!--End Modal Logout user session-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal Logout user session-->
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
@@ -310,10 +310,18 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="post">
+                                    <form method="post" enctype="multipart/form-data">
                                         <div class="mb-3">
                                             <label for="nama_kategori" class="col-form-label">Nama Kategori</label>
                                             <input type="text" name="nama_kategori" placeholder="Nama Kategori" class="form-control" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="deskripsi" class="col-form-label">Deskripsi</label>
+                                            <textarea name="deskripsi" placeholder="Deskripsi" class="form-control" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="image" class="col-form-label">Image</label>
+                                            <input type="file" name="image" class="form-control" required></input>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -334,6 +342,8 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                 <tr>
                                     <th style="width: 5px;">No</th>
                                     <th>Nama Kategori</th>
+                                    <th>Deskripsi</th>
+                                    <th>Image</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -343,12 +353,16 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                 $i = 1;
                                 while ($ambildata = mysqli_fetch_array($datakategori)) {
                                     $nama_kategori = $ambildata['nama_kategori'];
+                                    $deskripsi = $ambildata['deskripsi'];
+                                    $image = $ambildata['image'];
                                     $id = $ambildata['id'];
                                     $aksi = $ambildata['id'];
                                 ?>
                                     <tr>
                                         <td><?= $i++; ?></td>
                                         <td><?= $nama_kategori; ?></td>
+                                        <td><?= $deskripsi; ?></td>
+                                        <td><img src="assets/img/<?= $image; ?>" width="100px"></td>
                                         <td class="flex flex-wrap gap-2">
                                             <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit<?= $aksi; ?>">Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm" onclick="deleteItem(<?= $aksi; ?>)">Delete</button>
@@ -364,10 +378,22 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post">
+                                                    <form method="post" enctype="multipart/form-data">
                                                         <div class="mb-3">
                                                             <label for="nama_kategori" class="col-form-label">Nama Category</label>
                                                             <input type="text" name="nama_kategori" class="form-control" value="<?= $nama_kategori; ?>" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="image" class="col-form-label">Image</label>
+                                                            <input type="file" name="image" class="form-control"></input>
+                                                            <?php if (!empty($image)) { ?>
+                                                                <img src="assets/img/<?= $image; ?>" width="100px" />
+                                                                <input type="hidden" name="oldImage" value="<?= $image; ?>">
+                                                            <?php } ?>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="deskripsi" class="col-form-label">Deskripsi</label>
+                                                            <textarea name="deskripsi" class="form-control" required><?= $deskripsi; ?></textarea>
                                                         </div>
                                                         <input type="hidden" name="aksi" value="<?= $aksi; ?>">
                                                         <div class="modal-footer">
@@ -485,16 +511,16 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
         }
 
         document.getElementById('confirmLogout').addEventListener('click', function() {
-          var xhr = new XMLHttpRequest();
-          // Membuka untuk melakukan post semua function logout dari user-logout.php
-          xhr.open('POST', '../function-login-diluar-admin/user-logout-sesi.php', true);
-          xhr.onload = function() {
-              if (this.status == 200) {
-                  window.location.href = 'index.php';
-              }
-          };
-          xhr.send();
-      });
+            var xhr = new XMLHttpRequest();
+            // Membuka untuk melakukan post semua function logout dari user-logout.php
+            xhr.open('POST', '../function-login-diluar-admin/user-logout-sesi.php', true);
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    window.location.href = 'index.php';
+                }
+            };
+            xhr.send();
+        });
     </script>
 
 </body>

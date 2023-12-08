@@ -107,7 +107,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
 
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION['username']; ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -137,41 +137,41 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
     <div class="modal fade" id="backModal" tabindex="-1" aria-labelledby="backModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="backModalLabel">Confirmation</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to go back to the index?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a href="../index.php" class="btn btn-primary">Yes</a>
-            </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="backModalLabel">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to go back to the index?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="../index.php" class="btn btn-primary">Yes</a>
+                </div>
             </div>
         </div>
     </div>
     <!-- End Modal back index -->
 
     <!--Modal Logout user session-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  Are you sure you want to logout?
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-danger" id="confirmLogout">Logout</button>
-              </div>
-          </div>
-      </div>
-  </div>
-<!--End Modal Logout user session-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal Logout user session-->
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
@@ -545,7 +545,7 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
 
         function deleteItem(itemId) {
             Swal.fire({
-                title: 'Apakah anda yakin untuk menghapus user ini?',
+                title: 'Apakah anda yakin untuk menghapus Wisata ini?',
                 text: "Anda tidak akan dapat mengembalikan ini!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -562,16 +562,16 @@ $query = mysqli_query($conn, "SELECT * FROM tempat_wisata");
 
     <script>
         document.getElementById('confirmLogout').addEventListener('click', function() {
-          var xhr = new XMLHttpRequest();
-          // Membuka untuk melakukan post semua function logout dari user-logout.php
-          xhr.open('POST', '../function-login-diluar-admin/user-logout-sesi.php', true);
-          xhr.onload = function() {
-              if (this.status == 200) {
-                  window.location.href = 'index.php';
-              }
-          };
-          xhr.send();
-      });
+            var xhr = new XMLHttpRequest();
+            // Membuka untuk melakukan post semua function logout dari user-logout.php
+            xhr.open('POST', '../function-login-diluar-admin/user-logout-sesi.php', true);
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    window.location.href = 'index.php';
+                }
+            };
+            xhr.send();
+        });
     </script>
 
 </body>
