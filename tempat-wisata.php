@@ -5,6 +5,10 @@ $session_expire_time = 600;
 session_set_cookie_params($session_expire_time);
 session_start();
 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_expire_time)) {
     session_unset();
     session_destroy();
@@ -61,23 +65,25 @@ mysqli_stmt_bind_param($stmt_fasilitas, 'i', $row_tempat_wisata['id']);
 mysqli_stmt_execute($stmt_fasilitas);
 $result_fasilitas = mysqli_stmt_get_result($stmt_fasilitas);
 
-$query_comments = "SELECT r.komentar, r.rating, u.username, r.waktu
-                       FROM review r
-                       JOIN user u ON r.user_id = u.id
-                       WHERE r.tempat_wisata_id = ?";
+$query_latest_comments = "SELECT r.komentar, r.rating, u.username, r.waktu
+                                   FROM review r
+                                   JOIN user u ON r.user_id = u.id
+                                   WHERE r.tempat_wisata_id = ?
+                                   ORDER BY r.waktu DESC
+                                   LIMIT 3";
 
-$stmt_comments = mysqli_prepare($conn, $query_comments);
+$stmt_latest_comments = mysqli_prepare($conn, $query_latest_comments);
 
-if ($stmt_comments === false) {
+if ($stmt_latest_comments === false) {
     die("Error in preparing statement: " . mysqli_error($conn));
 }
 
-mysqli_stmt_bind_param($stmt_comments, 'i', $row_tempat_wisata['id']);
-mysqli_stmt_execute($stmt_comments);
+mysqli_stmt_bind_param($stmt_latest_comments, 'i', $row_tempat_wisata['id']);
+mysqli_stmt_execute($stmt_latest_comments);
 
-$result_comments = mysqli_stmt_get_result($stmt_comments);
+$result_latest_comments = mysqli_stmt_get_result($stmt_latest_comments);
 
-if ($result_comments === false) {
+if ($result_latest_comments === false) {
     die("Error in getting result: " . mysqli_error($conn));
 }
 
@@ -99,7 +105,6 @@ function displayStars($rating)
     return $stars;
 }
 
-mysqli_stmt_close($stmt_comments);
 mysqli_close($conn);
 ?>
 
@@ -107,7 +112,8 @@ mysqli_close($conn);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Tempat Wisata</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="style/header-footer.css">
     <link rel="stylesheet" href="style/tempat-wisata.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
@@ -118,7 +124,8 @@ mysqli_close($conn);
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -131,7 +138,8 @@ mysqli_close($conn);
                 </div>
             </div>
             <form class="d-flex me-2 ms-auto" action="#">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="<?= htmlentities($_GET['search'] ?? '') ?>">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                    value="<?= htmlentities($_GET['search'] ?? '') ?>">
                 <button class="btn" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
@@ -183,29 +191,34 @@ mysqli_close($conn);
                 <img src="img/1.jpg" class="d-block w-100" alt="Slide 1" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                        condimentum tortor ac tellus tincidunt.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/2.jpg" class="d-block w-100" alt="Slide 2" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                        condimentum tortor ac tellus tincidunt.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/3.jpg" class="d-block w-100" alt="Slide 3" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                        condimentum tortor ac tellus tincidunt.</p>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -216,16 +229,20 @@ mysqli_close($conn);
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <h1 class="header-details mb-5"><?php echo $nama_tempat; ?></h1>
+                <h1 class="header-details mb-5">
+                    <?php echo $nama_tempat; ?>
+                </h1>
                 <div class="card mb-4">
                     <img src="admin/assets/img/<?php echo $image; ?>" class="card-img-top" alt="gambar">
                 </div>
             </div>
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
                 <h5>Deskripsi : </h5>
-                <p class="details-paragraf-tempat-wisata"><?php echo $deskripsi; ?></p>
+                <p class="details-paragraf-tempat-wisata">
+                    <?php echo $deskripsi; ?>
+                </p>
                 <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <h5>Fasilitas : </h5>
+                    <h5>Fasilitas : </h5>
                     <?php
                     echo '<ul>';
                     while ($row_fasilitas = mysqli_fetch_assoc($result_fasilitas)) {
@@ -234,49 +251,53 @@ mysqli_close($conn);
                     echo '</ul>';
                     ?>
                     <h5>Harga Tiket Masuk : </h5>
-                    <p>Rp <?php echo number_format($row_tempat_wisata['htm'], 0, ',', '.'); ?></p>
+                    <p>Rp
+                        <?php echo number_format($row_tempat_wisata['htm'], 0, ',', '.'); ?>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
     <!--End Details Tempat Wisata-->
-    
+
     <!-- Add Komentar -->
     <?php
     if (isset($_SESSION['username'])) {
-    ?>
-    <div class="komentar container p-5 mt-5">
-    <h5 class="pb-2">Komentar</h5>
-        <div class="form">
-        <form id="commentForm" action="add_comment.php?nama_tempat=<?= urlencode($row_tempat_wisata['nama_tempat']); ?>" method="post">
-            <textarea name="komentar" id="komentar" rows="5" required></textarea>
-            <input type="hidden" name="user_id" value="">
-                <div class="row">
-                    <div class="col-6 mt-4 align-items-center">
-                        <div class="mb-3">
-                            <label for="rating" class="form-label">Rating:</label>
-                            <select class="form-select" name="rating" id="rating" required>
-                                <option value="" selected disabled>Pilih rating</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+        ?>
+        <div class="komentar container p-5 mt-5">
+            <h5 class="pb-2">Komentar</h5>
+            <div class="form">
+                <form id="commentForm"
+                    action="add_comment.php?nama_tempat=<?= urlencode($row_tempat_wisata['nama_tempat']); ?>" method="post">
+                    <textarea name="komentar" id="komentar" rows="5" required></textarea>
+                    <input type="hidden" name="user_id" value="">
+                    <div class="row">
+                        <div class="col-6 mt-4 align-items-center">
+                            <div class="mb-3">
+                                <label for="rating" class="form-label">Rating:</label>
+                                <select class="form-select" name="rating" id="rating" required>
+                                    <option value="" selected disabled>Pilih rating</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="tempat_wisata_id" value="<?= $row_tempat_wisata['id']; ?>">
+                            <input type="hidden" name="nama_tempat"
+                                value="<?= urlencode($row_tempat_wisata['nama_tempat']); ?>">
                         </div>
-                    <input type="hidden" name="tempat_wisata_id" value="<?= $row_tempat_wisata['id']; ?>">
-                    <input type="hidden" name="nama_tempat" value="<?= urlencode($row_tempat_wisata['nama_tempat']); ?>">
                     </div>
-                </div>
-                <input class="btn mt-4" type="submit" value="Submit" style="background-color: #9BBEC8; color: white;">
-            </form>
+                    <input class="btn mt-4" type="submit" value="Submit" style="background-color: #9BBEC8; color: white;">
+                </form>
+            </div>
         </div>
-    </div>      
-    <?php
+        <?php
     } else {
         echo '<p>Silakan <a href="login.php">login</a> untuk menambahkan komentar.</p>';
     }
-    ?>           
+    ?>
     <!--End Add Komentar -->
 
     <!-- Daftar Komentar -->
@@ -284,20 +305,26 @@ mysqli_close($conn);
         <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
             <h3>Daftar Komentar</h3>
             <?php
-            // Ambil dan tampilkan komentar dari database
-            while ($row_comment = mysqli_fetch_assoc($result_comments)) {
-                echo '<div class="komentar-user container mt-2 mb-2 p-5">';
-                echo '<div class="row align-items-center">';
-                echo '<h5 class="card-title">' . $row_comment['username'] . ' - ' . date('d F Y', strtotime($row_comment['waktu'])) . '</h5>';
-                echo '<p class="card-text">' . $row_comment['komentar'] . '</p>';
-                echo '<p class="card-text">Rating: ' . displayStars($row_comment['rating']) . '</p>';
-                echo '</div>';
-                echo '</div>';
+            if (mysqli_num_rows($result_latest_comments) > 0) {
+                while ($row_comment = mysqli_fetch_assoc($result_latest_comments)) {
+                    echo '<div class="komentar-user container mt-2 mb-2 p-5">';
+                    echo '<div class="row align-items-center">';
+                    echo '<h5 class="card-title">' . $row_comment['username'] . ' - ' . date('d F Y', strtotime($row_comment['waktu'])) . '</h5>';
+                    echo '<p class="card-text">' . $row_comment['komentar'] . '</p>';
+                    echo '<p class="card-text">Rating: ' . displayStars($row_comment['rating']) . '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p>No comments found.</p>';
             }
+
+            mysqli_stmt_close($stmt_latest_comments);
             ?>
         </div>
     </div>
     <!--End Daftar Komentar -->
+
 
     <!-- similar destinations -->
     <div class="container">
@@ -336,7 +363,8 @@ mysqli_close($conn);
                 <div class="col-md-6">
                     <h2>If you have any questions,</h2>
                     <h2>Let us help you!</h2>
-                    <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quod, eaque deleniti ea alias odio!</p>
+                    <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quod, eaque deleniti ea
+                        alias odio!</p>
                 </div>
                 <div class="col-md-6">
 
@@ -357,10 +385,10 @@ mysqli_close($conn);
     <!-- end footer section -->
 
     <script>
-        document.getElementById('confirmLogout').addEventListener('click', function() {
+        document.getElementById('confirmLogout').addEventListener('click', function () {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
-            xhr.onload = function() {
+            xhr.onload = function () {
                 if (this.status == 200) {
                     window.location.href = 'index.php';
                 }
@@ -370,7 +398,12 @@ mysqli_close($conn);
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

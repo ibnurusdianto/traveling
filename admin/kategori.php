@@ -361,7 +361,7 @@ $query = mysqli_query($conn, "SELECT * FROM kategori");
                                     <tr>
                                         <td><?= $i++; ?></td>
                                         <td><?= $nama_kategori; ?></td>
-                                        <td><?= $deskripsi; ?></td>
+                                        <td><?= strlen($deskripsi) > 100 ? substr($deskripsi, 0, 100) . '...' : $deskripsi; ?></td>
                                         <td><img src="assets/img/<?= $image; ?>" width="100px"></td>
                                         <td class="flex flex-wrap gap-2">
                                             <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit<?= $aksi; ?>">Edit</button>
