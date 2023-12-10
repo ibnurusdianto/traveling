@@ -89,6 +89,16 @@ mysqli_stmt_bind_param($stmt_similar, 'ss', $kategori_id, $nama_tempat);
 mysqli_stmt_execute($stmt_similar);
 $result_similar = mysqli_stmt_get_result($stmt_similar);
 
+function displayStars($rating)
+{
+    $stars = '';
+    for ($i = 1; $i <= 5; $i++) {
+        $style = ($i <= $rating) ? 'color: #FFD700;' : '';
+        $stars .= '<i class="bi ' . ($i <= $rating ? 'bi-star-fill' : 'bi-star') . '" style="' . $style . '"></i>';
+    }
+    return $stars;
+}
+
 mysqli_stmt_close($stmt_comments);
 mysqli_close($conn);
 ?>
@@ -215,9 +225,7 @@ mysqli_close($conn);
                 <h5>Deskripsi : </h5>
                 <p class="details-paragraf-tempat-wisata"><?php echo $deskripsi; ?></p>
                 <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                    <h5>Harga Tiket Masuk : </h5>
-                    <p>Rp <?php echo number_format($row_tempat_wisata['htm'], 0, ',', '.'); ?></p>
-                    <h5>Fasilitas : </h5>
+                <h5>Fasilitas : </h5>
                     <?php
                     echo '<ul>';
                     while ($row_fasilitas = mysqli_fetch_assoc($result_fasilitas)) {
@@ -225,64 +233,71 @@ mysqli_close($conn);
                     }
                     echo '</ul>';
                     ?>
+                    <h5>Harga Tiket Masuk : </h5>
+                    <p>Rp <?php echo number_format($row_tempat_wisata['htm'], 0, ',', '.'); ?></p>
                 </div>
             </div>
         </div>
     </div>
     <!--End Details Tempat Wisata-->
-
+    
+    <!-- Add Komentar -->
     <?php
     if (isset($_SESSION['username'])) {
     ?>
-        <div class="row mt-5">
-            <div class="col-md-6">
-                <h3>Tambah Komentar</h3>
-                <form method="POST" action="add_comment.php">
-                    <div class="mb-3">
-                        <label for="komentar" class="form-label">Komentar:</label>
-                        <textarea class="form-control" id="komentar" name="komentar" rows="3" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="rating" class="form-label">Rating:</label>
-                        <select class="form-select" name="rating" id="rating" required>
-                            <option value="" selected disabled>Pilih rating</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
+    <div class="komentar container p-5 mt-5">
+    <h5 class="pb-2">Komentar</h5>
+        <div class="form">
+        <form id="commentForm" action="add_comment.php?nama_tempat=<?= urlencode($row_tempat_wisata['nama_tempat']); ?>" method="post">
+            <textarea name="komentar" id="komentar" rows="5" required></textarea>
+            <input type="hidden" name="user_id" value="">
+                <div class="row">
+                    <div class="col-6 mt-4 align-items-center">
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating:</label>
+                            <select class="form-select" name="rating" id="rating" required>
+                                <option value="" selected disabled>Pilih rating</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
                     <input type="hidden" name="tempat_wisata_id" value="<?= $row_tempat_wisata['id']; ?>">
                     <input type="hidden" name="nama_tempat" value="<?= urlencode($row_tempat_wisata['nama_tempat']); ?>">
-                    <button type="submit" class="btn btn-primary">Kirim</button>
-                </form>
-            </div>
+                    </div>
+                </div>
+                <input class="btn mt-4" type="submit" value="Submit" style="background-color: #9BBEC8; color: white;">
+            </form>
         </div>
+    </div>      
     <?php
     } else {
         echo '<p>Silakan <a href="login.php">login</a> untuk menambahkan komentar.</p>';
     }
-    ?>
+    ?>           
+    <!--End Add Komentar -->
 
-
-    <div class="row mt-5">
-        <div class="col-md-6">
+    <!-- Daftar Komentar -->
+    <div class="container mt-5">
+        <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
             <h3>Daftar Komentar</h3>
             <?php
             // Ambil dan tampilkan komentar dari database
             while ($row_comment = mysqli_fetch_assoc($result_comments)) {
-                echo '<div class="card mb-3">';
-                echo '<div class="card-body">';
-                echo '<h5 class="card-title">' . $row_comment['username'] . ' - ' . $row_comment['waktu'] . '</h5>';
+                echo '<div class="komentar-user container mt-2 mb-2 p-5">';
+                echo '<div class="row align-items-center">';
+                echo '<h5 class="card-title">' . $row_comment['username'] . ' - ' . date('d F Y', strtotime($row_comment['waktu'])) . '</h5>';
                 echo '<p class="card-text">' . $row_comment['komentar'] . '</p>';
-                echo '<p class="card-text">Rating: ' . $row_comment['rating'] . '</p>';
+                echo '<p class="card-text">Rating: ' . displayStars($row_comment['rating']) . '</p>';
                 echo '</div>';
                 echo '</div>';
             }
             ?>
         </div>
     </div>
+    <!--End Daftar Komentar -->
 
     <!-- similar destinations -->
     <div class="container">
@@ -342,16 +357,6 @@ mysqli_close($conn);
     <!-- end footer section -->
 
     <script>
-        function setRating(rating) {
-            for (let i = 1; i <= 5; i++) {
-                const star = document.getElementById(`star${i}`);
-                star.style.color = i <= rating ? 'yellow' : 'gray';
-            }
-            document.getElementById('rating').value = rating;
-        }
-    </script>
-
-    <script>
         document.getElementById('confirmLogout').addEventListener('click', function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
@@ -368,5 +373,4 @@ mysqli_close($conn);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
-
 </html>

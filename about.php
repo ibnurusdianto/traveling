@@ -162,8 +162,8 @@ mysqli_close($conn);
                 <div class="col-md-6 ps-md-5">
                     <h2>About</h2>
                     <p class="me-5">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, quaerat et. Cum, exercitationem consectetur? Expedita, odio at itaque in voluptas ex doloremque libero nisi sit temporibus. Officia dolor quaerat amet omnis
-                        voluptates reiciendis, mollitia eaque rem blanditiis sequi accusantium? Ratione?
+                    Selamat datang di Tanah Air Travels – platform perjalanan yang didedikasikan untuk memberikan pengalaman wisata tak terlupakan. Kami hadir dengan visi untuk menginspirasi dan memudahkan Anda dalam menjelajahi keindahan dunia. Tanah Air Travels bukan sekadar situs perjalanan biasa; kami adalah komunitas yang percaya bahwa setiap perjalanan adalah kisah unik yang patut dibagikan.
+                    Di sini, kami menyajikan informasi terkini tentang destinasi wisata, tips perjalanan, ulasan pengguna, dan panduan lengkap untuk membantu Anda merencanakan petualangan sempurna. Tim kami yang berdedikasi bekerja keras untuk menyajikan konten bermanfaat dan inspiratif, memastikan bahwa setiap langkah perjalanan Anda diwarnai dengan keceriaan dan kepuasan.
                     </p>
                 </div>
                 <div class="col-md-6 pe-md-5">
