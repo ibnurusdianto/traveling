@@ -286,6 +286,13 @@ mysqli_close($conn);
         </div>
     </footer>
     <!-- end footer section -->
+    
+    <script>
+        window.onload = function () {
+            // Adjust the scroll position (e.g., scrolling 100 pixels from the top)
+            window.scrollTo(0, 880);
+        };
+    </script>
 
     <script>
         document.getElementById('confirmLogout').addEventListener('click', function() {

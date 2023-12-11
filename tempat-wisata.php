@@ -137,12 +137,11 @@ mysqli_close($conn);
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
                 </div>
             </div>
-            <form class="d-flex me-2 ms-auto" action="#">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+            <form class="d-flex me-2 ms-auto" action="search.php" method="GET">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search"
                     value="<?= htmlentities($_GET['search'] ?? '') ?>">
-                <button class="btn" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
+                <input type="hidden" name="search_type" value="all">
+                <button class="btn" type="submit">Search</button>
             </form>
             <?php
             if (isset($_SESSION['username'])) {
@@ -261,48 +260,37 @@ mysqli_close($conn);
     <!--End Details Tempat Wisata-->
 
     <!-- Add Komentar -->
-    <?php
-    if (isset($_SESSION['username'])) {
-        ?>
-        <div class="komentar container p-5 mt-5">
-            <h5 class="pb-2">Komentar</h5>
-            <div class="form">
-                <form id="commentForm"
-                    action="add_comment.php?nama_tempat=<?= urlencode($row_tempat_wisata['nama_tempat']); ?>" method="post">
-                    <textarea name="komentar" id="komentar" rows="5" required></textarea>
-                    <input type="hidden" name="user_id" value="">
-                    <div class="row">
-                        <div class="col-6 mt-4 align-items-center">
-                            <div class="mb-3">
-                                <label for="rating" class="form-label">Rating:</label>
-                                <select class="form-select" name="rating" id="rating" required>
-                                    <option value="" selected disabled>Pilih rating</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-                            <input type="hidden" name="tempat_wisata_id" value="<?= $row_tempat_wisata['id']; ?>">
-                            <input type="hidden" name="nama_tempat"
-                                value="<?= urlencode($row_tempat_wisata['nama_tempat']); ?>">
+    <div class="komentar container p-5 mt-5">
+        <h5 class="pb-2">Komentar</h5>
+        <div class="form">
+            <form id="commentForm"
+                action="add_comment.php?nama_tempat=<?= urlencode($row_tempat_wisata['nama_tempat']); ?>" method="post">
+                <textarea name="komentar" id="komentar" rows="5" required></textarea>
+
+                <input type="hidden" name="user_id" value="">
+                <div class="row">
+                    <div class="col-6 mt-4 align-items-center">
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating:</label>
+                            <select class="form-select" name="rating" id="rating" required>
+                                <option value="" selected disabled>Pilih rating</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
                         </div>
+                        <input type="hidden" name="tempat_wisata_id" value="<?= $row_tempat_wisata['id']; ?>">
+                        <input type="hidden" name="nama_tempat"
+                            value="<?= urlencode($row_tempat_wisata['nama_tempat']); ?>">
                     </div>
-                    <input class="btn mt-4" type="submit" value="Submit" style="background-color: #9BBEC8; color: white;">
-                </form>
-            </div>
+                </div>
+                <input class="btn mt-4" type="submit" value="Submit" style="background-color: #9BBEC8; color: white;">
+            </form>
         </div>
-        <?php
-    } else {
-        ?>
-        <div class="container p-2 mt-2">
-            <p>Silakan <a href="login.php">login</a> untuk menambahkan komentar.</p>
-        </div>
-        <?php
-    }
-    ?>
-    <!--End Add Komentar -->
+    </div>
+    <!-- End Add Komentar -->
 
     <!-- Daftar Komentar -->
     <div class="container mt-5">
@@ -387,6 +375,13 @@ mysqli_close($conn);
         </div>
     </footer>
     <!-- end footer section -->
+
+    <script>
+        window.onload = function () {
+            // Adjust the scroll position (e.g., scrolling 100 pixels from the top)
+            window.scrollTo(0, 880);
+        };
+    </script>
 
     <script>
         document.getElementById('confirmLogout').addEventListener('click', function () {
