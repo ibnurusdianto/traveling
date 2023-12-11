@@ -48,11 +48,13 @@ $resultTopRated = mysqli_query($conn, $sqlTopRated);
 
 mysqli_close($conn);
 ?>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Destination</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="style/header-footer.css">
     <link rel="stylesheet" href="style/destination.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
@@ -62,7 +64,8 @@ mysqli_close($conn);
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -75,28 +78,28 @@ mysqli_close($conn);
                 </div>
             </div>
             <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
-            <form class="d-flex me-2 ms-auto" action="#">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="<?= htmlentities($_GET['search'] ?? '') ?>">
-                <button class="btn" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
+            <form class="d-flex me-2 ms-auto" action="search.php" method="GET">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search"
+                    value="<?= htmlentities($_GET['search'] ?? '') ?>">
+                <input type="hidden" name="search_type" value="all">
+                <button class="btn" type="submit">Search</button>
             </form>
-                <?php
-                    if (isset($_SESSION['username'])) {
-                        echo '<div class="btn-group">';
-                        echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
-                        echo '<ul class="dropdown-menu">';
-                        echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
-                        echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
-                        if ($_SESSION['role'] == 'admin') {
-                            echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
-                        }
-                        echo '</ul>';
-                        echo '</div>';
-                    } else {
-                        echo '<a class="btn" href="login.php">Login</a>';
-                    }
-                ?>
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo '<div class="btn-group">';
+                echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
+                echo '<ul class="dropdown-menu">';
+                echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
+                echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                if ($_SESSION['role'] == 'admin') {
+                    echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
+                }
+                echo '</ul>';
+                echo '</div>';
+            } else {
+                echo '<a class="btn" href="login.php">Login</a>';
+            }
+            ?>
         </div>
     </nav>
     <!-- end navbar -->
@@ -128,29 +131,34 @@ mysqli_close($conn);
                 <img src="img/1.jpg" class="d-block w-100" alt="Slide 1" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                        condimentum tortor ac tellus tincidunt.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/2.jpg" class="d-block w-100" alt="Slide 2" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                        condimentum tortor ac tellus tincidunt.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/3.jpg" class="d-block w-100" alt="Slide 3" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                        condimentum tortor ac tellus tincidunt.</p>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -161,42 +169,49 @@ mysqli_close($conn);
     <div class="container">
         <h1 class="header-destination1">Travelling Information for The</h1>
         <h1 class="header-destination1">best Experience</h1>
-        <p class="mt-3 paragaf-destination">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati quidem, pariatur minus a enim mollitia? Iusto autem assumenda cupiditate illum voluptatem vero atque molestias dolorum?</p>
+        <p class="mt-3 paragaf-destination">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati quidem,
+            pariatur minus a enim mollitia? Iusto autem assumenda cupiditate illum voluptatem vero atque molestias
+            dolorum?</p>
     </div>
     <section class="destination_section">
-    <div class="container">
-        <div class="row">
-            <?php
-            while ($row = mysqli_fetch_assoc($result)) {
-                $deskripsi = $row['deskripsi'];
-                if (strlen($deskripsi) > 140) {
-                    $deskripsi = substr($deskripsi, 0, 140) . '...';
-                }
-            ?>
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box" style="height: 200px; overflow: hidden;">
-                            <img src="admin/assets/img/<?php echo $row['image']; ?>" alt="Destination Image" class="img-fluid" />
-                        </div>
-                        <div class="detail-box text-start ps-3 pe-3">
-                            <?php
-                            if (isset($row['nama_kategori'])) {
-                                echo '<a href="details-destination.php?nama_kategori=' . $row['nama_kategori'] . '">';
-                            } else {
-                                echo '<a href="details-destination.php">';
-                            }
-                            ?>
-                                <h2><?php echo $row['nama_kategori']; ?></h2>
-                            </a>
-                            <p><?php echo $deskripsi; ?></p>
+        <div class="container">
+            <div class="row">
+                <?php
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $deskripsi = $row['deskripsi'];
+                    if (strlen($deskripsi) > 140) {
+                        $deskripsi = substr($deskripsi, 0, 140) . '...';
+                    }
+                    ?>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="box">
+                            <div class="img-box" style="height: 200px; overflow: hidden;">
+                                <img src="admin/assets/img/<?php echo $row['image']; ?>" alt="Destination Image"
+                                    class="img-fluid" />
+                            </div>
+                            <div class="detail-box text-start ps-3 pe-3">
+                                <?php
+                                if (isset($row['nama_kategori'])) {
+                                    echo '<a href="details-destination.php?nama_kategori=' . $row['nama_kategori'] . '">';
+                                } else {
+                                    echo '<a href="details-destination.php">';
+                                }
+                                ?>
+                                <h2>
+                                    <?php echo $row['nama_kategori']; ?>
+                                </h2>
+                                </a>
+                                <p>
+                                    <?php echo $deskripsi; ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php
-            }
-            ?>
+                    <?php
+                }
+                ?>
+            </div>
         </div>
-    </div>
     </section>
 
     <!-- end destination section -->
@@ -204,42 +219,46 @@ mysqli_close($conn);
     <!-- tempat wisata -->
     <section class="tempat-wisata mt-5 mb-5">
         <div class="container">
-        <?php
-        if ($resultTopRated && mysqli_num_rows($resultTopRated) > 0) {
-            $topRatedWisata = mysqli_fetch_assoc($resultTopRated);
-        ?>
-            <div class="row">
-                <div class="col-md-6">
-                    <img class="gambar-tempat-wisata" src="admin/assets/img/<?php echo $topRatedWisata['image']; ?>" alt="" width="100%">
-                </div>
-                <div class="col-md-6" style="padding: 50px;">
-                    <h2 class="nama-tempat-wisata"><?php echo $topRatedWisata['nama_tempat']; ?></h2>
-                    <p class="">
-                        <?php
+            <?php
+            if ($resultTopRated && mysqli_num_rows($resultTopRated) > 0) {
+                $topRatedWisata = mysqli_fetch_assoc($resultTopRated);
+                ?>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="gambar-tempat-wisata" src="admin/assets/img/<?php echo $topRatedWisata['image']; ?>"
+                            alt="" width="100%">
+                    </div>
+                    <div class="col-md-6" style="padding: 50px;">
+                        <h2 class="nama-tempat-wisata">
+                            <?php echo $topRatedWisata['nama_tempat']; ?>
+                        </h2>
+                        <p class="">
+                            <?php
                             $deskripsiReview = $topRatedWisata['deskripsi'];
                             $deskripsiReview = implode(' ', array_slice(explode(' ', $deskripsiReview), 0, 30));
                             echo $deskripsiReview . '...';
-                        ?>
-                    </p>
-                    <div class="card d-inline p-2 mt-4" id="rating-card" style="background-color: #9BBEC8; border: none">
-                        <?php
-                        $rating = $topRatedWisata['max_rating'];
-                        for ($i = 1; $i <= 5; $i++) {
-                            if ($i <= $rating) {
-                                echo '<i class="bi bi-star-fill" style="color: yellow;"></i>';
-                            } else {
-                                echo '<i class="bi bi-star" style="color: yellow;"></i>';
+                            ?>
+                        </p>
+                        <div class="card d-inline p-2 mt-4" id="rating-card"
+                            style="background-color: #9BBEC8; border: none">
+                            <?php
+                            $rating = $topRatedWisata['max_rating'];
+                            for ($i = 1; $i <= 5; $i++) {
+                                if ($i <= $rating) {
+                                    echo '<i class="bi bi-star-fill" style="color: yellow;"></i>';
+                                } else {
+                                    echo '<i class="bi bi-star" style="color: yellow;"></i>';
+                                }
                             }
-                        }
-                        ?>
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php
-        } else {
-            echo '<p>No top-rated destinations found.</p>';
-        }
-        ?>
+                <?php
+            } else {
+                echo '<p>No top-rated destinations found.</p>';
+            }
+            ?>
         </div>
     </section>
     <!--  -->
@@ -252,8 +271,13 @@ mysqli_close($conn);
                     <h1 style="width: 50%;">Travelling Information</h1>
                 </div>
                 <div class="col-7">
-                    <p>Travelling merupakan kegiatan yang melibatkan perpindahan orang dari satu tempat ke tempat lain untuk tujuan rekreasi, bisnis, edukasi, atau keperluan lainnya. Aktivitas ini telah menjadi bagian integral dari gaya hidup modern, memungkinkan orang untuk menjelajahi berbagai destinasi dan pengalaman.</p>
-                    <p>Travelling tidak hanya menawarkan kesempatan untuk bersantai dan menikmati keindahan alam, tetapi juga memberikan peluang untuk berinteraksi dengan budaya baru, mengeksplorasi warisan sejarah, dan memperluas cakrawala pengetahuan.</p>
+                    <p>Travelling merupakan kegiatan yang melibatkan perpindahan orang dari satu tempat ke tempat lain
+                        untuk tujuan rekreasi, bisnis, edukasi, atau keperluan lainnya. Aktivitas ini telah menjadi
+                        bagian integral dari gaya hidup modern, memungkinkan orang untuk menjelajahi berbagai destinasi
+                        dan pengalaman.</p>
+                    <p>Travelling tidak hanya menawarkan kesempatan untuk bersantai dan menikmati keindahan alam, tetapi
+                        juga memberikan peluang untuk berinteraksi dengan budaya baru, mengeksplorasi warisan sejarah,
+                        dan memperluas cakrawala pengetahuan.</p>
                 </div>
             </div>
         </div>
@@ -267,7 +291,8 @@ mysqli_close($conn);
                 <div class="col-md-6">
                     <h2>If you have any questions,</h2>
                     <h2>Let us help you!</h2>
-                    <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quod, eaque deleniti ea alias odio!</p>
+                    <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quod, eaque deleniti ea
+                        alias odio!</p>
                 </div>
                 <div class="col-md-6">
 
@@ -286,20 +311,19 @@ mysqli_close($conn);
         </div>
     </footer>
     <!-- end footer section -->
-    
+
     <script>
         window.onload = function () {
-            // Adjust the scroll position (e.g., scrolling 100 pixels from the top)
             window.scrollTo(0, 880);
         };
     </script>
 
     <script>
-        document.getElementById('confirmLogout').addEventListener('click', function() {
+        document.getElementById('confirmLogout').addEventListener('click', function () {
             var xhr = new XMLHttpRequest();
             // Membuka untuk melakukan post semua function logout dari user-logout.php
             xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
-            xhr.onload = function() {
+            xhr.onload = function () {
                 if (this.status == 200) {
                     window.location.href = 'index.php';
                 }
@@ -307,6 +331,9 @@ mysqli_close($conn);
             xhr.send();
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

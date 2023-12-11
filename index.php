@@ -40,15 +40,16 @@ $result_latest_destinations = mysqli_query($conn, $sql_latest_destinations);
 $sql = "SELECT * FROM kategori";
 $result = mysqli_query($conn, $sql);
 
-$sqlTopRated = "SELECT tempat_wisata.*, MAX(review.rating) AS max_rating
-FROM tempat_wisata
-JOIN review ON tempat_wisata.id = review.tempat_wisata_id
-GROUP BY tempat_wisata.id
-ORDER BY max_rating DESC
-LIMIT 1;";
-$resultTopRated = mysqli_query($conn, $sqlTopRated);
+$sqlTopRatedAvg = "SELECT tempat_wisata.*, AVG(review.rating) AS avg_rating
+        FROM tempat_wisata
+        LEFT JOIN review ON tempat_wisata.id = review.tempat_wisata_id
+        GROUP BY tempat_wisata.id
+        ORDER BY avg_rating DESC
+        LIMIT 1;";
 
-if (!$resultTopRated) {
+$resultTopRatedAvg = mysqli_query($conn, $sqlTopRatedAvg);
+
+if (!$resultTopRatedAvg) {
   die("Kesalahan dalam kueri SQL: " . mysqli_error($conn));
 }
 
@@ -90,7 +91,6 @@ mysqli_close($conn);
         <input type="hidden" name="search_type" value="all">
         <button class="btn" type="submit">Search</button>
       </form>
-
       <?php
       if (isset($_SESSION['username'])) {
         echo '<div class="btn-group">';
@@ -262,27 +262,27 @@ mysqli_close($conn);
     <div class="container">
       <div class="row" style="align-items: center;">
         <?php
-        if ($resultTopRated && mysqli_num_rows($resultTopRated) > 0) {
-          $topRatedDestination = mysqli_fetch_assoc($resultTopRated);
+        if ($resultTopRatedAvg && mysqli_num_rows($resultTopRatedAvg) > 0) {
+          $topRatedDestinationAvg = mysqli_fetch_assoc($resultTopRatedAvg);
           ?>
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-12">
                 <h2>
-                  <?php echo $topRatedDestination['nama_tempat']; ?>
+                  <?php echo $topRatedDestinationAvg['nama_tempat']; ?>
                 </h2>
                 <p class="">
                   <?php
-                  $deskripsiReview = $topRatedDestination['deskripsi'];
-                  $deskripsiReview = implode(' ', array_slice(explode(' ', $deskripsiReview), 0, 30)); // Mengambil 30 kata pertama
-                  echo $deskripsiReview . '...';
+                  $deskripsiReviewAvg = $topRatedDestinationAvg['deskripsi'];
+                  $deskripsiReviewAvg = implode(' ', array_slice(explode(' ', $deskripsiReviewAvg), 0, 30)); // Mengambil 30 kata pertama
+                  echo $deskripsiReviewAvg . '...';
                   ?>
                 </p>
                 <div class="card d-inline p-2 mt-4" id="rating-card" style="background-color: #9BBEC8; border: none">
                   <?php
-                  $rating = $topRatedDestination['max_rating'];
+                  $avgRating = $topRatedDestinationAvg['avg_rating'];
                   for ($i = 1; $i <= 5; $i++) {
-                    if ($i <= $rating) {
+                    if ($i <= $avgRating) {
                       echo '<i class="bi bi-star-fill" style="color: yellow;"></i>';
                     } else {
                       echo '<i class="bi bi-star" style="color: yellow;"></i>';
@@ -294,7 +294,7 @@ mysqli_close($conn);
             </div>
           </div>
           <div class="col-md-6 text-center">
-            <img src="admin/assets/img/<?php echo $topRatedDestination['image']; ?>" class="img-fluid img-responsive"
+            <img src="admin/assets/img/<?php echo $topRatedDestinationAvg['image']; ?>" class="img-fluid img-responsive"
               alt="Gambar" />
           </div>
           <?php
