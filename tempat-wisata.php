@@ -295,7 +295,11 @@ mysqli_close($conn);
         </div>
         <?php
     } else {
-        echo '<p>Silakan <a href="login.php">login</a> untuk menambahkan komentar.</p>';
+        ?>
+        <div class="container p-2 mt-2">
+            <p>Silakan <a href="login.php">login</a> untuk menambahkan komentar.</p>
+        </div>
+        <?php
     }
     ?>
     <!--End Add Komentar -->
