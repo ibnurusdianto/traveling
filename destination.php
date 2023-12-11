@@ -252,8 +252,8 @@ mysqli_close($conn);
                     <h1 style="width: 50%;">Travelling Information</h1>
                 </div>
                 <div class="col-7">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ipsum culpa libero ea fuga, sint esse? Quidem id labore minima impedit itaque deserunt, placeat, quisquam dolores dolorem ullam debitis mollitia? Excepturi ad vero nemo dicta? Totam quibusdam aperiam optio, ut rerum inventore dolorem laboriosam, velit, numquam placeat impedit doloribus sapiente!</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum labore quidem consequatur est laudantium et.</p>
+                    <p>Travelling merupakan kegiatan yang melibatkan perpindahan orang dari satu tempat ke tempat lain untuk tujuan rekreasi, bisnis, edukasi, atau keperluan lainnya. Aktivitas ini telah menjadi bagian integral dari gaya hidup modern, memungkinkan orang untuk menjelajahi berbagai destinasi dan pengalaman.</p>
+                    <p>Travelling tidak hanya menawarkan kesempatan untuk bersantai dan menikmati keindahan alam, tetapi juga memberikan peluang untuk berinteraksi dengan budaya baru, mengeksplorasi warisan sejarah, dan memperluas cakrawala pengetahuan.</p>
                 </div>
             </div>
         </div>

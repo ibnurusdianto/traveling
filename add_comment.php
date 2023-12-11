@@ -34,7 +34,7 @@ if (isset($_SESSION['username'])) {
         mysqli_close($conn);
 
         // Redirect kembali ke halaman tempat wisata setelah menambah komentar
-        header("Location: tempat-wisata.php?nama_tempat=" . urlencode($nama_tempat));
+        header("Location: tempat-wisata.php?nama_tempat=" . ($nama_tempat));
         exit;
     }
 } else {

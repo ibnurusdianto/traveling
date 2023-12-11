@@ -34,8 +34,8 @@ if (isset($_SESSION['username'])) {
 }
 include_once 'admin/connection.php';
 
-$sql_destination = "SELECT * FROM tempat_wisata";
-$result_destination = mysqli_query($conn, $sql_destination);
+$sql_latest_destinations = "SELECT * FROM tempat_wisata ORDER BY id DESC LIMIT 1";
+$result_latest_destinations = mysqli_query($conn, $sql_latest_destinations);
 
 $sql = "SELECT * FROM kategori";
 $result = mysqli_query($conn, $sql);
@@ -165,37 +165,37 @@ mysqli_close($conn);
 
   <!--  -->
   <section class="detail_section layout_padding">
-    <div class="container">
-      <div class="row" style="align-items: center;">
+  <div class="container">
+    <div class="row" style="align-items: center;">
+      <?php
+      $counter = 0;
+      while ($destination_row = mysqli_fetch_assoc($result_latest_destinations)) {
+        if ($counter == 1) {
+          break;
+        }
+      ?>
+        <!-- Tampilan Tempat Wisata -->
+        <div class="col-md-6 pe-md-5">
+          <img src="admin/assets/img/<?php echo $destination_row['image']; ?>" class="img-fluid img-responsiv" alt="Gambar" />
+        </div>
+        <div class="col-md-6 ps-md-5">
+          <h2><?php echo $destination_row['nama_tempat']; ?></h2>
+          <p>
             <?php
-            $counter = 0;
-            while ($destination_row = mysqli_fetch_assoc($result_destination)) {
-                if ($counter == 1) {
-                    break;
-                }
+            $description_words = implode(' ', array_slice(str_word_count($destination_row['deskripsi'], 1), 0, 65));
+            echo $description_words;
             ?>
-            <!-- Tampilan Tempat Wisata -->
-              <div class="col-md-6 pe-md-5">
-                <img src="admin/assets/img/<?php echo $destination_row['image']; ?>" class="img-fluid img-responsiv" alt="Gambar" />
-              </div>
-                <div class="col-md-6 ps-md-5">
-                  <h2><?php echo $destination_row['nama_tempat']; ?></h2>
-                    <p>
-                      <?php
-                      $description_words = implode(' ', array_slice(str_word_count($destination_row['deskripsi'], 1), 0, 65));
-                      echo $description_words;
-                      ?>
-                    </p>
-                    <a href="tempat-wisata.php?nama_tempat=<?php echo urlencode($destination_row['nama_tempat']); ?>" class= "btn">Detail</a>
-                </div>
-            <?php
-                $counter++;
-            }
-            ?>
-      </div>
+          </p>
+          <a href="tempat-wisata.php?nama_tempat=<?php echo urlencode($destination_row['nama_tempat']); ?>" class="btn">Detail</a>
+        </div>
+      <?php
+        $counter++;
+      }
+      ?>
     </div>
+  </div>
   </section>
-  <!--  -->
+<!--  -->
 
   <!-- destination section -->
   <h2 class="header-destination">DESTINATION</h2>
