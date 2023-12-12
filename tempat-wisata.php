@@ -112,8 +112,7 @@ mysqli_close($conn);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Tempat Wisata</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="style/header-footer.css">
     <link rel="stylesheet" href="style/tempat-wisata.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
@@ -124,8 +123,7 @@ mysqli_close($conn);
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -138,8 +136,7 @@ mysqli_close($conn);
                 </div>
             </div>
             <form class="d-flex me-2 ms-auto" action="search.php" method="GET">
-                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search"
-                    value="<?= htmlentities($_GET['search'] ?? '') ?>">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="<?= htmlentities($_GET['search'] ?? '') ?>">
                 <input type="hidden" name="search_type" value="all">
                 <button class="btn" type="submit">Search</button>
             </form>
@@ -208,13 +205,11 @@ mysqli_close($conn);
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -260,8 +255,7 @@ mysqli_close($conn);
     <div class="komentar container p-5 mt-5">
         <h5 class="pb-2">Komentar</h5>
         <div class="form">
-            <form id="commentForm"
-                action="add_comment.php?nama_tempat=<?= urlencode($row_tempat_wisata['nama_tempat']); ?>" method="post">
+            <form id="commentForm" action="add_comment.php?nama_tempat=<?= urlencode($row_tempat_wisata['nama_tempat']); ?>" method="post">
                 <textarea name="komentar" id="komentar" rows="5" required></textarea>
 
                 <input type="hidden" name="user_id" value="">
@@ -279,8 +273,7 @@ mysqli_close($conn);
                             </select>
                         </div>
                         <input type="hidden" name="tempat_wisata_id" value="<?= $row_tempat_wisata['id']; ?>">
-                        <input type="hidden" name="nama_tempat"
-                            value="<?= urlencode($row_tempat_wisata['nama_tempat']); ?>">
+                        <input type="hidden" name="nama_tempat" value="<?= urlencode($row_tempat_wisata['nama_tempat']); ?>">
                     </div>
                 </div>
                 <input class="btn mt-4" type="submit" value="Submit" style="background-color: #9BBEC8; color: white;">
@@ -348,14 +341,20 @@ mysqli_close($conn);
     <!-- info section -->
     <section class="info_section mt-5">
         <div class="container">
-            <div class="row">
+            <div class="row" style="align-items: center;">
                 <div class="col-md-6">
                     <h2>If you have any questions,</h2>
                     <h2>Let us help you!</h2>
                     <p class="pt-3">Your journey is our priority. If you have any questions or need assistance, our dedicated team is here to help.</p>
                 </div>
                 <div class="col-md-6">
-
+                    <section class="section-social-media social-media-icons">
+                        <i class="bi bi-custom bi-facebook"></i>
+                        <i class="bi bi-custom bi-twitter"></i>
+                        <i class="bi bi-custom bi-instagram"></i>
+                        <i class="bi bi-custom bi-linkedin"></i>
+                        <i class="bi bi-custom bi-youtube"></i>
+                    </section>
                 </div>
             </div>
         </div>
@@ -373,16 +372,16 @@ mysqli_close($conn);
     <!-- end footer section -->
 
     <script>
-        window.onload = function () {
+        window.onload = function() {
             window.scrollTo(0, 880);
         };
     </script>
 
     <script>
-        document.getElementById('confirmLogout').addEventListener('click', function () {
+        document.getElementById('confirmLogout').addEventListener('click', function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
-            xhr.onload = function () {
+            xhr.onload = function() {
                 if (this.status == 200) {
                     window.location.href = 'index.php';
                 }
@@ -392,12 +391,8 @@ mysqli_close($conn);
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
 
 </html>

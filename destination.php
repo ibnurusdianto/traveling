@@ -269,14 +269,20 @@ mysqli_close($conn);
     <!-- info section -->
     <section class="info_section">
         <div class="container">
-            <div class="row">
+            <div class="row" style="align-items: center;">
                 <div class="col-md-6">
                     <h2>If you have any questions,</h2>
                     <h2>Let us help you!</h2>
                     <p class="pt-3">Your journey is our priority. If you have any questions or need assistance, our dedicated team is here to help.</p>
                 </div>
                 <div class="col-md-6">
-
+                    <section class="section-social-media social-media-icons">
+                        <i class="bi bi-custom bi-facebook"></i>
+                        <i class="bi bi-custom bi-twitter"></i>
+                        <i class="bi bi-custom bi-instagram"></i>
+                        <i class="bi bi-custom bi-linkedin"></i>
+                        <i class="bi bi-custom bi-youtube"></i>
+                    </section>
                 </div>
             </div>
         </div>

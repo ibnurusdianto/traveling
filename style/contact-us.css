@@ -123,14 +123,14 @@
 }
 
 
-.section-social-media {
+/* .section-social-media {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-}
+} */
 
-.bi.bi-custom {
+/* .bi.bi-custom {
     font-size: 50px;
     color: #333;
     transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -181,7 +181,7 @@
 
 .bi-custom.bi-youtube:hover {
     color: #e27575;
-}
+} */
 
 .details-about {
     padding-top: 10px;

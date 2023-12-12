@@ -33,6 +33,7 @@ if (isset($_SESSION['username'])) {
     }
 }
 ?>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,6 +44,7 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 <br><br>
+
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -66,22 +68,22 @@ if (isset($_SESSION['username'])) {
                     <i class="bi bi-search"></i>
                 </button>
             </form>
-                <?php
-                    if (isset($_SESSION['username'])) {
-                        echo '<div class="btn-group">';
-                        echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
-                        echo '<ul class="dropdown-menu">';
-                        echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
-                        echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
-                        if ($_SESSION['role'] == 'admin') {
-                            echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
-                        }
-                        echo '</ul>';
-                        echo '</div>';
-                    } else {
-                        echo '<a class="btn" href="login.php">Login</a>';
-                    }
-                ?>
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo '<div class="btn-group">';
+                echo '<a class="btn btn-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">' . $_SESSION['username'] . '</a>';
+                echo '<ul class="dropdown-menu">';
+                echo '<li><a class="dropdown-item" href="profile-user/profile.php">Profile</a></li>';
+                echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>';
+                if ($_SESSION['role'] == 'admin') {
+                    echo '<li><a class="dropdown-item" href="admin/index.php">Admin Panel</a></li>';
+                }
+                echo '</ul>';
+                echo '</div>';
+            } else {
+                echo '<a class="btn" href="login.php">Login</a>';
+            }
+            ?>
         </div>
     </nav>
     <!-- end navbar -->
@@ -181,14 +183,20 @@ if (isset($_SESSION['username'])) {
     <!-- info section -->
     <section class="info_section">
         <div class="container">
-            <div class="row">
+            <div class="row" style="align-items: center;">
                 <div class="col-md-6">
                     <h2>If you have any questions,</h2>
                     <h2>Let us help you!</h2>
                     <p class="pt-3">Your journey is our priority. If you have any questions or need assistance, our dedicated team is here to help.</p>
                 </div>
                 <div class="col-md-6">
-
+                    <section class="section-social-media social-media-icons">
+                        <i class="bi bi-custom bi-facebook"></i>
+                        <i class="bi bi-custom bi-twitter"></i>
+                        <i class="bi bi-custom bi-instagram"></i>
+                        <i class="bi bi-custom bi-linkedin"></i>
+                        <i class="bi bi-custom bi-youtube"></i>
+                    </section>
                 </div>
             </div>
         </div>
@@ -221,4 +229,5 @@ if (isset($_SESSION['username'])) {
     <script src="javascript/register.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
+
 </html>

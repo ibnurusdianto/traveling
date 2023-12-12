@@ -60,8 +60,7 @@ mysqli_close($conn);
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Travel - Home</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
   <link rel="stylesheet" href="style/header-footer.css">
   <link rel="stylesheet" href="style/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
@@ -71,8 +70,7 @@ mysqli_close($conn);
   <!-- navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -86,8 +84,7 @@ mysqli_close($conn);
       </div>
       <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
       <form class="d-flex me-2 ms-auto" action="search.php" method="GET">
-        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search"
-          value="<?= htmlentities($_GET['search'] ?? '') ?>">
+        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="<?= htmlentities($_GET['search'] ?? '') ?>">
         <input type="hidden" name="search_type" value="all">
         <button class="btn" type="submit">Search</button>
       </form>
@@ -177,11 +174,10 @@ mysqli_close($conn);
           if ($counter == 1) {
             break;
           }
-          ?>
+        ?>
           <!-- Tampilan Tempat Wisata -->
           <div class="col-md-6 pe-md-5">
-            <img src="admin/assets/img/<?php echo $destination_row['image']; ?>" class="img-fluid img-responsiv"
-              alt="Gambar" />
+            <img src="admin/assets/img/<?php echo $destination_row['image']; ?>" class="img-fluid img-responsiv" alt="Gambar" />
           </div>
           <div class="col-md-6 ps-md-5">
             <h2>
@@ -193,10 +189,9 @@ mysqli_close($conn);
               echo $description_words;
               ?>
             </p>
-            <a href="tempat-wisata.php?nama_tempat=<?php echo urlencode($destination_row['nama_tempat']); ?>"
-              class="btn">Detail</a>
+            <a href="tempat-wisata.php?nama_tempat=<?php echo urlencode($destination_row['nama_tempat']); ?>" class="btn">Detail</a>
           </div>
-          <?php
+        <?php
           $counter++;
         }
         ?>
@@ -220,7 +215,7 @@ mysqli_close($conn);
           if (strlen($deskripsi) > 140) {
             $deskripsi = substr($deskripsi, 0, 140) . '...';
           }
-          ?>
+        ?>
           <!-- Tampilan Destinasi -->
           <div class="col-md-6 col-lg-4">
             <div class="box">
@@ -245,7 +240,7 @@ mysqli_close($conn);
               </div>
             </div>
           </div>
-          <?php
+        <?php
           $counter_destinasi++;
         }
         ?>
@@ -261,7 +256,7 @@ mysqli_close($conn);
         <?php
         if ($resultTopRatedAvg && mysqli_num_rows($resultTopRatedAvg) > 0) {
           $topRatedDestinationAvg = mysqli_fetch_assoc($resultTopRatedAvg);
-          ?>
+        ?>
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-12">
@@ -291,10 +286,9 @@ mysqli_close($conn);
             </div>
           </div>
           <div class="col-md-6 text-center">
-            <img src="admin/assets/img/<?php echo $topRatedDestinationAvg['image']; ?>" class="img-fluid img-responsive"
-              alt="Gambar" />
+            <img src="admin/assets/img/<?php echo $topRatedDestinationAvg['image']; ?>" class="img-fluid img-responsive" alt="Gambar" />
           </div>
-          <?php
+        <?php
         } else {
           echo '<p>No top-rated destinations found.</p>';
         }
@@ -313,14 +307,20 @@ mysqli_close($conn);
   <!-- info section -->
   <section class="info_section">
     <div class="container">
-      <div class="row">
+      <div class="row" style="align-items: center;">
         <div class="col-md-6">
           <h2>If you have any questions,</h2>
           <h2>Let us help you!</h2>
           <p class="pt-3">Your journey is our priority. If you have any questions or need assistance, our dedicated team is here to help.</p>
         </div>
         <div class="col-md-6">
-
+          <section class="section-social-media social-media-icons">
+            <i class="bi bi-custom bi-facebook"></i>
+            <i class="bi bi-custom bi-twitter"></i>
+            <i class="bi bi-custom bi-instagram"></i>
+            <i class="bi bi-custom bi-linkedin"></i>
+            <i class="bi bi-custom bi-youtube"></i>
+          </section>
         </div>
       </div>
     </div>
@@ -339,11 +339,11 @@ mysqli_close($conn);
 
 
   <script>
-    document.getElementById('confirmLogout').addEventListener('click', function () {
+    document.getElementById('confirmLogout').addEventListener('click', function() {
       var xhr = new XMLHttpRequest();
       // Membuka untuk melakukan post semua function logout dari user-logout.php
       xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
-      xhr.onload = function () {
+      xhr.onload = function() {
         if (this.status == 200) {
           window.location.href = 'index.php';
         }
@@ -351,9 +351,7 @@ mysqli_close($conn);
       xhr.send();
     });
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>
