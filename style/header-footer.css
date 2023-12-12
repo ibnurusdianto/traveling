@@ -197,6 +197,14 @@
   padding: 95px;
 }
 
+.section-social-media {
+  width: 90%;
+  height: 100px;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .footer_section {
   display: flex;
   justify-content: center;
@@ -214,10 +222,18 @@
   .info_section {
     padding: 60px;
   }
+
+  .section-social-media {
+    padding: 60px;
+  }
 }
 
 @media (max-width: 575px) {
   .info_section {
     padding: 30px;
+  }
+
+  .section-social-media {
+    padding: 60px;
   }
 }

@@ -144,7 +144,7 @@ if (isset($_SESSION['username'])) {
                 <div class="col-md-6">
                     <h2>If you have any questions,</h2>
                     <h2>Let us help you!</h2>
-                    <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quod, eaque deleniti ea alias odio!</p>
+                    <p class="pt-3">Your journey is our priority. If you have any questions or need assistance, our dedicated team is here to help.</p>
                 </div>
                 <div class="col-md-6">
 
@@ -158,7 +158,7 @@ if (isset($_SESSION['username'])) {
     <footer class="footer_section">
         <div class="container-fluid">
             <p>
-                &copy; Tanah Air Studio
+                &copy; Tanah Air Travels - Kel 5
             </p>
         </div>
     </footer>

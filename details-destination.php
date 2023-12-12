@@ -134,24 +134,21 @@ mysqli_close($conn);
                 <img src="img/1.jpg" class="d-block w-100" alt="Slide 1" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                        condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Explore our comprehensive travel website dedicated to providing essential information for the best travel experience.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/2.jpg" class="d-block w-100" alt="Slide 2" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                        condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Explore our comprehensive travel website dedicated to providing essential information for the best travel experience.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/3.jpg" class="d-block w-100" alt="Slide 3" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                        condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Explore our comprehensive travel website dedicated to providing essential information for the best travel experience.</p>
                 </div>
             </div>
         </div>
@@ -259,8 +256,7 @@ mysqli_close($conn);
                 <div class="col-md-6">
                     <h2>If you have any questions,</h2>
                     <h2>Let us help you!</h2>
-                    <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quod, eaque deleniti ea
-                        alias odio!</p>
+                    <p class="pt-3">Your journey is our priority. If you have any questions or need assistance, our dedicated team is here to help.</p>
                 </div>
                 <div class="col-md-6">
 
@@ -274,7 +270,7 @@ mysqli_close($conn);
     <footer class="footer_section">
         <div class="container-fluid">
             <p>
-                &copy; Tanah Air Studio
+                &copy; Tanah Air Travels - Kel 5
             </p>
         </div>
     </footer>

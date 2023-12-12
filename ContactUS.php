@@ -38,8 +38,8 @@ if (isset($_SESSION['username'])) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Contact</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style/header-footer.css">
     <link rel="stylesheet" href="style/contact-us.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
@@ -48,8 +48,7 @@ if (isset($_SESSION['username'])) {
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -63,8 +62,7 @@ if (isset($_SESSION['username'])) {
             </div>
             <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
             <form class="d-flex me-2 ms-auto" action="search.php" method="GET">
-                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search"
-                    value="<?= htmlentities($_GET['search'] ?? '') ?>">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="<?= htmlentities($_GET['search'] ?? '') ?>">
                 <input type="hidden" name="search_type" value="all">
                 <button class="btn" type="submit">Search</button>
             </form>
@@ -115,34 +113,29 @@ if (isset($_SESSION['username'])) {
                 <img src="img/1.jpg" class="d-block w-100" alt="Slide 1" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                        condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Explore our comprehensive travel website dedicated to providing essential information for the best travel experience.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/2.jpg" class="d-block w-100" alt="Slide 2" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                        condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Explore our comprehensive travel website dedicated to providing essential information for the best travel experience.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="img/3.jpg" class="d-block w-100" alt="Slide 3" />
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="header-caption">Travelling <br> Information for <br> The best Experience</h1>
-                    <p class="paragaf-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                        condimentum tortor ac tellus tincidunt.</p>
+                    <p class="paragaf-caption">Explore our comprehensive travel website dedicated to providing essential information for the best travel experience.</p>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -151,7 +144,7 @@ if (isset($_SESSION['username'])) {
 
 
     <!--Title-->
-    <div class="container title-about-us">
+    <div class="container title-about-us mb-5">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xl-12 col-xxl-12 col-sm-12">
                 <h1 class="title-about-us">Contact</h1>
@@ -161,33 +154,27 @@ if (isset($_SESSION['username'])) {
     <!--End Title-->
 
     <!--Contant US-->
-    <div class="container-fluid contact-us-fluid">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xl-12 col-xxl-12 col-sm-12 gambar-kesiji">
-                <section class="section-gambar d-flex justify-content-between align-items-center">
-                    <img src="img/5.jpg" alt="Image 1" class="img-fluid">
-                    <div class="text-content">
-                        <h1 class="title-section-gambar">Traveling</h1>
-                        <p class="paragaf-section-gambar">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Accusantium architecto at atque consequatur corporis debitis delectus deserunt doloribus
-                            esse in incidunt iste laboriosam nam numquam odio, perferendis placeat quaerat quas qui
-                            rerum sint temporibus veritatis voluptate? Ad at expedita ipsam molestias nam quibusdam
-                            quidem quis, tenetur voluptates voluptatibus. Accusamus dolores eos facilis odit officia
-                            repudiandae similique veniam voluptas? Cumque incidunt laborum libero numquam officiis! Ad
-                            alias assumenda commodi corporis delectus doloremque dolores earum eligendi enim est
-                            excepturi exercitationem fugit harum ipsa ipsum laudantium minus neque nesciunt nostrum
-                            pariatur perferendis, perspiciatis placeat quam quasi quis, repellat soluta sunt totam velit
-                            voluptate.</p>
-                    </div>
-                </section>
+    <section class="contactus-section mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xl-12 col-xxl-12 col-sm-12 gambar-kesiji">
+                    <section class="section-gambar d-flex justify-content-between align-items-center">
+                        <img src="img/5.jpg" alt="Image 1" class="img-fluid">
+                        <div class="text-content">
+                            <!-- <h1 class="title-section-gambar">Traveling</h1> -->
+                            <p class="paragaf-section-gambar">Welcome to our Contact page! At Tanah Air Travels, we are delighted to receive inquiries, feedback, and suggestions from you. Our dedicated team is ready to assist with any questions you may have about destinations, travel, or our services.</p>
+                            <p class="paragaf-section-gambar">Thank you for choosing Tanah Air Travels as your travel partner. We are committed to providing the best service and assisting you in making each journey an unforgettable experience. We look forward to hearing from you soon!</p>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <!--End Contant US-->
 
     <!--Form social media-->
-    <div class="container">
-        <div class="row">
+    <!-- <div class="container social-media mt-5 mb-5">
+        <div class="row" style="text-align: center;">
             <div class="col-md-6 col-sm-6 col-xl-6 col-xxl-6 col-sm-6 pertama">
                 <section class="section-social-media social-media-icons">
                     <i class="bi bi-custom bi-facebook"></i>
@@ -198,36 +185,27 @@ if (isset($_SESSION['username'])) {
                 </section>
             </div>
             <div class="col-md-6 col-sm-6 col-xl-6 col-xxl-6 col-sm-6 keloro">
-                <img class="gambar-contact" src="img/6.jpg" alt="gambar-2">
+                <img class="gambar-contact" src="img/7.jpg" alt="gambar-2">
             </div>
         </div>
-    </div>
+    </div> -->
     <!--End Form social media-->
 
-    <div class="container">
+    <div class="container mb-5 mt-5">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
-                <p class="details-about">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci
-                    animi dicta dignissimos doloremque earum, et laudantium nostrum obcaecati reprehenderit rerum totam
-                    unde voluptate? Aliquid asperiores autem commodi, consectetur consequatur corporis dolores esse
-                    exercitationem expedita illum incidunt ipsa libero necessitatibus nemo nisi nostrum obcaecati
-                    officia perspiciatis quisquam quo quos reprehenderit sapiente similique ut vel veniam, voluptates!
-                    Aliquam beatae eum eveniet id illo in labore laudantium magnam, maxime nam nesciunt obcaecati,
-                    perspiciatis quas quia quis sed velit voluptas! Animi aspernatur beatae blanditiis, commodi
-                    consectetur culpa debitis delectus distinctio dolorem ducimus eaque earum et eveniet excepturi
-                    explicabo illum impedit laudantium libero magni molestiae molestias nam natus necessitatibus
-                    nesciunt non nostrum numquam, officia perspiciatis quia quibusdam quidem quod quos recusandae
-                    reprehenderit temporibus velit voluptatum. Accusantium asperiores atque dicta eligendi minima nulla,
-                    sunt ut! Beatae dolores doloribus enim sequi? Accusantium aliquam consequatur consequuntur dolore et
-                    facere fugit magni, maxime minus molestiae nam omnis praesentium quaerat quidem quod recusandae ut
-                    vitae! Ab accusamus amet animi aspernatur aut autem, consectetur culpa distinctio dolor dolores
-                    dolorum ex exercitationem expedita, explicabo illo impedit incidunt iste iure magni minima molestiae
-                    molestias natus necessitatibus neque obcaecati perferendis quaerat, quasi quos reiciendis
-                    repellendus sapiente sed sequi temporibus. Accusamus amet assumenda at aut commodi consequatur
-                    consequuntur corporis delectus deleniti dicta distinctio ducimus et excepturi facilis fuga hic
-                    incidunt labore maxime minus officia omnis optio quaerat quasi quidem ratione recusandae repellendus
-                    rerum saepe sapiente sequi suscipit, vel voluptates voluptatum. Consequuntur earum eveniet hic
-                    impedit ipsum magni modi nostrum quaerat sapiente sint sunt, voluptatem.</p>
+                <p class="details-about">Tanah Air Travels is a comprehensive platform designed to streamline and enhance the travel experience. This system 
+                    integrates various features and functionalities to provide users with valuable information, planning tools, and resources for a seamless 
+                    journey. Whether you're a seasoned traveler or embarking on your first adventure, Tanah Air Travels is tailored to meet the diverse needs 
+                    of all users. <br><br>
+                    Key features of Tanah Air Travels include real-time updates on travel destinations, reviews from users, as well as a list of related tourist 
+                    attractions. Users can access in-depth information on tourist spot descriptions, admission prices, reviews, and facilities. The system also 
+                    facilitates convenient booking processes, allowing users to reserve flights, hotels, and other travel services directly through the platform. 
+                    Furthermore, Tanah Air Travels incorporates user-generated content, such as reviews and recommendations, fostering a community where travelers 
+                    can share their experiences and insights. This collaborative aspect enhances the overall travel planning and decision-making process. <br><br>
+                    In summary, the Tanah Air Travels is a dynamic and user-friendly platform that aims to empower travelers with the knowledge and tools needed 
+                    to create memorable and enjoyable travel experiences.
+                </p>
             </div>
         </div>
     </div>
@@ -235,15 +213,20 @@ if (isset($_SESSION['username'])) {
     <!-- info section -->
     <section class="info_section">
         <div class="container">
-            <div class="row">
+            <div class="row" style="align-items: center;">
                 <div class="col-md-6">
                     <h2>If you have any questions,</h2>
                     <h2>Let us help you!</h2>
-                    <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quod, eaque deleniti ea
-                        alias odio!</p>
+                    <p class="pt-3">Your journey is our priority. If you have any questions or need assistance, our dedicated team is here to help.</p>
                 </div>
                 <div class="col-md-6">
-
+                    <section class="section-social-media social-media-icons">
+                        <i class="bi bi-custom bi-facebook"></i>
+                        <i class="bi bi-custom bi-twitter"></i>
+                        <i class="bi bi-custom bi-instagram"></i>
+                        <i class="bi bi-custom bi-linkedin"></i>
+                        <i class="bi bi-custom bi-youtube"></i>
+                    </section>
                 </div>
             </div>
         </div>
@@ -254,23 +237,23 @@ if (isset($_SESSION['username'])) {
     <footer class="footer_section">
         <div class="container-fluid">
             <p>
-                &copy; Tanah Air Studio
+                &copy; Tanah Air Travels - Kel 5
             </p>
         </div>
     </footer>
     <!-- end footer section -->
     <script>
-        window.onload = function () {
+        window.onload = function() {
             window.scrollTo(0, 880);
         };
     </script>
-    
+
     <script>
-        document.getElementById('confirmLogout').addEventListener('click', function () {
+        document.getElementById('confirmLogout').addEventListener('click', function() {
             var xhr = new XMLHttpRequest();
             // Membuka untuk melakukan post semua function logout dari user-logout.php
             xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
-            xhr.onload = function () {
+            xhr.onload = function() {
                 if (this.status == 200) {
                     window.location.href = 'index.php';
                 }
@@ -278,9 +261,7 @@ if (isset($_SESSION['username'])) {
             xhr.send();
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>
