@@ -34,6 +34,40 @@ if (isset($_SESSION['username'])) {
 }
 
 include 'admin/connection.php';
+
+$query = "SELECT r.id, r.komentar, r.rating, u.username, t.nama_tempat, r.waktu
+          FROM review r
+          JOIN user u ON r.user_id = u.id
+          JOIN tempat_wisata t ON r.tempat_wisata_id = t.id";
+$datareview = mysqli_query($conn, $query);
+
+$wisataRating = [];
+
+while ($ambildata = mysqli_fetch_array($datareview)) {
+    $nama_tempat = $ambildata['nama_tempat'];
+    $rating = $ambildata['rating'];
+
+    if (!isset($wisataRating[$nama_tempat])) {
+        $wisataRating[$nama_tempat] = [
+            'totalRating' => 0,
+            'jumlahReview' => 0
+        ];
+    }
+    $wisataRating[$nama_tempat]['totalRating'] += $rating;
+    $wisataRating[$nama_tempat]['jumlahReview']++;
+}
+
+
+if (isset($_GET['nama_tempat'])) {
+    $nama_tempat = $_GET['nama_tempat'];
+
+    $sqlUpdateViews = "UPDATE tempat_wisata SET seen = seen + 1 WHERE nama_tempat = ?";
+    $stmtUpdateViews = mysqli_prepare($conn, $sqlUpdateViews);
+    mysqli_stmt_bind_param($stmtUpdateViews, 's', $nama_tempat);
+    mysqli_stmt_execute($stmtUpdateViews);
+}
+
+
 $nama_kategori = $_GET['nama_kategori'] ?? '';
 
 $sql = "SELECT * FROM kategori WHERE nama_kategori = ?";
@@ -56,19 +90,19 @@ mysqli_close($conn);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Travel - Details Destination</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="style/header-footer.css">
     <link rel="stylesheet" href="style/details-destination.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
 </head>
 
 <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
@@ -82,8 +116,7 @@ mysqli_close($conn);
             </div>
             <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
             <form class="d-flex me-2 ms-auto" action="search.php" method="GET">
-                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search"
-                    value="<?= htmlentities($_GET['search'] ?? '') ?>">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="<?= htmlentities($_GET['search'] ?? '') ?>">
                 <input type="hidden" name="search_type" value="all">
                 <button class="btn" type="submit">Search</button>
             </form>
@@ -155,13 +188,11 @@ mysqli_close($conn);
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -177,8 +208,7 @@ mysqli_close($conn);
                     <?php echo $kategori_data['nama_kategori']; ?>
                 </h1>
                 <div class="card mb-4">
-                    <img src="admin/assets/img/<?php echo $kategori_data['image']; ?>" class="card-img-top"
-                        alt="gambar">
+                    <img src="admin/assets/img/<?php echo $kategori_data['image']; ?>" class="card-img-top" alt="gambar">
                 </div>
             </div>
             <div class="col-md-12 col-lg-12 col-xxl-12 col-xl-12 col-sm-12">
@@ -195,16 +225,14 @@ mysqli_close($conn);
     <section class="tempat-wisata_section">
         <div class="container">
             <div class="row">
-                <?php while ($destination_data = mysqli_fetch_assoc($result_destinations)): ?>
+                <?php while ($destination_data = mysqli_fetch_assoc($result_destinations)) : ?>
                     <div class="col-md-6 col-lg-4">
                         <div class="box">
                             <div class="img-box" style="height: 200px; overflow: hidden;">
-                                <img src="admin/assets/img/<?php echo $destination_data['image']; ?>"
-                                    alt="Destination Image" class="img-fluid" />
+                                <img src="admin/assets/img/<?php echo $destination_data['image']; ?>" alt="Destination Image" class="img-fluid" />
                             </div>
                             <div class="detail-box text-start ps-3 pe-3">
-                                <a
-                                    href="tempat-wisata.php?nama_tempat=<?php echo urlencode($destination_data['nama_tempat']); ?>">
+                                <a href="tempat-wisata.php?nama_kategori=<?php echo urlencode($nama_kategori); ?>&nama_tempat=<?php echo urlencode($destination_data['nama_tempat']); ?>">
                                     <h2>
                                         <?php echo $destination_data['nama_tempat']; ?>
                                     </h2>
@@ -221,6 +249,34 @@ mysqli_close($conn);
                                     echo $wrapped_desc;
                                     ?>
                                 </p>
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="rating-box d-flex align-items-center">
+                                            <p class="average-rating" style="margin-top: 16px;">
+                                                <?php
+                                                $averageRating = $wisataRating[$destination_data['nama_tempat']]['totalRating'] / $wisataRating[$destination_data['nama_tempat']]['jumlahReview'];
+                                                echo number_format($averageRating, 1);
+                                                ?>
+                                            </p>
+                                            <div id="rateYo_<?= str_replace(' ', '_', $destination_data['nama_tempat']); ?>"></div>
+                                            <p class="mb-0">
+                                                <?php
+                                                $jumlahReview = $wisataRating[$destination_data['nama_tempat']]['jumlahReview'];
+                                                echo "(" . $jumlahReview . ")";
+                                                ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 text-end d-flex align-items-center justify-content-end">
+                                        <p class="mb-0 ms-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye me-1">
+                                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                            </svg>
+                                            <?php echo $destination_data['seen']; ?>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -280,18 +336,22 @@ mysqli_close($conn);
     </footer>
     <!-- end footer section -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
     <script>
-        window.onload = function () {
+        window.onload = function() {
             window.scrollTo(0, 880);
         };
     </script>
 
     <script>
-        document.getElementById('confirmLogout').addEventListener('click', function () {
+        document.getElementById('confirmLogout').addEventListener('click', function() {
             var xhr = new XMLHttpRequest();
             // Membuka untuk melakukan post semua function logout dari user-logout.php
             xhr.open('POST', './function-login-diluar-admin/user-logout-sesi.php', true);
-            xhr.onload = function () {
+            xhr.onload = function() {
                 if (this.status == 200) {
                     window.location.href = 'index.php';
                 }
@@ -299,9 +359,22 @@ mysqli_close($conn);
             xhr.send();
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            <?php foreach ($wisataRating as $nama_tempat => $ratings) : ?>
+                <?php
+                $averageRating = $ratings['totalRating'] / $ratings['jumlahReview'];
+                $rateYoID = str_replace(' ', '_', $nama_tempat);
+                ?>
+                $("#rateYo_<?= $rateYoID; ?>").rateYo({
+                    rating: <?= $averageRating; ?>,
+                    readOnly: true,
+                    starWidth: "20px"
+                });
+            <?php endforeach; ?>
+        });
+    </script>
+
 </body>
 
 </html>
