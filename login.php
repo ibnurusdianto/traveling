@@ -79,7 +79,7 @@ if (isset($_SESSION['username'])) {
                         echo '</ul>';
                         echo '</div>';
                     } else {
-                        echo '<a class="btn" href="login.php">Login</a>';
+                        // echo '<a class="btn" href="login.php">Login</a>';
                     }
                 ?>
         </div>
@@ -122,6 +122,7 @@ if (isset($_SESSION['username'])) {
                         <label for="password" class="form-label">Enter your password</label>
                     </div>
                     <input type="submit" class="btn btn-primary mt-4" value="Login">
+                    <a href="forgot_password.php" class="btn btn-danger mt-4" style="text-decoration: none; color: white;">Forgot Password</a>
                 </form>
             </div>
             <div class="col-md-6 order-md-1">
