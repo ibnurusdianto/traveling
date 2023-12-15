@@ -12,6 +12,26 @@ if (isset($_SESSION['username'])) {
 function login($username, $password) {
     $conn = mysqli_connect('localhost', 'root', '', 'travel');
     $username = mysqli_real_escape_string($conn, $username);
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+    $recaptcha_secret = '6LdblzApAAAAABdrHJchyNV-pJPKci0c15eBtfys';
+    $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+    $recaptcha_data = array(
+        'secret' => $recaptcha_secret,
+        'response' => $recaptcha_response
+    );
+    $recaptcha_options = array(
+        'http' => array(
+            'method' => 'POST',
+            'header' => 'Content-type: application/x-www-form-urlencoded',
+            'content' => http_build_query($recaptcha_data)
+        )
+    );
+    $recaptcha_context = stream_context_create($recaptcha_options);
+    $recaptcha_result = file_get_contents($recaptcha_url, false, $recaptcha_context);
+    $recaptcha_json = json_decode($recaptcha_result);
+    if (!$recaptcha_json->success) {
+        return "Anda belum menyelesaikan verifikasi reCAPTCHA!";
+    }
 
     $sql = "SELECT * FROM user WHERE username = ?";
     $stmt = mysqli_prepare($conn, $sql);
@@ -55,15 +75,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } elseif ($loginResult == "user"){
             header('Location: ../index.php');
         } else {
+            if (!isset($_SESSION['g-recaptcha-response'])) {
+                echo '<script>alert("Anda, belum menyelesaikan captcha!"); window.location.href = "../login.php";</script>';
+            }
             if (!isset($_SESSION['login_attempts'])) {
                 $_SESSION['login_attempts'] = 1;
             } else {
                 $_SESSION['login_attempts']++;
             }
             $_SESSION['last_attempt_time'] = time();
-            echo 'Login gagal';
+            echo "Login gagal";
         }
     }
 }
-
 ?>

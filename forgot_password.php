@@ -21,7 +21,8 @@
               <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
               <label for="username" class="form-label">Enter your username</label>
             </div>
-            <button type="submit" class="btn btn-primary">Check username</button>
+            <button type="submit" class="btn btn-primary">Check username</button><br><br>
+            <button type="button" class="btn btn-primary" onclick="location.href='login.php';">Cancel</button>
           </form>
         </div>
       </div>
@@ -31,4 +32,6 @@
 <!-- End Forgot Password -->
 </body>
 </html>
+
+<a href="login.php"></a>
 

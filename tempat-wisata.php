@@ -142,6 +142,7 @@ mysqli_close($conn);
                     <a class="nav-link me-4" href="about.php">About</a>
                     <a class="nav-link me-4" href="ContactUS.php">Contact Us</a>
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
+                    <a class="nav-link me-4" href="others/index.html">Life History</a>
                 </div>
             </div>
             <form class="d-flex me-2 ms-auto" action="search.php" method="GET">
@@ -361,7 +362,13 @@ mysqli_close($conn);
                         alias odio!</p>
                 </div>
                 <div class="col-md-6">
-
+                    <section class="section-social-media social-media-icons">
+                        <i class="bi bi-custom bi-facebook"></i>
+                        <i class="bi bi-custom bi-twitter"></i>
+                        <i class="bi bi-custom bi-instagram"></i>
+                        <i class="bi bi-custom bi-linkedin"></i>
+                        <i class="bi bi-custom bi-youtube"></i>
+                    </section>
                 </div>
             </div>
         </div>

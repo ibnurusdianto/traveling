@@ -112,6 +112,7 @@ mysqli_close($conn);
                     <a class="nav-link me-4" href="about.php">About</a>
                     <a class="nav-link me-4" href="ContactUS.php">Contact Us</a>
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
+                    <a class="nav-link me-4" href="others/index.html">Life History</a>
                 </div>
             </div>
             <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
@@ -250,19 +251,27 @@ mysqli_close($conn);
                                     ?>
                                 </p>
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-6">
-                                        <div class="rating-box d-flex align-items-center">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="rating-box d-flex align-items-center">
                                             <p class="average-rating" style="margin-top: 16px;">
                                                 <?php
-                                                $averageRating = $wisataRating[$destination_data['nama_tempat']]['totalRating'] / $wisataRating[$destination_data['nama_tempat']]['jumlahReview'];
-                                                echo number_format($averageRating, 1);
+                                                if (isset($wisataRating[$destination_data['nama_tempat']]['totalRating']) && isset($wisataRating[$destination_data['nama_tempat']]['jumlahReview'])) {
+                                                    $averageRating = $wisataRating[$destination_data['nama_tempat']]['totalRating'] / $wisataRating[$destination_data['nama_tempat']]['jumlahReview'];
+                                                    echo number_format($averageRating, 1);
+                                                } else {
+                                                    echo "Belum ada rating";
+                                                }
                                                 ?>
                                             </p>
                                             <div id="rateYo_<?= str_replace(' ', '_', $destination_data['nama_tempat']); ?>"></div>
                                             <p class="mb-0">
                                                 <?php
-                                                $jumlahReview = $wisataRating[$destination_data['nama_tempat']]['jumlahReview'];
-                                                echo "(" . $jumlahReview . ")";
+                                                if (isset($wisataRating[$destination_data['nama_tempat']]['jumlahReview'])) {
+                                                    $jumlahReview = $wisataRating[$destination_data['nama_tempat']]['jumlahReview'];
+                                                    echo "(" . $jumlahReview . ")";
+                                                } else {
+                                                    echo "(0)";
+                                                }
                                                 ?>
                                             </p>
                                         </div>
@@ -319,7 +328,13 @@ mysqli_close($conn);
                         alias odio!</p>
                 </div>
                 <div class="col-md-6">
-
+                    <section class="section-social-media social-media-icons">
+                        <i class="bi bi-custom bi-facebook"></i>
+                        <i class="bi bi-custom bi-twitter"></i>
+                        <i class="bi bi-custom bi-instagram"></i>
+                        <i class="bi bi-custom bi-linkedin"></i>
+                        <i class="bi bi-custom bi-youtube"></i>
+                    </section>
                 </div>
             </div>
         </div>

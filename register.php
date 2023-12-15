@@ -57,6 +57,7 @@ if (isset($_SESSION['username'])) {
                     <a class="nav-link me-4" href="about.php">About</a>
                     <a class="nav-link me-4" href="ContactUS.php">Contact Us</a>
                     <a class="nav-link me-4" href="our-team.php">Our Team</a>
+                    <a class="nav-link me-4" href="others/index.html">Life History</a>
                 </div>
             </div>
             <!-- Pindahkan form pencarian dan tombol login ke luar dari .navbar-nav -->
@@ -111,7 +112,7 @@ if (isset($_SESSION['username'])) {
         <div class="row gx-5">
             <div class="col-md-6">
                 <h2>Complete your registration</h2>
-                <form action="./function-login-diluar-admin/register-only-user.php" method="post">
+                <form action="./function-login-diluar-admin/register-only-user.php" method="post" id="register-form">
                     <div class="form-floating mb-3">
                         <input type="username" class="form-control" id="username" name="username" placeholder="Enter your Username">
                         <label for="username" class="form-label">Enter your Username</label>
@@ -138,6 +139,7 @@ if (isset($_SESSION['username'])) {
                             </label>
                         </div>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6LdblzApAAAAAIHOFAwtuiX0r6latCfXhvTnjXBI"></div><br>
                     <input type="submit" class="btn btn-primary" value="Register">
                 </form>
             </div>
@@ -188,7 +190,13 @@ if (isset($_SESSION['username'])) {
                     <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quod, eaque deleniti ea alias odio!</p>
                 </div>
                 <div class="col-md-6">
-
+                    <section class="section-social-media social-media-icons">
+                        <i class="bi bi-custom bi-facebook"></i>
+                        <i class="bi bi-custom bi-twitter"></i>
+                        <i class="bi bi-custom bi-instagram"></i>
+                        <i class="bi bi-custom bi-linkedin"></i>
+                        <i class="bi bi-custom bi-youtube"></i>
+                    </section>
                 </div>
             </div>
         </div>
@@ -218,6 +226,12 @@ if (isset($_SESSION['username'])) {
             xhr.send();
         });
     </script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("register-form").submit();
+    }
+</script>
     <script src="javascript/register.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
